@@ -75,8 +75,8 @@ h3 {
 }
 
 p {
-    background-color: azure;
-    color: red;
+    background-color: none;
+    color: black;
     font-family: courier;
-    font-size: 16px;
+    font-size: 30px;
 }
