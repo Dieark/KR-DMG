@@ -14,20 +14,31 @@
 <body>
     
 <h1>王之逆襲傷害計算機</h1> 
-<form action="/calculator.js">
-  <label for="atk1">基礎攻擊:</label>
-  <input type="number" id="atk1" name="atk1"><br><br>
-  <label for="atk2">攻擊前綴:</label>
-  <input type="number" id="atk2" name="atk2"><br><br>
-  <label for="atk3">攻擊後綴:</label>
-  <input type="number" id="atk3" name="atk3"><br><br>
-  <input type="submit" value="確定">
-</form> 
+<form name='form1' id='form1'>
+atk1：<input type='number' name='atk1' id='atk1' /><br><br>
+atk2：<input type='number' name='atk2' id='atk2' /><br><br>
+atk3：<input type='number' name='atk3' id='atk3' /><br><br>
+<input type='button' name='submit' value='送出' onclick='calculate();' />
+</form>
+
+
     
+<p id="demo"></p>
+
 <script type = "text/javascript">
-    
+function calculate() {
+const atk1Element = document.getElementById("atk1");
+const atk1 = atk1Element.value;
+const atk2Element = document.getElementById("atk2");
+const atk2 = atk2Element.value;
+const atk3Element = document.getElementById("atk3");
+const atk3 = atk3Element.value;
+document.getElementById("demo").innerHTML=atk1*atk2*atk3;
+}
 </script>
-    
+
+<script src="calculator.js"></script>
+
 </body>
     
 </html>
