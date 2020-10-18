@@ -45,7 +45,7 @@ var enemydef = document.getElementById("enemydef").value;
 var incdmg = document.getElementById("incdmg").value;
 var hunt = document.getElementById("hunt").value;
 
-document.getElementById("demo").innerHTML=Math.round((atk1*(1+atk2)*(1+atk3)*(1+skill1)+Number(skill2))*(1+skill3)*(2+cdmg)*(1+incdmg)*(1+hunt));
+document.getElementById("demo").innerHTML=Math.round((atk1*(1+0.01*atk2)*(1+0.01*atk3)*(1+skill1)+Number(skill2))*(1+0.01*skill3)*(2+0.01*cdmg)*(1+0.01*incdmg)*(1+0.01*hunt));
 }
 </script>
 
