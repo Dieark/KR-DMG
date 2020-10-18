@@ -1,4 +1,43 @@
 h1 {
-    background-color: darkviolet;
-    color: white;
+    background-color: azure;
+    color: blue;
+    font-family: verdana;
+    font-size: 50px;
+}
+
+h2 {
+    background-color: azure;
+    color: blue;
+    font-family: verdana;
+    font-size: 40px;
+}
+
+h3 {
+    background-color: azure;
+    color: blue;
+    font-family: verdana;
+    font-size: 30px;
+}
+
+h4 {
+    background-color: azure;
+    color: blue;
+    font-family: verdana;
+    font-size: 20px;
+}
+
+h5 {
+    background-color: azure;
+    color: blue;
+    font-family: verdana;
+    font-size: 10px;
+}
+
+
+
+p {
+    background-color: azure;
+    color: red;
+    font-family: courier;
+    font-size: 16px;
 }
