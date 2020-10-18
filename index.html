@@ -14,11 +14,18 @@
 <body>
     
 <h1>王之逆襲傷害計算機</h1> 
-<form name='form1' id='form1'>
-atk1：<input type='number' name='atk1' id='atk1' /><br><br>
-atk2：<input type='number' name='atk2' id='atk2' /><br><br>
-atk3：<input type='number' name='atk3' id='atk3' /><br><br>
-<input type='button' name='submit' value='送出' onclick='calculate();' />
+<form name="form1" id="form1">
+基礎攻擊：<input type="number" name="atk1" id="atk1" style="width:70px;" value="100000"/><br><br>
+攻擊前綴：<input type="number" name="atk2" id="atk2" style="width:40px;" value="96"/>%<br><br>
+攻擊後綴：<input type="number" name="atk3" id="atk3" style="width:40px;" value="200"/>%<br><br>
+技能倍率：<input type="number" name="skill1" id="skill1" style="width:60px;" value="3.986"/><br><br>
+基礎傷害：<input type="number" name="skill1" id="skill2" style="width:70px;" value="100000"/><br><br>
+爆擊傷害(%)：<input type="number" name="cdmg" id="cdmg" style="width:40px;" value="192"/>%<br><br>
+對敵增傷：<input type="number" name="incdmg" id="incdmg" style="width:40px;" value="75"/>%<br><br>
+敵人防禦：<input type="number" name="enemydef" id="enemydef" style="width:70px;" value="280000"/><br><br>
+技能書：<input type="number" name="skill3" id="skill3" style="width:40px;" value="50"/>%<br><br>
+狩獵：<input type="number" name="hunt" id="hunt" style="width:40px;" value="10"/>%<br><br>
+<input type="button" name="submit" value="送出" onclick="calculate();" />
 </form>
 
 
@@ -27,10 +34,18 @@ atk3：<input type='number' name='atk3' id='atk3' /><br><br>
 
 <script type = "text/javascript">
 function calculate() {
-const atk1 = document.getElementById("atk1").value;
-const atk2 = document.getElementById("atk2").value;
-const atk3 = document.getElementById("atk3").value;
-document.getElementById("demo").innerHTML=atk1*atk2*atk3;
+var atk1 = document.getElementById("atk1").value;
+var atk2 = document.getElementById("atk2").value;
+var atk3 = document.getElementById("atk3").value;
+var skill1 = document.getElementById("skill1").value;//技能傷害倍率
+var skill2 = document.getElementById("skill2").value;//技能基礎傷害
+var skill3 = document.getElementById("skill3").value;//技能書
+var cdmg = document.getElementById("cdmg").value;
+var enemydef = document.getElementById("enemydef").value;
+var incdmg = document.getElementById("incdmg").value;
+var hunt = document.getElementById("hunt").value;
+
+document.getElementById("demo").innerHTML=Math.round((atk1*(1+atk2)*(1+atk3)*(1+skill1)+skill2)*(1+skill3)*(2+cdmg)*(1+incdmg)*(1+hunt));
 }
 </script>
 
