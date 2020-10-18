@@ -54,10 +54,10 @@ footer {
 }
 
 h1 {
-    background-color: azure;
-    color: blue;
+    background-color: none;
+    color: black;
     font-family: verdana;
-    font-size: 100%;
+    font-size: 300%;
 }
 
 h2 {
