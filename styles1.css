@@ -19,7 +19,6 @@ header {
 nav {
   float: left;
   width: 30%;
-  height: 300px; /* only for demonstration, should be removed */
   background: #ccc;
   padding: 20px;
 }
@@ -35,7 +34,6 @@ article {
   padding: 20px;
   width: 70%;
   background-color: #f1f1f1;
-  height: 300px; /* only for demonstration, should be removed */
 }
 
 /* Clear floats after the columns */
@@ -53,30 +51,19 @@ footer {
   color: white;
 }
 
-h1 {
-    background-color: none;
-    color: black;
-    font-family: verdana;
-    font-size: 300%;
+div.a div{
+    padding-right:10px;
+    display:inline;
 }
 
-h2 {
-    background-color: azure;
-    color: blue;
-    font-family: verdana;
-    font-size: 100%;
+div.b{
+    border-radius:5px;
+    width:20px;
 }
 
-h3 {
-    background-color: azure;
-    color: blue;
-    font-family: verdana;
-    font-size: 100%;
-}
-
-p {
-    background-color: none;
-    color: black;
-    font-family: courier;
-    font-size: 30px;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0;
 }
