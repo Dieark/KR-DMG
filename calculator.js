@@ -95,14 +95,14 @@ for (var i=0;i<dmgstatlen;i++){
 function changeinputatk1(){
 document.getElementById("changeinputatk1").style.display="none";
 document.getElementById("changeinputatk2").style.display="block";
-document.getElementById("inputallatk").style.display="none";
+document.getElementById("inputallpanel").style.display="none";
 document.getElementById("inputpanelatk").style.display="block";
 }
 //按下按鈕輸入攻擊細項
 function changeinputatk2(){
 document.getElementById("changeinputatk1").style.display="block";
 document.getElementById("changeinputatk2").style.display="none";
-document.getElementById("inputallatk").style.display="block";
+document.getElementById("inputallpanel").style.display="block";
 document.getElementById("inputpanelatk").style.display="none";
 }
 //按下按鈕輸入魂武攻擊
@@ -110,14 +110,14 @@ function changeinputsw1(){
 document.getElementById("changeinputsw1").style.display="none";
 document.getElementById("changeinputsw2").style.display="block";
 document.getElementById("inputallsw").style.display="none";
-document.getElementById("inputpanelsw").style.display="block";
+document.getElementById("inputswatk").style.display="block";
 }
 //按下按鈕輸入魂武細項
 function changeinputsw2(){
 document.getElementById("changeinputsw1").style.display="block";
 document.getElementById("changeinputsw2").style.display="none";
 document.getElementById("inputallsw").style.display="block";
-document.getElementById("inputpanelsw").style.display="none";
+document.getElementById("inputswatk").style.display="none";
 }
 //改變專武輸入模式
 function changeuw(){

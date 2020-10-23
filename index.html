@@ -25,6 +25,7 @@
 </nav>
 
 <article>
+<!--==================表單開頭=================-->
 <div>
 <form name="heroform" id="heroform">
 <div>
@@ -41,14 +42,21 @@
 <option value="priest">牧師</option>
 </select>
 </div>
-<div id="changeinputatk1">
+<!--==============所有面板攻擊項目欄位=================-->
+<div id="changeinputatk1" style="display:none;">
 <button type="button" onclick="changeinputatk1()">填寫面板攻擊</button>
 </div>
-<div id="changeinputatk2" style="display:none;">
+<div id="changeinputatk2" style="display:block;">
 <button type="button" onclick="changeinputatk2()">填寫攻擊細項</button>
 </div>
-<div id="inputallatk">
-<!--=============專武欄位====================-->
+<!--輸入面板攻擊-->
+<div id="inputpanelatk" style="display:block;">
+<label for="inputpanelatk">面板攻擊：</label>
+<input type="number" name="inputpanelatk" id="inputpanelatk" style="width:89px;"  placeholder="1500000" />
+</div>
+<!--輸入詳細面板攻擊-->
+<div id="inputallpanel" style="display:none;">
+<!--====================專武欄位====================-->
 <div class="a">
 <!--專武星數表單-->
 <div id="uwstar">
@@ -72,7 +80,8 @@
 <button type="button" onclick="changeuw()">切換</button>
 </div>
 </div>
-<!--==================================-->
+<!--==================專武尾巴================-->
+<!--==================套裝欄位================-->
 <!--套裝表單-->
 <div>
 <label for="gearset">套裝：</label>
@@ -98,6 +107,7 @@
 <option value="false">未尋回</option>
 </select>
 </div>
+<!--==============套裝尾巴===================-->
 <!--==============耳環欄位===================-->
 <div class="a">
 <!--耳環星數表單-->
@@ -122,23 +132,22 @@
 <button type="button" onclick="changeer()">切換</button>
 </div>
 </div>
-<!--===================================================-->
+<!--=================耳環尾巴==========================-->
 <!--=================魂武欄位==========================-->
-<div id="changeinputsw1">
+<div id="changeinputsw1" style="display:none">
 <button type="button" onclick="changeinputsw1()">填寫魂武攻擊</button>
 </div>
-<div id="changeinputsw2" style="display:none;">
+<div id="changeinputsw2" style="display:block;">
 <button type="button" onclick="changeinputsw2()">填寫魂武細項</button>
 </div>
 <div class="a">
-<!--魂武階級表單-->
 <!--輸入魂武攻擊-->
-<div id="inputpanelsw" style="display:none">
+<div id="inputswatk" style="display:block">
 <label for="swatk">魂武攻擊：</label>
 <input type="number" name="swatk" id="swatk" style="width:89px;"  placeholder="128628" />
 </div>
-<div id="inputallsw">
-
+<div id="inputallsw" style="display:none;">
+<!--魂武階級表單-->
 <div id="swadv">
 <label for="swadv">魂武階級：</label>
 <select name="swadv" id="swadv">
@@ -198,18 +207,84 @@
 <br>
 </div>
 </div>
-<!--=============================================-->
+<!--======================魂武尾巴=================-->
+<!--======================攻擊前綴欄位==============-->
+<div id="changeinputpreatk1" style="display:none">
+<button type="button" onclick="changeinputpreatk1()">填寫攻擊前綴</button>
+</div>
+<div id="changeinputpreatk2" style="display:block;">
+<button type="button" onclick="changeinputpreatk2()">填寫攻擊前綴細項</button>
+</div>
+<div class="a">
 <!--輸入攻擊前綴-->
-<div id="inputpreatk">
+<div id="inputpreatk" style="display:block">
 <label for="inputpreatk">攻擊前綴：</label>
 <input type="number" name="inputpreatk" id="inputpreatk" style="width:89px;"  placeholder="192" />%
 </div>
+<div id="inputallsw" style="display:none;">
+<!--魂武階級表單-->
+<div id="swadv">
+<label for="swadv">魂武階級：</label>
+<select name="swadv" id="swadv">
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+</select>
 </div>
-<!--輸入面板攻擊-->
-<div id="inputpanelatk" style="display:none;">
-<label for="inputpanelatk">面板攻擊：</label>
-<input type="number" name="inputpanelatk" id="inputpanelatk" style="width:89px;"  placeholder="1500000" />
+<br>
+<!--魂武等級拉條-->
+<div id="swlevel">
+<label for="swlevel">魂武等級：</label>
+<div id="showswlevel">0</div>
+<input type="range" min="0" max="20" value="0" id="swlevel" oninput="showswlevel()">
 </div>
+<!--輸入魂武等級-->
+<div id="inputswlevel" style="display:none">
+<label for="inputswlevel">魂武等級：</label>
+<input type="number" name="inputswlevel" id="inputswlevel" style="width:89px;"  placeholder="20" />
+</div>
+<!--切換-->
+<div id="swsw2">
+<button type="button" onclick="changeswlevel()">切換</button>
+</div>
+<br>
+<!--魂武比例拉條-->
+<div id="swrate">
+<label for="swrate">攻擊比例：</label>
+<div id="showswrate">0</div>%
+<input type="range" min="-70" max="70" value="0" step="0.1" id="swrate" oninput="showswrate()">
+</div>
+<!--輸入魂武比例-->
+<div id="inputswrate" style="display:none">
+<label for="inputswrate">攻擊比例：</label>
+<input type="number" name="inputswrate" id="inputswrate" style="width:89px;"  placeholder="58.8" />
+</div>
+<!--切換-->
+<div id="swsw3">
+<button type="button" onclick="changeswrate()">切換</button>
+</div>
+<br>
+<!--魂武附加拉條-->
+<div id="swaddi">
+<label for="swaddi">附加攻擊：</label>
+<div id="showswaddi">0</div>%
+<input type="range" min="0" max="20" value="0" step="0.1" id="swaddi" oninput="showswaddi()">
+</div>
+<!--輸入魂武附加攻擊-->
+<div id="inputswaddi" style="display:none">
+<label for="inputswaddi">附加攻擊：</label>
+<input type="number" name="inputswaddi" id="inputswaddi" style="width:89px;"  placeholder="19.9" />
+</div>
+<!--切換-->
+<div id="swsw4">
+<button type="button" onclick="changeswaddi()">切換</button>
+</div>
+<br>
+</div>
+</div>
+<!--======================攻擊前綴尾巴==============-->
+</div>
+<!--==============所有面板攻擊項目尾巴=================-->
 <!--提交表單-->
 <div>
 <button type="button" onclick="test()">確定</button>
@@ -217,7 +292,7 @@
 </div>
 </form>
 </div>
-
+<!--==================表單尾巴=================-->
 
 <p1 id="demo"><br></p1>
 <p1 id="demo1"><br></p1>
