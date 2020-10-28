@@ -379,7 +379,7 @@ getpanelatk();
 }
 
 function getpanelatk(){
-panelatk=Math.floor((panelbase+uwatk+swatk+eratk)*preatk);
+panelatk=Math.floor((panelbase+uwatk+swatk+swatk2+eratk)*preatk);
 document.getElementById("paneldetail").innerHTML="面板攻擊：<span>"+panelatk+"</span>";
 }
 
