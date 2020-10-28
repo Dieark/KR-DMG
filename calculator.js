@@ -1,3 +1,7 @@
+//職業基礎攻擊資料
+var panelbasedata=[19792,22488,24688,27864,25416,29328,23216];
+//取得職業基礎攻擊
+var panelbase=19792;
 //取得魂武細項
 var swadv=0;
 var swlevel=0;
@@ -10,14 +14,31 @@ var swatk2=0;
 var swmulti=[1.00,1.03,1.06,1.09,1.12,1.16,1.24,1.32,1.42,1.52,1.62,1.82,2.04,2.28,2.55,2.86,3.43,4.12,4.95,5.94,7.13];
 //魂武基礎攻擊
 var swbase=[3500,4000,4500];
+
 //取得專武攻擊結果
-var uwatk=0;
+var uwatk=112763;
+//取得專武星數
+var uwstar=5;
 //專武星數資料
-var uwstar=[];
+var uwstardata=[
+    [45106,49616,58637,72169,90210,112763],//騎士
+    [51120,56231,66456,81791,102238,127798],//戰士
+    [56209,61829,73071,89933,112416,140520],//刺客
+    [63264,69589,82243,101221,126526,158157],//弓箭手
+    [57712,63483,75026,92339,115423,144278],//機械工
+    [58985,64882,76680,94374,117967,147459],//魔法師
+    [58985,64882,76680,94374,117967,147459]//牧師
+    ];
 //取得耳環攻擊結果
-var eratk=0;
+var eratk=23702;
+//取得耳環星數
+var erstar=5;
 //耳環星數資料
-var erstar=[];
+var erstardata=[
+    [15801,17381,18961,20542,22122,23702],//T8
+    [28440,29862,31284,32706,34128,35550],//TM未尋回
+    [37327,39193,41060,42926,44793,46659]//TM尋回
+    ];
 //取得攻擊前綴結果
 var preatk=1.00;
 //顯示(取得)面板攻擊結果
@@ -161,9 +182,8 @@ function showinput(){
 const selectdata=document.forms[0];
 document.getElementById("demo").innerHTML="";
 for (var i=0;i<selectdata.length;i++){
-if (selectdata.elements[i].value!="")
+if (selectdata.elements[i].value!=="")
 document.getElementById("demo").innerHTML+=selectdata.elements[i].id+":"+selectdata.elements[i].value+"<br>";
-document.getElementById("demo").innerHTML=swatk+"+"+swatk2;
 }//end for
 }//end function
 //按下按鈕輸入面板攻擊
@@ -260,115 +280,138 @@ if (y.style.display==="inline"){
     y.style.display="inline";
 }
 }
-//改變魂武等級輸入模式
-function changeswlevel(){
-if (document.getElementById("swleveldiv").style.display==="inline"){
-    document.getElementById("swleveldiv").style.display="inline";
-    document.getElementById("swleveldiv").style.display="none";
-} else{
-    document.getElementById("swleveldiv").style.display="none";
-	document.getElementById("swleveldiv").style.display="inline";
-}
-}
-//改變魂武比例輸入模式
-function changeswrate(){
-if (document.getElementById("swratediv").style.display==="inline"){
-    document.getElementById("swratediv").style.display="inline";
-    document.getElementById("swratediv").style.display="none";
-} else{
-    document.getElementById("swratediv").style.display="none";
-	document.getElementById("swratediv").style.display="inline";
-}
-}
-//改變魂武附加攻擊輸入模式
-function changeswaddi(){
-if (document.getElementById("swaddidiv").style.display==="inline"){
-    document.getElementById("swaddidiv").style.display="inline";
-    document.getElementById("swaddidiv").style.display="none";
-} else{
-    document.getElementById("swaddidiv").style.display="none";
-	document.getElementById("swaddidiv").style.display="inline";
-}
-}
-//展示魂武等級
-function showswlevel(){
-document.getElementById("showswlevel").innerHTML=document.getElementById("heroform").swlevel.value;
-}
-//展示魂武比例
-function showswrate(){
-document.getElementById("showswrate").innerHTML=document.getElementById("heroform").swrate.value;
-}
-//展示魂武附加
-function showswaddi(){
-document.getElementById("showswaddi").innerHTML=document.getElementById("heroform").swaddi.value;
-}
+//取得魂武攻擊
 function getswatk1(){
 swatk=Number(document.forms[0].swatk.value);
+getpanelatk();
 }
-function getswatk2(){
+
+//取得專武攻擊
+function getuwatk1(){
+uwatk=Number(document.forms[0].uwatk.value);
+getpanelatk();
+}
+
+//取得職業相關魂武專武攻擊
+function getatk2(){
+uwstar=Number(document.forms[0].uwstar.value);
 swadv=Number(document.forms[0].swadv.value);
 swlevel=Number(document.forms[0].swlevel.value);
 swrate=Number(document.forms[0].swrate.value);
 swaddi=Number(document.forms[0].swaddi.value);
 switch (document.forms[0].herotype.value){
 case "knight":
+uwatk=uwstardata[0][uwstar];
 swatk=Math.floor(swbase[0]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
 swatk2=Math.floor(swatk*swaddi*0.01,0);
+panelbase=panelbasedata[0];
 break;
 case "warrior":
+uwatk=uwstardata[1][uwstar];
 swatk=Math.floor(swbase[1]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
 swatk2=Math.floor(swatk*swaddi*0.01,0);
+panelbase=panelbasedata[1];
 break;
 case "assassin":
+uwatk=uwstardata[2][uwstar];
 swatk=Math.floor(swbase[1]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
 swatk2=Math.floor(swatk*swaddi*0.01,0);
+panelbase=panelbasedata[2];
 break;
 case "archer":
+uwatk=uwstardata[3][uwstar];
 swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
 swatk2=Math.floor(swatk*swaddi*0.01,0);
+panelbase=panelbasedata[3];
 break;
 case "mechanic":
+uwatk=uwstardata[4][uwstar];
 swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
 swatk2=Math.floor(swatk*swaddi*0.01,0);
+panelbase=panelbasedata[4];
 break;
 case "wizard":
+uwatk=uwstardata[5][uwstar];
 swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
 swatk2=Math.floor(swatk*swaddi*0.01,0);
+panelbase=panelbasedata[5];
 break;
 case "priest":
+uwatk=uwstardata[6][uwstar];
 swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
 swatk2=Math.floor(swatk*swaddi*0.01,0);
+panelbase=panelbasedata[6];
 break;
 default:
+uwatk=0;
 swatk=0;
 swatk2=0;
 }//end switch
 document.getElementById("swdetail").innerHTML="魂武攻擊：<span>"+swatk+"</span>+<span style=\"color:orange;\">"+swatk2+"</span>";
+getpanelatk();
 }//end function
 
-/*
-function returnatk() {
-var uwatk = document.getElementById("uwatk").value;
-var earatk = document.getElementById("earatk").value;
-var swatk = document.getElementById("swatk").value; 
-var atk2 = document.getElementById("atk2").value;
-document.getElementById("penalatk").innerHTML="面板攻擊="+Math.floor((Number(uwatk)+Number(earatk)+Number(swatk))*(1+0.01*Number(atk2)));
+
+//取得耳環攻擊
+function geteratk1(){
+eratk=Number(document.forms[0].eratk.value);
+getpanelatk();
+}
+function geteratk2(){
+erstar=Number(document.forms[0].erstar.value);
+if(document.forms[0].gearset.value<1000){
+eratk=erstardata[0][erstar];
+}else if(document.forms[0].fixed.value==0){
+eratk=erstardata[1][erstar];
+}else{
+eratk=erstardata[2][erstar];
+} //end if
+getpanelatk();
+}//end function
+
+function getpreatk1(){
+preatk=(Number(document.forms[0].preatk.value)+100)/100;
+getpanelatk();
 }
 
-function calculate() {
-var atk1 = document.getElementById("atk1").value;
-var atk2 = document.getElementById("atk2").value;
-var atk3 = document.getElementById("atk3").value;
-var skill1 = document.getElementById("skill1").value;//技能傷害倍率
-var skill2 = document.getElementById("skill2").value;//技能基礎傷害
-var skill3 = document.getElementById("skill3").value;//技能書
-var cdmg = document.getElementById("cdmg").value;
-var enemydef = document.getElementById("enemydef").value;
-var incdmg = document.getElementById("incdmg").value;
-var hunt = document.getElementById("hunt").value;
-
-document.getElementById("demo").innerHTML=Math.round((atk1*(1+0.01*atk2)*(1+0.01*atk3)*(1+skill1)+Number(skill2))*(1+0.01*skill3)*(2+0.01*cdmg)*(1+0.01*incdmg)*(1+0.01*hunt));
-document.getElementById("demo1").innerHTML=returnatk();
+function getpreatk2(){
+getpanelatk();
 }
 
-*/
+function getpanelatk(){
+panelatk=Math.floor((panelbase+uwatk+swatk+eratk)*preatk);
+document.getElementById("paneldetail").innerHTML="面板攻擊：<span>"+panelatk+"</span>";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

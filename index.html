@@ -36,7 +36,7 @@
 <div class="f">
 <div id="herotypediv">
 <label for="herotype">選擇職業：</label>
-<select name="herotype" id="herotype" onchange="getswatk2()">
+<select name="herotype" id="herotype" onchange="getatk2()">
 <option value="knight">騎士</option>
 <option value="warrior">戰士</option>
 <option value="assassin">刺客</option>
@@ -67,19 +67,19 @@
 <!--專武星數表單-->
 <div id="uwstardiv">
 <label for="uwstar">專武星數：</label>
-<select name="uwstar" id="uwstar">
+<select name="uwstar" id="uwstar" onchange="getatk2()">
 <option value="0">☆☆☆☆☆</option>
 <option value="1">★☆☆☆☆</option>
 <option value="2">★★☆☆☆</option>
 <option value="3">★★★☆☆</option>
 <option value="4">★★★★☆</option>
-<option value="5">★★★★★</option>
+<option value="5" selected>★★★★★</option>
 </select>
 </div>
 <!--輸入專武攻擊-->
 <div id="uwatkdiv" style="display:none">
 <label for="uwatk">專武攻擊：</label>
-<input type="number" name="uwatk" id="uwatk" style="width:89px;" placeholder="147459" />
+<input type="number" name="uwatk" id="uwatk" style="width:89px;" placeholder="147459" oninput="getuwatk1()"/>
 </div>
 <!--切換-->
 <div>
@@ -91,7 +91,7 @@
 <!--套裝表單-->
 <div id="gearsetdiv">
 <label for="gearset">套裝：</label>
-<select name="gearset" id="gearset" onchange="showfixed()">
+<select name="gearset" id="gearset" onchange="showfixed(),geteratk2()">
 <!--魔獸套-->
 <optgroup label="魔獸套">
 <option value="101">魔獸2件套</option>
@@ -105,16 +105,16 @@
 </optgroup>
 <!--其它-->
 <optgroup label="其它">
-<option value="0">其它</option>
+<option value="0">其它T8套裝</option>
 </optgroup>
 </select>
 </div>
 <!--尋回/未尋回-->
 <div id="fixeddiv" style="display:none;">
 <label for="fixed">尋回/未尋回：</label>
-<select name="fixed" id="fixed">
-<option value="true">尋回</option>
-<option value="false">未尋回</option>
+<select name="fixed" id="fixed" onchange="geteratk2()">
+<option value="1">尋回</option>
+<option value="0">未尋回</option>
 </select>
 </div>
 <!--==============套裝尾巴===================-->
@@ -123,19 +123,19 @@
 <!--耳環星數表單-->
 <div id="erstardiv">
 <label for="erstar">耳環星數：</label>
-<select name="erstar" id="erstar">
+<select name="erstar" id="erstar" onchange="geteratk2()">
 <option value="0">☆☆☆☆☆</option>
 <option value="1">★☆☆☆☆</option>
 <option value="2">★★☆☆☆</option>
 <option value="3">★★★☆☆</option>
 <option value="4">★★★★☆</option>
-<option value="5">★★★★★</option>
+<option value="5" selected>★★★★★</option>
 </select>
 </div>
 <!--輸入耳環攻擊-->
 <div id="eratkdiv" style="display:none">
 <label for="eratk">耳環攻擊：</label>
-<input type="number" name="eratk" id="eratk" style="width:89px;"  placeholder="28628" />
+<input type="number" name="eratk" id="eratk" style="width:89px;"  placeholder="23702" oninput="geteratk1()"/>
 </div>
 <!--切換-->
 <div>
@@ -161,60 +161,30 @@
 <!--魂武階級表單-->
 <div id="swadvdiv">
 <label for="swadv">魂武階級：</label>
-<select name="swadv" id="swadv" onchange="getswatk2()">
+<select name="swadv" id="swadv" onchange="getatk2()">
 <option value="0">0</option>
 <option value="1">1</option>
 <option value="2">2</option>
 </select>
 </div>
 <br>
-<!--魂武等級拉條
-<div id="swleveldiv">
-<label for="swlevel">魂武等級：</label>
-<div id="showswlevel">0</div>
-<input type="range" min="0" max="20" value="0" id="swlevel" oninput="showswlevel()">
-</div>-->
 <!--輸入魂武等級-->
 <div id="swleveldiv" style="display:inline">
 <label for="swlevel">魂武等級：</label>
-<input type="number" name="swlevel" id="swlevel" style="width:24px;"  placeholder="20" oninput="getswatk2()"/>
+<input type="number" name="swlevel" id="swlevel" style="width:24px;"  placeholder="20" oninput="getatk2()"/>
 </div>
-<!--切換
-<div id="swsw2">
-<button type="button" onclick="changeswlevel()">切換</button>
-</div>-->
 <br>
-<!--魂武比例拉條
-<div id="swratediv">
-<label for="swrate">攻擊比例：</label>
-<div id="showswrate">0</div>%
-<input type="range" min="-70" max="70" value="0" step="0.1" id="swrate" oninput="showswrate()">
-</div>-->
 <!--輸入魂武比例-->
 <div id="swratediv" style="display:inline">
 <label for="swrate">攻擊比例：</label>
-<input type="number" name="swrate" id="swrate" style="width:36px;"  placeholder="58.8" value="50.0" oninput="getswatk2()"/>%
+<input type="number" name="swrate" id="swrate" style="width:36px;"  placeholder="58.8" value="50.0" oninput="getatk2()"/>%
 </div>
-<!--切換
-<div id="swsw3">
-<button type="button" onclick="changeswrate()">切換</button>
-</div>-->
 <br>
-<!--魂武附加拉條
-<div id="swaddidiv">
-<label for="swaddi">附加攻擊：</label>
-<div id="showswaddi">0</div>%
-<input type="range" min="0" max="20" value="0" step="0.1" id="swaddi" oninput="showswaddi()">
-</div>-->
 <!--輸入魂武附加攻擊-->
 <div id="swaddidiv" style="display:inline">
 <label for="swaddi">附加攻擊：</label>
-<input type="number" name="swaddi" id="swaddi" style="width:36px;"  placeholder="19.9" oninput="getswatk2()"/>%
+<input type="number" name="swaddi" id="swaddi" style="width:36px;"  placeholder="19.9" oninput="getatk2()"/>%
 </div>
-<!--切換
-<div id="swsw4">
-<button type="button" onclick="changeswaddi()">切換</button>
-</div>-->
 <br>
 <!--顯示魂武細項結果-->
 <br>
@@ -235,9 +205,9 @@
 </div>
 <div class="a">
 <!--輸入攻擊前綴-->
-<div id="inputpreatkdiv" style="display:block">
-<label for="inputpreatk">攻擊前綴：</label>
-<input type="number" name="inputpreatk" id="inputpreatk" style="width:89px;"  placeholder="192" />%
+<div id="preatkdiv" style="display:block">
+<label for="preatk">攻擊前綴：</label>
+<input type="number" name="preatk" id="preatk" style="width:89px;"  placeholder="192" oninput="getpreatk1()"/>%
 </div>
 <div id="inputallpreatkdiv" style="display:none;">
 <br>
@@ -245,6 +215,12 @@
 </div>
 </div>
 <!--======================攻擊前綴尾巴==============-->
+<!--顯示面板細項結果-->
+<br>
+<div id="paneldetail" class="paneldetail">
+    面板攻擊：0
+</div>
+<br><br>
 </div>
 </div>
 <!--==============所有面板攻擊項目尾巴=================-->
@@ -258,9 +234,9 @@
 </div>
 <div class="a">
 <!--輸入攻擊後綴-->
-<div id="inputposatkdiv" style="display:block">
-<label for="inputposatk">攻擊後綴：</label>
-<input type="number" name="inputposatk" id="inputposatk" style="width:89px;"  placeholder="192" />%
+<div id="posatkdiv" style="display:block">
+<label for="posatk">攻擊後綴：</label>
+<input type="number" name="posatk" id="posatk" style="width:89px;"  placeholder="192" />%
 </div>
 <div id="inputallposatkdiv" style="display:none;">
 <br>
@@ -278,9 +254,9 @@
 </div>
 <div class="a">
 <!--輸入攻擊數值-->
-<div id="inputatkvaluediv" style="display:block">
-<label for="inputatkvalue">攻擊數值：</label>
-<input type="number" name="inputatkvalue" id="inputatkvalue" style="width:89px;"  placeholder="200000" />
+<div id="atkvaluediv" style="display:block">
+<label for="atkvalue">攻擊數值：</label>
+<input type="number" name="atkvalue" id="atkvalue" style="width:89px;"  placeholder="200000" />
 </div>
 <div id="inputallatkvaluediv" style="display:none;">
 <br>
@@ -298,9 +274,9 @@
 </div>
 <div class="a">
 <!--輸入技能倍率-->
-<div id="inputmultidiv" style="display:block">
-<label for="inputmulti">技能倍率：</label>
-<input type="number" name="inputmulti" id="inputmulti" style="width:89px;"  placeholder="4.397" />
+<div id="multidiv" style="display:block">
+<label for="multi">技能倍率：</label>
+<input type="number" name="multi" id="multi" style="width:89px;"  placeholder="4.397" />
 </div>
 <div id="inputallmultidiv" style="display:none;">
 <br>
@@ -318,9 +294,9 @@
 </div>
 <div class="a">
 <!--輸入技能基值-->
-<div id="inputbasediv" style="display:block">
-<label for="inputbase">技能基值：</label>
-<input type="number" name="inputbase" id="inputbase" style="width:89px;"  placeholder="122362" />
+<div id="basediv" style="display:block">
+<label for="base">技能基值：</label>
+<input type="number" name="base" id="base" style="width:89px;"  placeholder="122362" />
 </div>
 <div id="inputallbasediv" style="display:none;">
 <br>
@@ -338,9 +314,9 @@
 </div>
 <div class="a">
 <!--輸入敵人防禦-->
-<div id="inputenemydefdiv" style="display:block">
-<label for="inputenemydef">敵人防禦：</label>
-<input type="number" name="inputenemydef" id="inputenemydef" style="width:89px;"  placeholder="150000" />
+<div id="enemydefdiv" style="display:block">
+<label for="enemydef">敵人防禦：</label>
+<input type="number" name="enemydef" id="enemydef" style="width:89px;"  placeholder="150000" />
 </div>
 <div id="inputallenemydefdiv" style="display:none;">
 <br>
@@ -358,9 +334,9 @@
 </div>
 <div class="a">
 <!--輸入屬性增傷-->
-<div id="inputdmgincdiv" style="display:block">
-<label for="inputdmginc">屬性增傷：</label>
-<input type="number" name="inputdmginc" id="inputdmginc" style="width:89px;"  placeholder="75" />%
+<div id="dmgincdiv" style="display:block">
+<label for="dmginc">屬性增傷：</label>
+<input type="number" name="dmginc" id="dmginc" style="width:89px;"  placeholder="75" />%
 </div>
 <div id="inputalldmgincdiv" style="display:none;">
 <br>
@@ -378,9 +354,9 @@
 </div>
 <div class="a">
 <!--輸入總爆傷-->
-<div id="inputcdmgdiv" style="display:block">
-<label for="inputcdmg">總爆傷：</label>
-<input type="number" name="inputcdmg" id="inputcdmg" style="width:89px;"  placeholder="500" />%
+<div id="cdmgdiv" style="display:block">
+<label for="cdmg">總爆傷：</label>
+<input type="number" name="cdmg" id="cdmg" style="width:89px;"  placeholder="500" />%
 </div>
 <div id="inputallcdmgdiv" style="display:none;">
 <br>
