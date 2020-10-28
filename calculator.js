@@ -214,7 +214,7 @@ document.getElementById("changesw1").style.display="block";
 document.getElementById("changesw2").style.display="none";
 document.getElementById("allswdiv").style.display="block";
 document.getElementById("swdiv").style.display="none";
-getswatk2();
+getatk2();
 }
 //按下按鈕輸入攻擊前綴
 function changepreatk1(){
