@@ -1,3 +1,45 @@
+//取得魂武細項
+var swadv=0;
+var swlevel=0;
+var swrate=0;
+var swaddi=0;
+//顯示(取得)魂武攻擊結果
+var swatk=0;
+var swatk2=0;
+//魂武等級資料
+var swmulti=[1.00,1.03,1.06,1.09,1.12,1.16,1.24,1.32,1.42,1.52,1.62,1.82,2.04,2.28,2.55,2.86,3.43,4.12,4.95,5.94,7.13];
+//魂武基礎攻擊
+var swbase=[3500,4000,4500];
+//取得專武攻擊結果
+var uwatk=0;
+//專武星數資料
+var uwstar=[];
+//取得耳環攻擊結果
+var eratk=0;
+//耳環星數資料
+var erstar=[];
+//取得攻擊前綴結果
+var preatk=1.00;
+//顯示(取得)面板攻擊結果
+var panelatk=0;
+//取得攻擊後綴結果
+var posatk=1.00;
+//取得攻擊數值結果
+var atkvalue=0;
+//取得技能倍率結果
+var multi=1.000;
+//取得技能基值結果
+var base=0;
+//取得防禦減傷結果
+var defdec=1.000;
+//取得屬性增傷結果
+var dmginc=1.00;
+//取得總爆傷結果
+var cdmg=2.00;
+//取得技能增傷結果
+var skillinc=1.50;
+//取得狩獵結果
+var hunt=1.1;
 
 
 var dmgstat={
@@ -76,53 +118,117 @@ aspd:0,
 pblockdef:0,
 mblockdef:0
 }
+
+//把input資料存到dmgstat
+function input2dmgstat(){
 //dmgstat元素數量
 var dmgstatlen=dmgstat.length;
 //把所有input的資料存到這裡
 const inputdata=document.getElementsByTagName("input");
 //inputdataTAG數量
 var inputdatalen=inputdata.length;
-//把input資料存到dmgstat
-function input2dmgstat(){
 for (var i=0;i<dmgstatlen;i++){
     for (var j=0;j<inputdatalen;j++){
         if(dmgstat[i].name==inputdata[j].name)
         dmgstat[i].value=inputdata[j].value;
     }
-}
-}
+}//end for
+}//end function
+
+//隱藏未完成部分
+function hideundefined(){
+document.getElementById("changepreatk1").style.display="none";
+document.getElementById("changepreatk2").style.display="none";
+document.getElementById("changeposatk1").style.display="none";
+document.getElementById("changeposatk2").style.display="none";
+document.getElementById("changeatkvalue1").style.display="none";
+document.getElementById("changeatkvalue2").style.display="none";
+document.getElementById("changemulti1").style.display="none";
+document.getElementById("changemulti2").style.display="none";
+document.getElementById("changebase1").style.display="none";
+document.getElementById("changebase2").style.display="none";
+document.getElementById("changeenemydef1").style.display="none";
+document.getElementById("changeenemydef2").style.display="none";
+document.getElementById("changedmginc1").style.display="none";
+document.getElementById("changedmginc2").style.display="none";
+document.getElementById("changecdmg1").style.display="none";
+document.getElementById("changecdmg2").style.display="none";
+document.getElementById("changeskillinc1").style.display="none";
+document.getElementById("changeskillinc2").style.display="none";
+}//end function
+//test
+function showinput(){
+const selectdata=document.forms[0];
+document.getElementById("demo").innerHTML="";
+for (var i=0;i<selectdata.length;i++){
+if (selectdata.elements[i].value!="")
+document.getElementById("demo").innerHTML+=selectdata.elements[i].id+":"+selectdata.elements[i].value+"<br>";
+document.getElementById("demo").innerHTML=swatk+"+"+swatk2;
+}//end for
+}//end function
 //按下按鈕輸入面板攻擊
-function changeinputatk1(){
-document.getElementById("changeinputatk1").style.display="none";
-document.getElementById("changeinputatk2").style.display="block";
-document.getElementById("inputallpanel").style.display="none";
-document.getElementById("inputpanelatk").style.display="block";
+function changepanel1(){
+document.getElementById("changepanel1").style.display="none";
+document.getElementById("changepanel2").style.display="block";
+document.getElementById("allpaneldiv").style.display="none";
+document.getElementById("paneldiv").style.display="block";
 }
 //按下按鈕輸入攻擊細項
-function changeinputatk2(){
-document.getElementById("changeinputatk1").style.display="block";
-document.getElementById("changeinputatk2").style.display="none";
-document.getElementById("inputallpanel").style.display="block";
-document.getElementById("inputpanelatk").style.display="none";
+function changepanel2(){
+document.getElementById("changepanel1").style.display="block";
+document.getElementById("changepanel2").style.display="none";
+document.getElementById("allpaneldiv").style.display="block";
+document.getElementById("paneldiv").style.display="none";
 }
 //按下按鈕輸入魂武攻擊
-function changeinputsw1(){
-document.getElementById("changeinputsw1").style.display="none";
-document.getElementById("changeinputsw2").style.display="block";
-document.getElementById("inputallsw").style.display="none";
-document.getElementById("inputswatk").style.display="block";
+function changesw1(){
+document.getElementById("changesw1").style.display="none";
+document.getElementById("changesw2").style.display="block";
+document.getElementById("allswdiv").style.display="none";
+document.getElementById("swdiv").style.display="block";
+getswatk1();
 }
 //按下按鈕輸入魂武細項
-function changeinputsw2(){
-document.getElementById("changeinputsw1").style.display="block";
-document.getElementById("changeinputsw2").style.display="none";
-document.getElementById("inputallsw").style.display="block";
-document.getElementById("inputswatk").style.display="none";
+function changesw2(){
+document.getElementById("changesw1").style.display="block";
+document.getElementById("changesw2").style.display="none";
+document.getElementById("allswdiv").style.display="block";
+document.getElementById("swdiv").style.display="none";
+getswatk2();
 }
+//按下按鈕輸入攻擊前綴
+function changepreatk1(){
+document.getElementById("changepreatk1").style.display="none";
+document.getElementById("changepreatk2").style.display="block";
+document.getElementById("inputallpreatkdiv").style.display="none";
+document.getElementById("inputpreatkdiv").style.display="block";
+}
+//按下按鈕輸入攻擊前綴細項
+function changepreatk2(){
+document.getElementById("changepreatk1").style.display="block";
+document.getElementById("changepreatk2").style.display="none";
+document.getElementById("inputallpreatkdiv").style.display="block";
+document.getElementById("inputpreatkdiv").style.display="none";
+}
+//按下按鈕輸入攻擊後綴
+function changeposatk1(){
+document.getElementById("changeposatk1").style.display="none";
+document.getElementById("changeposatk2").style.display="block";
+document.getElementById("inputallposatkdiv").style.display="none";
+document.getElementById("inputposatkdiv").style.display="block";
+}
+//按下按鈕輸入攻擊後綴細項
+function changeposatk2(){
+document.getElementById("changeposatk1").style.display="block";
+document.getElementById("changeposatk2").style.display="none";
+document.getElementById("inputallposatkdiv").style.display="block";
+document.getElementById("inputposatkdiv").style.display="none";
+}
+
 //改變專武輸入模式
 function changeuw(){
-var x=document.getElementById("uwstar");
-var y=document.getElementById("uwatk");
+var x=document.getElementById("uwstardiv");
+var y=document.getElementById("uwatkdiv");
 if (y.style.display==="inline"){
     x.style.display="inline";
     y.style.display="none";
@@ -133,18 +239,19 @@ if (y.style.display==="inline"){
 }
 //展示尋回選項
 function showfixed(){
-var x=document.getElementById("fixed");
+var x=document.getElementById("fixeddiv");
 var y=document.getElementById("gearset").value;
-if ((y=="tmg")||(y=="tms")||(y=="tma")){
-                x.style.display="block";
-                }else{
-                x.style.display="none";
-                }
+var z=document.getElementById("gearsetdiv");
+if (y>1000){
+    x.style.display="block";
+    }else{
+    x.style.display="none";
+    }
 }
 //改變耳環輸入模式
 function changeer(){
-var x=document.getElementById("erstar");
-var y=document.getElementById("eratk");
+var x=document.getElementById("erstardiv");
+var y=document.getElementById("eratkdiv");
 if (y.style.display==="inline"){
     x.style.display="inline";
     y.style.display="none";
@@ -155,32 +262,32 @@ if (y.style.display==="inline"){
 }
 //改變魂武等級輸入模式
 function changeswlevel(){
-if (document.getElementById("inputswlevel").style.display==="inline"){
-    document.getElementById("swlevel").style.display="inline";
-    document.getElementById("inputswlevel").style.display="none";
+if (document.getElementById("swleveldiv").style.display==="inline"){
+    document.getElementById("swleveldiv").style.display="inline";
+    document.getElementById("swleveldiv").style.display="none";
 } else{
-    document.getElementById("swlevel").style.display="none";
-	document.getElementById("inputswlevel").style.display="inline";
+    document.getElementById("swleveldiv").style.display="none";
+	document.getElementById("swleveldiv").style.display="inline";
 }
 }
 //改變魂武比例輸入模式
 function changeswrate(){
-if (document.getElementById("inputswrate").style.display==="inline"){
-    document.getElementById("swrate").style.display="inline";
-    document.getElementById("inputswrate").style.display="none";
+if (document.getElementById("swratediv").style.display==="inline"){
+    document.getElementById("swratediv").style.display="inline";
+    document.getElementById("swratediv").style.display="none";
 } else{
-    document.getElementById("swrate").style.display="none";
-	document.getElementById("inputswrate").style.display="inline";
+    document.getElementById("swratediv").style.display="none";
+	document.getElementById("swratediv").style.display="inline";
 }
 }
 //改變魂武附加攻擊輸入模式
 function changeswaddi(){
-if (document.getElementById("inputswaddi").style.display==="inline"){
-    document.getElementById("swaddi").style.display="inline";
-    document.getElementById("inputswaddi").style.display="none";
+if (document.getElementById("swaddidiv").style.display==="inline"){
+    document.getElementById("swaddidiv").style.display="inline";
+    document.getElementById("swaddidiv").style.display="none";
 } else{
-    document.getElementById("swaddi").style.display="none";
-	document.getElementById("inputswaddi").style.display="inline";
+    document.getElementById("swaddidiv").style.display="none";
+	document.getElementById("swaddidiv").style.display="inline";
 }
 }
 //展示魂武等級
@@ -195,50 +302,51 @@ document.getElementById("showswrate").innerHTML=document.getElementById("herofor
 function showswaddi(){
 document.getElementById("showswaddi").innerHTML=document.getElementById("heroform").swaddi.value;
 }
-//測試用
-function test(){
-var form=document.getElementById("heroform");
-var herotype=form.herotype.value;
-var uwstar=form.uwstar.value;
-var erstar=form.erstar.value;
-var uwatk=form.uwatk.value;
-document.getElementById("demo1").innerHTML=herotype;
+function getswatk1(){
+swatk=Number(document.forms[0].swatk.value);
 }
+function getswatk2(){
+swadv=Number(document.forms[0].swadv.value);
+swlevel=Number(document.forms[0].swlevel.value);
+swrate=Number(document.forms[0].swrate.value);
+swaddi=Number(document.forms[0].swaddi.value);
+switch (document.forms[0].herotype.value){
+case "knight":
+swatk=Math.floor(swbase[0]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
+swatk2=Math.floor(swatk*swaddi*0.01,0);
+break;
+case "warrior":
+swatk=Math.floor(swbase[1]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
+swatk2=Math.floor(swatk*swaddi*0.01,0);
+break;
+case "assassin":
+swatk=Math.floor(swbase[1]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
+swatk2=Math.floor(swatk*swaddi*0.01,0);
+break;
+case "archer":
+swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
+swatk2=Math.floor(swatk*swaddi*0.01,0);
+break;
+case "mechanic":
+swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
+swatk2=Math.floor(swatk*swaddi*0.01,0);
+break;
+case "wizard":
+swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
+swatk2=Math.floor(swatk*swaddi*0.01,0);
+break;
+case "priest":
+swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
+swatk2=Math.floor(swatk*swaddi*0.01,0);
+break;
+default:
+swatk=0;
+swatk2=0;
+}//end switch
+document.getElementById("swdetail").innerHTML="魂武攻擊：<span>"+swatk+"</span>+<span style=\"color:orange;\">"+swatk2+"</span>";
+}//end function
 
-function dmgform(){
-var text=
-"<form name=\"form1\" id=\"form1\">"+
-"<div id=\"atkperform1\">"+
-"<div>專武攻擊：<input type=\"number\" name=\"uwatk\" id=\"uwatk\" style=\"width:70px;\" placeholder=\"147459\" /><br><br></div>"+
-"<div>耳環攻擊：<input type=\"number\" name=\"earatk\" id=\"earatk\" style=\"width:70px;\" placeholder=\"46659\" /><br><br></div>"+
-"<div>魂武攻擊：<input type=\"number\" name=\"swatk\" id=\"swatk\" style=\"width:70px;\" placeholder=\"200000\" /><br><br></div>"+
-"<div>攻擊前綴：<input type=\"number\" name=\"preatk\" id=\"preatk\" style=\"width:50px;\" placeholder=\"1500000\" />%<br><br></div>"+
-"<p1>確認面板攻擊是否正確</p1><br>"+
-"<p1 id=\"panelatk\">面板攻擊= <b>--</b></p1><br><br>"+
-"</div>"+
-"<div id=\"atkperform2\" style=\"display:none\">"+
-"面板攻擊：<input type=\"number\" name=\"panelatk\" id=\"panelatk\" style=\"width:100px;\" placeholder=\"1500000\"/><br><br>"+
-"</div>"+
-"<div>"+
-"<button type=\"button\" onclick=\"changeatkperform()\">change</button>"+
-"</div>"+
-"攻擊後綴：<input type=\"number\" name=\"posatk\" id=\"posatk\" style=\"width:50px;\" placeholder=\"200\"/>%<br><br>"+
-"技能倍率：<input type=\"number\" name=\"multi\" id=\"multi\" style=\"width:60px;\" placeholder=\"5.001\"/><br><br>"+
-"基礎傷害：<input type=\"number\" name=\"base\" id=\"base\" style=\"width:70px;\" placeholder=\"100000\"/><br><br>"+
-"爆擊傷害(%)：<input type=\"number\" name=\"cdmg\" id=\"cdmg\" style=\"width:50px;\" placeholder=\"192\"/>%<br><br>"+
-"對敵增傷：<input type=\"number\" name=\"incdmg\" id=\"incdmg\" style=\"width:50px;\" placeholder=\"75\"/>%<br><br>"+
-"敵人防禦：<input type=\"number\" name=\"enemydef\" id=\"enemydef\" style=\"width:70px;\" placeholder=\"280000\"/><br><br>"+
-"技能書：<input type=\"number\" name=\"book\" id=\"book\" style=\"width:50px;\" placeholder=\"50\"/>%<br><br>"+
-"狩獵：<input type=\"number\" name=\"hunt\" id=\"hunt\" style=\"width:50px;\" placeholder=\"10\"/>%<br><br>"+
-"<input type=\"button\" name=\"submit\" value=\"送出\" onclick=\"test();\" />"+//onclick
-"</form>"
-;
-document.getElementById("dmgform").innerHTML=text;
-}
-
-
-
-
+/*
 function returnatk() {
 var uwatk = document.getElementById("uwatk").value;
 var earatk = document.getElementById("earatk").value;
@@ -263,4 +371,4 @@ document.getElementById("demo").innerHTML=Math.round((atk1*(1+0.01*atk2)*(1+0.01
 document.getElementById("demo1").innerHTML=returnatk();
 }
 
-
+*/
