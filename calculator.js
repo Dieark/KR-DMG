@@ -94,6 +94,7 @@ red:function(){return defred.real();},//扣防％
 dec:0,//扣防值
 pen:function(){return pen.real();},//防穿值遞減結果
 mul:function(){return defmul(this.base,this.enemy,this.red(),this.dec,this.pen());},//防禦減傷倍率
+real:function(){return Math.floor((this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100);},
 }
 
 //取得攻擊數值結果
@@ -427,6 +428,7 @@ pen.x=document.getElementById("pen.x").value;
 document.getElementById("defredsoft").innerHTML="："+defred.real().toFixed(1)+"％";
 document.getElementById("pensoft").innerHTML="："+pen.real().toFixed(1)+"％";
 document.getElementById("def.mul").innerHTML="防禦減傷倍率："+def.mul();
+document.getElementById("realdef").innerHTML="有效防禦："+def.real();
 console.log(defred.x);
 
 
