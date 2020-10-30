@@ -93,8 +93,8 @@ enemy:0,//敵人防禦
 red:function(){return defred.real();},//扣防％
 dec:0,//扣防值
 pen:function(){return pen.real();},//防穿值遞減結果
-real:function(){return Math.floor(Math.floor(this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100);},
-mul:function(){return defmul(this.base,this.enemy,this.red(),this.dec,this.pen());},//防禦減傷倍率
+real:function(){return Math.floor(Math.floor(this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100);},//有效防禦
+mul:function(){return Math.round(this.base*this.real()/(1000000-this.base+this.real())/1000)/1000;},//防禦減傷倍率
 
 }
 
@@ -417,6 +417,12 @@ document.getElementById("paneldetail").innerHTML="面板攻擊：<span>"+panel.a
 
 //顯示(取得)防禦減傷倍率
 function getdefmul(){
+document.getElementById("def.enemy").value=range(document.getElementById("def.enemy").value,0,Infinity);
+document.getElementById("def.rai").value=range(document.getElementById("def.rai").value,0,Infinity);
+document.getElementById("def.red").value=range(document.getElementById("def.red").value,0,Infinity);
+document.getElementById("def.inc").value=range(document.getElementById("def.inc").value,0,Infinity);
+document.getElementById("def.dec").value=range(document.getElementById("def.dec").value,0,Infinity);
+document.getElementById("pen.x").value=range(document.getElementById("pen.x").value,0,9999);
 //取得敵人防禦
 def.enemy=document.getElementById("def.enemy").value;
 //取得扣防％(扣防％-增防％)
@@ -447,16 +453,9 @@ function softcap(x,max,x1,a1,b1,x2,a2,b2){
 var c=1000000;
 if(x>x1) return max-Math.floor(c*max/(a1*x*x+b1*x+c));
 if(x>x2) return (a2*x+b2*1000)/1000;
-if(x<0) return 0;
 return x;
 }
 
-//取得防禦減傷倍率
-function defmul(a,x,red,dec,pen){
-var c=1000000;
-//let def=(x*(100-red)/100-dec)*(100-pen)/100;
-return Math.round(a*def.real()/(c-a+def.real())/1000)/1000;
-}
 
 
 
