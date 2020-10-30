@@ -1,26 +1,36 @@
-//職業基礎攻擊資料
-var panelbasedata=[19792,22488,24688,27864,25416,29328,23216];
-//取得職業基礎攻擊
-var panelbase=19792;
-//取得魂武細項
-var swadv=0;
-var swlevel=0;
-var swrate=0;
-var swaddi=0;
-//顯示(取得)魂武攻擊結果
-var swatk=0;
-var swatk2=0;
-//魂武等級資料
-var swmulti=[1.00,1.03,1.06,1.09,1.12,1.16,1.24,1.32,1.42,1.52,1.62,1.82,2.04,2.28,2.55,2.86,3.43,4.12,4.95,5.94,7.13];
-//魂武基礎攻擊
-var swbase=[3500,4000,4500];
+var panel={
+mode:0,//輸入模式 0：輸入 1：細項
+atk:0,//顯示(取得)面板攻擊結果
+basedata:[19792,22488,24688,27864,25416,29328,23216],//職業基礎攻擊資料
+base:19792,//取得職業基礎攻擊
+}
 
-//取得專武攻擊結果
-var uwatk=112763;
-//取得專武星數
-var uwstar=5;
-//專武星數資料
-var uwstardata=[
+var sw={
+mode:0,//輸入模式 0：輸入 1：細項
+//取得細項
+adv:2,//階級
+level:20,//等級
+rate:70,//比例
+addi:20,//附加攻擊
+//顯示(取得)魂武攻擊結果
+atk:0,//總攻擊
+atk1:0,//攻擊前項
+atk2:0,//攻擊後項
+//等級倍率資料
+scaling:[1.00,1.03,1.06,1.09,1.12,
+         1.16,1.24,1.32,1.42,1.52,
+         1.62,1.82,2.04,2.28,2.55,
+         2.86,3.43,4.12,4.95,5.94,7.13],
+//基礎攻擊資料
+base:[3500,4000,4500],
+}
+
+var uw={
+mode:1,//輸入模式 0：輸入 1：選單
+atk:112763,//取得專武攻擊結果
+star:5,//取得星數
+//職業-星數-攻擊資料
+stardata:[
     [45106,49616,58637,72169,90210,112763],//騎士
     [51120,56231,66456,81791,102238,127798],//戰士
     [56209,61829,73071,89933,112416,140520],//刺客
@@ -28,23 +38,53 @@ var uwstardata=[
     [57712,63483,75026,92339,115423,144278],//機械工
     [58985,64882,76680,94374,117967,147459],//魔法師
     [58985,64882,76680,94374,117967,147459]//牧師
-    ];
-//取得耳環攻擊結果
-var eratk=23702;
-//取得耳環星數
-var erstar=5;
+    ],
+}
+
+var er={
+mode:1,//輸入模式 0：輸入 1：選單
+atk:23702,//取得耳環攻擊結果
+star:5,//取得耳環星數
 //耳環星數資料
-var erstardata=[
+stardata:[
     [15801,17381,18961,20542,22122,23702],//T8
     [28440,29862,31284,32706,34128,35550],//TM未尋回
     [37327,39193,41060,42926,44793,46659]//TM尋回
-    ];
-//取得攻擊前綴結果
-var preatk=1.00;
-//顯示(取得)面板攻擊結果
-var panelatk=0;
-//取得攻擊後綴結果
-var posatk=1.00;
+    ],
+}
+
+var preatk={
+mode:0,//輸入模式 0：輸入 1：細項
+mul:1.00,//取得攻擊前綴結果
+}
+
+var posatk={
+mode:0,//輸入模式 0：輸入 1：細項
+mul:1.00,//取得攻擊後綴結果
+}
+
+var pen={
+x:0,
+max:900,
+x1:1000,
+a1:2,
+b1:1000,
+x2:450,
+a2:409,
+b2:266,
+real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b1,this.x2,this.a2,this.b2))/10;},
+}
+
+var def={
+base:980750,//防禦減傷係數
+enemy:0,//敵人防禦
+red:0,//扣防%
+dec:0,//減防值
+pen:function(){return pen.real();},//防穿
+mul:function(){return defmul(this.base,this.enemy,this.pen(),this.red,this.dec);},//防禦減傷倍率
+
+}
+
 //取得攻擊數值結果
 var atkvalue=0;
 //取得技能倍率結果
@@ -63,83 +103,8 @@ var skillinc=1.50;
 var hunt=1.1;
 
 
-var dmgstat={
-uwatk:100000,
-earatk:30000,
-swatk:100000,
-panelatk:1500000,
-preatk:100,
-posatk:100,
-numatk:100000,
-multi:5.001,
-base:100000,
-book:50,
-cdmg:200,
-enemydef:140000,
-reddef:50,
-decdef:30000,
-pen:450,
-incdmg:100,
-enemyinc:50,
-bossinc:50,
-mantiinc:28.8,
-hunt:10,
 
-}
-
-var panelstat={
-atk:0,
-hp:0,
-acc:0,
-ccacc:0,
-ccresist:0,
-critresist:0,
-pdef:0,
-mdef:0,
-crit:0,
-cdmg:0,
-pen:0,
-pblock:0,
-mblock:0,
-ptough:0,
-mtough:0,
-pdodge:0,
-mdodge:0,
-heal:0,
-mpatk:0,
-mpsec:0,
-lifesteal:0,
-aspd:0,
-pblockdef:0,
-mblockdef:0
-}
-var finalstat={
-atk:panelstat.atk,
-hp:panelstat.hp,
-acc:0,
-ccacc:0,
-ccresist:0,
-critresist:0,
-pdef:0,
-mdef:0,
-crit:0,
-cdmg:0,
-pen:0,
-pblock:0,
-mblock:0,
-ptough:0,
-mtough:0,
-pdodge:0,
-mdodge:0,
-heal:0,
-mpatk:0,
-mpsec:0,
-lifesteal:0,
-aspd:0,
-pblockdef:0,
-mblockdef:0
-}
-
+/*
 //把input資料存到dmgstat
 function input2dmgstat(){
 //dmgstat元素數量
@@ -155,13 +120,12 @@ for (var i=0;i<dmgstatlen;i++){
     }
 }//end for
 }//end function
+*/
 
 //隱藏未完成部分
 function hideundefined(){
-document.getElementById("changepreatk1").style.display="none";
-document.getElementById("changepreatk2").style.display="none";
-document.getElementById("changeposatk1").style.display="none";
-document.getElementById("changeposatk2").style.display="none";
+document.getElementById("changepreatkdiv").style.display="none";
+document.getElementById("changeposatkdiv").style.display="none";
 document.getElementById("changeatkvalue1").style.display="none";
 document.getElementById("changeatkvalue2").style.display="none";
 document.getElementById("changemulti1").style.display="none";
@@ -177,72 +141,94 @@ document.getElementById("changecdmg2").style.display="none";
 document.getElementById("changeskillinc1").style.display="none";
 document.getElementById("changeskillinc2").style.display="none";
 }//end function
-//test
+
+//確定
 function showinput(){
 const selectdata=document.forms[0];
-document.getElementById("demo").innerHTML="";
+document.getElementById("de.mo").innerHTML="";
 for (var i=0;i<selectdata.length;i++){
 if (selectdata.elements[i].value!=="")
-document.getElementById("demo").innerHTML+=selectdata.elements[i].id+":"+selectdata.elements[i].value+"<br>";
+document.getElementById("de.mo").innerHTML+=selectdata.elements[i].id+"："+selectdata.elements[i].value+"<br>";
 }//end for
+document.getElementById("de.mo").innerHTML=def.mul();
+console.log(def.mul());
+console.log(def.pen());
 }//end function
-//按下按鈕輸入面板攻擊
-function changepanel1(){
-document.getElementById("changepanel1").style.display="none";
-document.getElementById("changepanel2").style.display="block";
-document.getElementById("allpaneldiv").style.display="none";
-document.getElementById("paneldiv").style.display="block";
+
+//改變面板輸入模式
+function changepanel(){
+var x=document.getElementById("allpaneldiv");
+var y=document.getElementById("paneldiv");
+var z=document.getElementById("panelbutton");
+if (y.style.display==="block"){
+    x.style.display="block";
+    y.style.display="none";
+    z.value="填寫面板攻擊";
+    panel.mode=1;
+} else{
+    x.style.display="none";
+    y.style.display="block";
+    z.value="填寫面板細項";
+    panel.mode=0;
 }
-//按下按鈕輸入攻擊細項
-function changepanel2(){
-document.getElementById("changepanel1").style.display="block";
-document.getElementById("changepanel2").style.display="none";
-document.getElementById("allpaneldiv").style.display="block";
-document.getElementById("paneldiv").style.display="none";
+getatk();
 }
-//按下按鈕輸入魂武攻擊
-function changesw1(){
-document.getElementById("changesw1").style.display="none";
-document.getElementById("changesw2").style.display="block";
-document.getElementById("allswdiv").style.display="none";
-document.getElementById("swdiv").style.display="block";
-getswatk1();
+
+//改變魂武輸入模式
+function changesw(){
+var x=document.getElementById("allswdiv");
+var y=document.getElementById("swdiv");
+var z=document.getElementById("swbutton");
+if (y.style.display==="block"){
+    x.style.display="block";
+    y.style.display="none";
+    z.value="填寫魂武攻擊";
+    sw.mode=1;
+} else{
+    x.style.display="none";
+    y.style.display="block";
+    z.value="填寫魂武細項";
+    sw.mode=0;
 }
-//按下按鈕輸入魂武細項
-function changesw2(){
-document.getElementById("changesw1").style.display="block";
-document.getElementById("changesw2").style.display="none";
-document.getElementById("allswdiv").style.display="block";
-document.getElementById("swdiv").style.display="none";
-getatk2();
+getatk();
 }
-//按下按鈕輸入攻擊前綴
-function changepreatk1(){
-document.getElementById("changepreatk1").style.display="none";
-document.getElementById("changepreatk2").style.display="block";
-document.getElementById("inputallpreatkdiv").style.display="none";
-document.getElementById("inputpreatkdiv").style.display="block";
+
+//改變前綴輸入模式
+function changepreatk(){
+var x=document.getElementById("allpreatkdiv");
+var y=document.getElementById("preatkdiv");
+var z=document.getElementById("preatkbutton");
+if (y.style.display==="block"){
+    x.style.display="block";
+    y.style.display="none";
+    z.value="填寫攻擊前綴";
+    preatk.mode=1;
+} else{
+    x.style.display="none";
+    y.style.display="block";
+    z.value="填寫攻擊前綴細項";
+    preatk.mode=0;
 }
-//按下按鈕輸入攻擊前綴細項
-function changepreatk2(){
-document.getElementById("changepreatk1").style.display="block";
-document.getElementById("changepreatk2").style.display="none";
-document.getElementById("inputallpreatkdiv").style.display="block";
-document.getElementById("inputpreatkdiv").style.display="none";
+getatk();
 }
-//按下按鈕輸入攻擊後綴
-function changeposatk1(){
-document.getElementById("changeposatk1").style.display="none";
-document.getElementById("changeposatk2").style.display="block";
-document.getElementById("inputallposatkdiv").style.display="none";
-document.getElementById("inputposatkdiv").style.display="block";
+
+//改變後綴輸入模式
+function changeposatk(){
+var x=document.getElementById("allposatkdiv");
+var y=document.getElementById("posatkdiv");
+var z=document.getElementById("posatkbutton");
+if (y.style.display==="block"){
+    x.style.display="block";
+    y.style.display="none";
+    z.value="填寫攻擊後綴";
+    posatk.mode=1;
+} else{
+    x.style.display="none";
+    y.style.display="block";
+    z.value="填寫攻擊後綴細項";
+    posatk.mode=0;
 }
-//按下按鈕輸入攻擊後綴細項
-function changeposatk2(){
-document.getElementById("changeposatk1").style.display="block";
-document.getElementById("changeposatk2").style.display="none";
-document.getElementById("inputallposatkdiv").style.display="block";
-document.getElementById("inputposatkdiv").style.display="none";
+getatk();
 }
 
 //改變專武輸入模式
@@ -252,11 +238,34 @@ var y=document.getElementById("uwatkdiv");
 if (y.style.display==="inline"){
     x.style.display="inline";
     y.style.display="none";
+    uw.mode=1;
 } else{
     x.style.display="none";
     y.style.display="inline";
+    uw.mode=0;
 }
+getatk();
 }
+
+//改變耳環輸入模式
+function changeer(){
+var x=document.getElementById("erstardiv");
+var y=document.getElementById("eratkdiv");
+var z=document.getElementById("erqualitydiv");
+if (y.style.display==="inline"){
+    x.style.display="inline";
+    y.style.display="none";
+    z.style.display="inline";
+    er.mode=1;
+} else{
+    x.style.display="none";
+    y.style.display="inline";
+    z.style.display="none";
+    er.mode=0;
+}
+getatk();
+}
+
 //展示尋回選項
 function showfixed(){
 var x=document.getElementById("fixeddiv");
@@ -268,109 +277,112 @@ if (y>1000){
     x.style.display="none";
     }
 }
-//改變耳環輸入模式
-function changeer(){
-var x=document.getElementById("erstardiv");
-var y=document.getElementById("eratkdiv");
-if (y.style.display==="inline"){
-    x.style.display="inline";
-    y.style.display="none";
-} else{
-    x.style.display="none";
-    y.style.display="inline";
-}
-}
-//取得魂武攻擊
-function getswatk1(){
-swatk=Number(document.forms[0].swatk.value);
-getpanelatk();
-}
 
-//取得專武攻擊
-function getuwatk1(){
-uwatk=Number(document.forms[0].uwatk.value);
-getpanelatk();
-}
 
 //取得職業相關魂武專武攻擊
-function getatk2(){
-uwstar=Number(document.forms[0].uwstar.value);
-swadv=Number(document.forms[0].swadv.value);
-swlevel=Number(document.forms[0].swlevel.value);
-swrate=Number(document.forms[0].swrate.value);
-swaddi=Number(document.forms[0].swaddi.value);
+function getatk(){
+var uwstar_obj=document.getElementById("uwstar");
+var swadv_obj=document.getElementById("swadv");
+var swlevel_obj=document.getElementById("swlevel");
+var swrate_obj=document.getElementById("swrate");
+var swaddi_obj=document.getElementById("swaddi");
+var erstar_obj=document.getElementById("erstar");
+swlevel_obj.value=range(swlevel_obj.value,0,20);
+swrate_obj.value=range(swrate_obj.value,0,70);
+swaddi_obj.value=range(swaddi_obj.value,0,20);
+uw.star=Number(uwstar_obj.value);
+sw.adv=Number(swadv_obj.value);
+sw.level=Number(swlevel_obj.value);
+sw.rate=Number(swrate_obj.value);
+sw.addi=Number(swaddi_obj.value);
+er.star=Number(erstar_obj.value);
+
 switch (document.forms[0].herotype.value){
+
 case "knight":
-uwatk=uwstardata[0][uwstar];
-swatk=Math.floor(swbase[0]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
-swatk2=Math.floor(swatk*swaddi*0.01,0);
-panelbase=panelbasedata[0];
+uw.atk=uw.stardata[0][uw.star];
+sw.atk1=Math.floor(sw.base[0]*(2**sw.adv)*sw.scaling[sw.level]*(0.02*sw.rate),0);
+sw.atk2=Math.floor(sw.atk1*sw.addi*0.01,0);
+panel.base=panel.basedata[0];
 break;
+
 case "warrior":
-uwatk=uwstardata[1][uwstar];
-swatk=Math.floor(swbase[1]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
-swatk2=Math.floor(swatk*swaddi*0.01,0);
-panelbase=panelbasedata[1];
+uw.atk=uw.stardata[1][uw.star];
+sw.atk1=Math.floor(sw.base[1]*(2**sw.adv)*sw.scaling[sw.level]*(0.02*sw.rate),0);
+sw.atk2=Math.floor(sw.atk1*sw.addi*0.01,0);
+panel.base=panel.basedata[1];
 break;
+
 case "assassin":
-uwatk=uwstardata[2][uwstar];
-swatk=Math.floor(swbase[1]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
-swatk2=Math.floor(swatk*swaddi*0.01,0);
-panelbase=panelbasedata[2];
+uw.atk=uw.stardata[2][uw.star];
+sw.atk1=Math.floor(sw.base[1]*(2**sw.adv)*sw.scaling[sw.level]*(0.02*sw.rate),0);
+sw.atk2=Math.floor(sw.atk1*sw.addi*0.01,0);
+panel.base=panel.basedata[2];
 break;
+
 case "archer":
-uwatk=uwstardata[3][uwstar];
-swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
-swatk2=Math.floor(swatk*swaddi*0.01,0);
-panelbase=panelbasedata[3];
+uw.atk=uw.stardata[3][uw.star];
+sw.atk1=Math.floor(sw.base[2]*(2**sw.adv)*sw.scaling[sw.level]*(0.02*sw.rate),0);
+sw.atk2=Math.floor(sw.atk1*sw.addi*0.01,0);
+panel.base=panel.basedata[3];
 break;
+
 case "mechanic":
-uwatk=uwstardata[4][uwstar];
-swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
-swatk2=Math.floor(swatk*swaddi*0.01,0);
-panelbase=panelbasedata[4];
+uw.atk=uw.stardata[4][uw.star];
+sw.atk1=Math.floor(sw.base[2]*(2**sw.adv)*sw.scaling[sw.level]*(0.02*sw.rate),0);
+sw.atk2=Math.floor(sw.atk1*sw.addi*0.01,0);
+panel.base=panel.basedata[4];
 break;
+
 case "wizard":
-uwatk=uwstardata[5][uwstar];
-swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
-swatk2=Math.floor(swatk*swaddi*0.01,0);
-panelbase=panelbasedata[5];
+uw.atk=uw.stardata[5][uw.star];
+sw.atk1=Math.floor(sw.base[2]*(2**sw.adv)*sw.scaling[sw.level]*(0.02*sw.rate),0);
+sw.atk2=Math.floor(sw.atk1*sw.addi*0.01,0);
+panel.base=panel.basedata[5];
 break;
+
 case "priest":
-uwatk=uwstardata[6][uwstar];
-swatk=Math.floor(swbase[2]*(2**swadv)*swmulti[swlevel]*(0.02*swrate),0);
-swatk2=Math.floor(swatk*swaddi*0.01,0);
-panelbase=panelbasedata[6];
+uw.atk=uw.stardata[6][uw.star];
+sw.atk1=Math.floor(sw.base[2]*(2**sw.adv)*sw.scaling[sw.level]*(0.02*sw.rate),0);
+sw.atk2=Math.floor(sw.atk1*sw.addi*0.01,0);
+panel.base=panel.basedata[6];
 break;
+
 default:
-uwatk=0;
-swatk=0;
-swatk2=0;
+uw.atk=0;
+sw.atk1=0;
+sw.atk2=0;
+panel.base=0;
 }//end switch
-document.getElementById("swdetail").innerHTML="魂武攻擊：<span>"+swatk+"</span>+<span style=\"color:orange;\">"+swatk2+"</span>";
+
+switch (document.forms[0].erquality.value){
+
+case "0":
+er.atk=er.stardata[0][er.star];
+break;
+
+case "1":
+er.atk=er.stardata[1][er.star];
+break;
+
+case "2":
+er.atk=er.stardata[2][er.star];
+break;
+
+default:
+er.atk=0;
+}//end switch
+
+uw.atk=(uw.mode==1)?uw.atk:Number(document.forms[0].uwatk.value);
+sw.atk=(sw.mode==1)?(sw.atk1+sw.atk2):Number(document.forms[0].swatk.value);
+er.atk=(er.mode==1)?er.atk:Number(document.forms[0].eratk.value);
+getswatk();
 getpanelatk();
 }//end function
 
-
-//取得耳環攻擊
-function geteratk1(){
-eratk=Number(document.forms[0].eratk.value);
-getpanelatk();
-}
-function geteratk2(){
-erstar=Number(document.forms[0].erstar.value);
-if(document.forms[0].gearset.value<1000){
-eratk=erstardata[0][erstar];
-}else if(document.forms[0].fixed.value==0){
-eratk=erstardata[1][erstar];
-}else{
-eratk=erstardata[2][erstar];
-} //end if
-getpanelatk();
-}//end function
-
+//取得攻擊前綴結果
 function getpreatk1(){
-preatk=(Number(document.forms[0].preatk.value)+100)/100;
+preatk.mul=(Number(document.forms[0].preatk.value)+100)/100;
 getpanelatk();
 }
 
@@ -378,38 +390,51 @@ function getpreatk2(){
 getpanelatk();
 }
 
-function getpanelatk(){
-panelatk=Math.floor((panelbase+uwatk+swatk+swatk2+eratk)*preatk);
-document.getElementById("paneldetail").innerHTML="面板攻擊：<span>"+panelatk+"</span>";
+//顯示(取得)魂武攻擊
+function getswatk(){
+document.getElementById("swdetail").innerHTML="魂武攻擊：<span>"+sw.atk1+"</span>+<span style=\"color:orange;\">"+sw.atk2+"</span>";
 }
 
+//顯示(取得)面板攻擊
+function getpanelatk(){
+panel.atk=Math.floor((panel.base+uw.atk+sw.atk+er.atk)*preatk.mul);
+panel.atk=(panel.mode==1)?panel.atk:Number(document.forms[0].panelatk.value);
+document.getElementById("paneldetail").innerHTML="面板攻擊：<span>"+panel.atk+"</span>";
+}
 
+//顯示(取得)防禦減傷倍率
+function getdefmul(){
+def.enemy=document.getElementById("def.enemy").value;
+def.red=document.getElementById("def.red").value;
+def.dec=document.getElementById("def.dec").value;
+pen.x=document.getElementById("pen.x").value;
+document.getElementById("def.mul").innerHTML="防禦減傷倍率："+def.mul();
+console.log(def.pen());
+console.log(def.mul());
+document.getElementById("pensoft").innerHTML="："+pen.real().toFixed(1)+"%";
+}
 
+//設定輸入最大最小
+function range(x,min,max){
+if(x>max) return max;
+if(x<min) return min;
+return x;
+}
 
+//產生遞減後數值
+function softcap(x,max,x1,a1,b1,x2,a2,b2){
+var c=1000000;
+if(x>x1) return max-Math.floor(c*max/(a1*x*x+b1*x+c));
+if(x>x2) return (a2*x+b2*1000)/1000;
+return x;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//取得防禦減傷倍率
+function defmul(a,x,pen,red,dec){
+var c=1000000;
+let def=(x*(100-red)/100-dec)*(100-pen)/100;
+return Math.floor(a*def/(c-a+def)/1000)/1000;
+}
 
 
 
