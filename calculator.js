@@ -63,6 +63,18 @@ mode:0,//輸入模式 0：輸入 1：細項
 mul:1.00,//取得攻擊後綴結果
 }
 
+var defred={
+x:0,
+max:1000,
+x1:1000,
+a1:3,
+b1:0,
+x2:500,
+a2:500,
+b2:250,
+real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b1,this.x2,this.a2,this.b2))/10;},
+}
+
 var pen={
 x:0,
 max:900,
@@ -78,11 +90,10 @@ real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b
 var def={
 base:980750,//防禦減傷係數
 enemy:0,//敵人防禦
-red:0,//扣防%
-dec:0,//減防值
-pen:function(){return pen.real();},//防穿
-mul:function(){return defmul(this.base,this.enemy,this.pen(),this.red,this.dec);},//防禦減傷倍率
-
+red:function(){return defred.real();},//扣防％
+dec:0,//扣防值
+pen:function(){return pen.real();},//防穿值遞減結果
+mul:function(){return defmul(this.base,this.enemy,this.red(),this.dec,this.pen());},//防禦減傷倍率
 }
 
 //取得攻擊數值結果
@@ -404,14 +415,21 @@ document.getElementById("paneldetail").innerHTML="面板攻擊：<span>"+panel.a
 
 //顯示(取得)防禦減傷倍率
 function getdefmul(){
+//取得敵人防禦
 def.enemy=document.getElementById("def.enemy").value;
-def.red=document.getElementById("def.red").value;
-def.dec=document.getElementById("def.dec").value;
+//取得扣防％(扣防％-增防％)
+defred.x=(document.getElementById("def.red").value-document.getElementById("def.rai").value)*10;
+//取得扣防值(扣防值-增防值)
+def.dec=document.getElementById("def.dec").value-document.getElementById("def.inc").value;
+//取得防穿值
 pen.x=document.getElementById("pen.x").value;
+
+document.getElementById("defredsoft").innerHTML="："+defred.real().toFixed(1)+"％";
+document.getElementById("pensoft").innerHTML="："+pen.real().toFixed(1)+"％";
 document.getElementById("def.mul").innerHTML="防禦減傷倍率："+def.mul();
-console.log(def.pen());
-console.log(def.mul());
-document.getElementById("pensoft").innerHTML="："+pen.real().toFixed(1)+"%";
+console.log(defred.x);
+
+
 }
 
 //設定輸入最大最小
@@ -426,14 +444,15 @@ function softcap(x,max,x1,a1,b1,x2,a2,b2){
 var c=1000000;
 if(x>x1) return max-Math.floor(c*max/(a1*x*x+b1*x+c));
 if(x>x2) return (a2*x+b2*1000)/1000;
+if(x<0) return 0;
 return x;
 }
 
 //取得防禦減傷倍率
-function defmul(a,x,pen,red,dec){
+function defmul(a,x,red,dec,pen){
 var c=1000000;
 let def=(x*(100-red)/100-dec)*(100-pen)/100;
-return Math.floor(a*def/(c-a+def)/1000)/1000;
+return Math.round(a*def/(c-a+def)/1000)/1000;
 }
 
 
