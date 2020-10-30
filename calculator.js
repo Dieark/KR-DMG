@@ -93,8 +93,9 @@ enemy:0,//敵人防禦
 red:function(){return defred.real();},//扣防％
 dec:0,//扣防值
 pen:function(){return pen.real();},//防穿值遞減結果
+real:function(){return Math.floor(Math.floor(this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100);},
 mul:function(){return defmul(this.base,this.enemy,this.red(),this.dec,this.pen());},//防禦減傷倍率
-real:function(){return Math.floor((this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100);},
+
 }
 
 //取得攻擊數值結果
@@ -453,8 +454,8 @@ return x;
 //取得防禦減傷倍率
 function defmul(a,x,red,dec,pen){
 var c=1000000;
-let def=(x*(100-red)/100-dec)*(100-pen)/100;
-return Math.round(a*def/(c-a+def)/1000)/1000;
+//let def=(x*(100-red)/100-dec)*(100-pen)/100;
+return Math.round(a*def.real()/(c-a+def.real())/1000)/1000;
 }
 
 
