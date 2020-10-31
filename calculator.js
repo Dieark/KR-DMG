@@ -417,33 +417,49 @@ document.getElementById("paneldetail").innerHTML="面板攻擊：<span>"+panel.a
 
 //顯示(取得)防禦減傷倍率
 function getdefmul(){
+//設定輸入上下限
 document.getElementById("def.enemy").value=range(document.getElementById("def.enemy").value,0,Infinity);
 document.getElementById("def.rai").value=range(document.getElementById("def.rai").value,0,Infinity);
 document.getElementById("def.red").value=range(document.getElementById("def.red").value,0,Infinity);
 document.getElementById("def.inc").value=range(document.getElementById("def.inc").value,0,Infinity);
 document.getElementById("def.dec").value=range(document.getElementById("def.dec").value,0,Infinity);
 document.getElementById("pen.x").value=range(document.getElementById("pen.x").value,0,9999);
+
 //取得敵人防禦
 def.enemy=document.getElementById("def.enemy").value;
-//取得扣防％(扣防％-增防％)
-defred.x=(document.getElementById("def.red").value-document.getElementById("def.rai").value)*10;
-//取得扣防值(扣防值-增防值)
-def.dec=document.getElementById("def.dec").value-document.getElementById("def.inc").value;
+
+//取得扣防％＆增防％
+var raise=document.getElementById("def.rai").value;
+var reduce=document.getElementById("def.red").value;
+
+//取得扣防值＆增防值
+var increase=document.getElementById("def.inc").value;
+var decrease=document.getElementById("def.dec").value;
+
 //取得防穿值
 pen.x=document.getElementById("pen.x").value;
 
-if (document.getElementById("no.def").value==1){
+//無視防禦->敵人防禦＆增防值=0
+if (document.getElementById("no.def").checked){
 	def.enemy=0;	
-	def.dec=0;
+	increase=0;
 }
 
-if (document.getElementById("no.defdec").value==1){
-	defred.x=0;	
-	def.dec=0;	
+//無視扣防->扣防值&扣防％=0
+if (document.getElementById("no.defdec").checked){
+	reduce=0;	
+	decrease=0;	
 }
 
+//取得實際扣防％
+defred.x=(reduce-raise)*10;
+
+//取得實際扣防值
+def.dec=decrease-increase;
 
 console.log(document.getElementById("no.defdec").value);
+
+//顯示結果
 document.getElementById("defredsoft").innerHTML="："+-defred.real().toFixed(1)+"％";
 document.getElementById("pensoft").innerHTML="："+pen.real().toFixed(1)+"％";
 document.getElementById("def.mul").innerHTML="防禦減傷倍率："+def.mul();
@@ -469,8 +485,9 @@ return x;
 }
 //無視防禦
 function nodef(){
-document.getElementById("no.def").value=1-document.getElementById("no.def").value;
-if (document.getElementById("no.def").value==1){
+if (document.getElementById("no.def").checked){
+	document.getElementById("no.defdec").checked=false;
+	nodefdec();
 	document.getElementById("def.enemy").disabled=true;
 	document.getElementById("def.rai").disabled=true;
 	document.getElementById("def.red").disabled=true;
@@ -483,22 +500,19 @@ if (document.getElementById("no.def").value==1){
 	document.getElementById("def.red").disabled=false;
 	document.getElementById("def.inc").disabled=false;
 	document.getElementById("def.dec").disabled=false;
-	document.getElementById("pen.x").disabled=false;	
-}
+	document.getElementById("pen.x").disabled=false;
+	}
 }
 
 //敵人無視扣防
 function nodefdec(){
-document.getElementById("no.defdec").value=1-document.getElementById("no.defdec").value;
-if (document.getElementById("no.defdec").value==1){
-	document.getElementById("def.rai").disabled=true;
+if (document.getElementById("no.defdec").checked){
+	document.getElementById("no.def").checked=false;
+	nodef();
 	document.getElementById("def.red").disabled=true;
-	document.getElementById("def.inc").disabled=true;
 	document.getElementById("def.dec").disabled=true;
 }else{
-	document.getElementById("def.rai").disabled=false;
 	document.getElementById("def.red").disabled=false;
-	document.getElementById("def.inc").disabled=false;
 	document.getElementById("def.dec").disabled=false;
 }
 }
