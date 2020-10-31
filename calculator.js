@@ -432,11 +432,23 @@ def.dec=document.getElementById("def.dec").value-document.getElementById("def.in
 //取得防穿值
 pen.x=document.getElementById("pen.x").value;
 
+if (document.getElementById("no.def").value==1){
+	def.enemy=0;	
+	def.dec=0;
+}
+
+if (document.getElementById("no.defdec").value==1){
+	defred.x=0;	
+	def.dec=0;	
+}
+
+
+console.log(document.getElementById("no.defdec").value);
 document.getElementById("defredsoft").innerHTML="："+-defred.real().toFixed(1)+"％";
 document.getElementById("pensoft").innerHTML="："+pen.real().toFixed(1)+"％";
 document.getElementById("def.mul").innerHTML="防禦減傷倍率："+def.mul();
 document.getElementById("realdef").innerHTML="有效防禦："+def.real();
-console.log(defred.x);
+
 
 
 }
@@ -455,9 +467,40 @@ if(x>x1) return max-Math.floor(c*max/(a1*x*x+b1*x+c));
 if(x>x2) return (a2*x+b2*1000)/1000;
 return x;
 }
+//無視防禦
+function nodef(){
+document.getElementById("no.def").value=1-document.getElementById("no.def").value;
+if (document.getElementById("no.def").value==1){
+	document.getElementById("def.enemy").disabled=true;
+	document.getElementById("def.rai").disabled=true;
+	document.getElementById("def.red").disabled=true;
+	document.getElementById("def.inc").disabled=true;
+	document.getElementById("def.dec").disabled=true;
+	document.getElementById("pen.x").disabled=true;
+}else{
+	document.getElementById("def.enemy").disabled=false;
+	document.getElementById("def.rai").disabled=false;
+	document.getElementById("def.red").disabled=false;
+	document.getElementById("def.inc").disabled=false;
+	document.getElementById("def.dec").disabled=false;
+	document.getElementById("pen.x").disabled=false;	
+}
+}
 
-
-
-
+//敵人無視扣防
+function nodefdec(){
+document.getElementById("no.defdec").value=1-document.getElementById("no.defdec").value;
+if (document.getElementById("no.defdec").value==1){
+	document.getElementById("def.rai").disabled=true;
+	document.getElementById("def.red").disabled=true;
+	document.getElementById("def.inc").disabled=true;
+	document.getElementById("def.dec").disabled=true;
+}else{
+	document.getElementById("def.rai").disabled=false;
+	document.getElementById("def.red").disabled=false;
+	document.getElementById("def.inc").disabled=false;
+	document.getElementById("def.dec").disabled=false;
+}
+}
 
 

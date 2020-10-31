@@ -277,6 +277,16 @@
 <input type="button" name="defbutton" id="defbutton" value="填寫防禦相關細項" onclick="changeposatk()"/>
 </div>
 <div class="a" oninput="getdefmul()">
+<!--無視防禦-->
+<div id="unabledef" style="display:block">
+<input type="checkbox" name="no.def" id="no.def" value="0" onclick="nodef()"/>
+<label for="nodef">無視防禦</label>
+</div>
+<!--敵人無視扣防-->
+<div id="unabledefdec" style="display:block">
+<input type="checkbox" name="no.defdec" id="no.defdec" value="0" onclick="nodefdec()"/>
+<label for="nodefdec">敵人無視扣防</label>
+</div>
 <!--輸入敵人防禦-->
 <div id="enemydef" style="display:block">
 <label for="def.enemy">敵人防禦：</label>
