@@ -7,7 +7,7 @@ body {
 }
 
 /* Style the header */
-header {
+.header {
   background-color: #666;
   padding: 30px;
   text-align: center;
@@ -16,24 +16,37 @@ header {
 }
 
 /* Create two columns/boxes that floats next to each other */
-nav {
+.nav {
   float: left;
-  width: 30%;
+  width: 18%;
   background: #ccc;
   padding: 20px;
 }
 
 /* Style the list inside the menu */
-nav ul {
+.nav ul {
   list-style-type: none;
   padding: 0;
 }
 
-article {
+.content {
   float: left;
   padding: 10px;
-  width: 70%;
+  width: 32%;
   background-color: #f1f1f1;
+}
+
+.graph {
+  float: left;
+  padding: 10px;
+  width: 50%;
+  height:1000px;
+  background-color: #ffffff;
+}
+
+.graph p{
+	text-align:center;
+	padding:100px;
 }
 
 /* Clear floats after the columns */
@@ -43,12 +56,13 @@ section:after {
   clear: both;
 }
 
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 10px;
+
+/* footer */
+.footer {
+  padding: 20px;
   text-align: center;
-  color: white;
+  background: #ddd;
+  margin-top: 20px;
 }
 
 div.a div{

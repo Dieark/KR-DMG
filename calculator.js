@@ -95,7 +95,22 @@ dec:0,//扣防值
 pen:function(){return pen.real();},//防穿值遞減結果
 real:function(){return (Math.floor(Math.floor(this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100)>0)?Math.floor(Math.floor(this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100):0;},//有效防禦
 mul:function(){return Math.round(this.base*this.real()/(1000000-this.base+this.real())/1000)/1000;},//防禦減傷倍率
-
+graph1:{
+	real:function(){return (Math.floor(def.enemy*1))>0?(Math.floor(def.enemy*1)):0;},//有效防禦
+	mul:function(){return Math.round(def.base*this.real()/(1000000-def.base+this.real())/1000)/1000;},//防禦減傷倍率
+},
+graph2:{
+	real:function(){return (Math.floor(def.enemy*(100-def.red())/100))>0?(Math.floor(def.enemy*(100-def.red())/100)):0;},//有效防禦
+	mul:function(){return Math.round(def.base*this.real()/(1000000-def.base+this.real())/1000)/1000;},//防禦減傷倍率
+},
+graph3:{
+	real:function(){return (Math.floor(def.enemy*1-def.dec))>0?(Math.floor(def.enemy*1-def.dec)):0;},//有效防禦
+	mul:function(){return Math.round(def.base*this.real()/(1000000-def.base+this.real())/1000)/1000;},//防禦減傷倍率
+},
+graph4:{
+	real:function(){return (Math.floor(def.enemy*(100-def.pen())/100))>0?(Math.floor(def.enemy*(100-def.pen())/100)):0;},//有效防禦
+	mul:function(){return Math.round(def.base*this.real()/(1000000-def.base+this.real())/1000)/1000;},//防禦減傷倍率
+},
 }
 
 var tough=pen;
@@ -163,8 +178,45 @@ if (selectdata.elements[i].value!=="")
 document.getElementById("de.mo").innerHTML+=selectdata.elements[i].id+"："+selectdata.elements[i].value+"<br>";
 }//end for
 document.getElementById("de.mo").innerHTML=def.mul();
-console.log(def.mul());
-console.log(def.pen());
+
+console.log(def.graph1.mul());
+
+var ctx = document.getElementById("chart").getContext("2d");
+var chart = new Chart(ctx, {
+    type: "horizontalBar",
+    data: {
+        labels: ["防禦", "防禦+扣防%", "防禦+扣防值", "防禦+防穿", "全部套用"],
+        datasets: [{
+            label: "防禦減傷後剩下傷害(1-防禦減傷倍率)",
+            data: [1-def.graph1.mul(),1-def.graph2.mul(),1-def.graph3.mul(),1-def.graph4.mul(),1-def.mul()],
+            backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)"
+            ],
+            borderColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)"
+            ],
+            borderWidth: 1
+        }]
+    },
+	options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        min:0,
+                        //max:1,						
+                    }
+                  }]
+               }
+            }
+});
 }//end function
 
 //改變面板輸入模式
