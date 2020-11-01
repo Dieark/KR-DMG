@@ -98,6 +98,25 @@ mul:function(){return Math.round(this.base*this.real()/(1000000-this.base+this.r
 
 }
 
+var tough=pen;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //取得攻擊數值結果
 var atkvalue=0;
 //取得技能倍率結果
@@ -134,26 +153,6 @@ for (var i=0;i<dmgstatlen;i++){
 }//end for
 }//end function
 */
-
-//隱藏未完成部分
-function hideundefined(){
-document.getElementById("changepreatkdiv").style.display="none";
-document.getElementById("changeposatkdiv").style.display="none";
-document.getElementById("changeatkvalue1").style.display="none";
-document.getElementById("changeatkvalue2").style.display="none";
-document.getElementById("changemulti1").style.display="none";
-document.getElementById("changemulti2").style.display="none";
-document.getElementById("changebase1").style.display="none";
-document.getElementById("changebase2").style.display="none";
-document.getElementById("changeenemydef1").style.display="none";
-document.getElementById("changeenemydef2").style.display="none";
-document.getElementById("changedmginc1").style.display="none";
-document.getElementById("changedmginc2").style.display="none";
-document.getElementById("changecdmg1").style.display="none";
-document.getElementById("changecdmg2").style.display="none";
-document.getElementById("changeskillinc1").style.display="none";
-document.getElementById("changeskillinc2").style.display="none";
-}//end function
 
 //確定
 function showinput(){
@@ -469,20 +468,6 @@ document.getElementById("realdef").innerHTML="有效防禦："+def.real();
 
 }
 
-//設定輸入最大最小
-function range(x,min,max){
-if(x>max) return max;
-if(x<min) return min;
-return x;
-}
-
-//產生遞減後數值
-function softcap(x,max,x1,a1,b1,x2,a2,b2){
-var c=1000000;
-if(x>x1) return max-Math.floor(c*max/(a1*x*x+b1*x+c));
-if(x>x2) return (a2*x+b2*1000)/1000;
-return x;
-}
 //無視防禦
 function nodef(){
 if (document.getElementById("no.def").checked){
@@ -516,5 +501,35 @@ if (document.getElementById("no.defdec").checked){
 	document.getElementById("def.dec").disabled=false;
 }
 }
+
+//產生遞減後數值
+function softcap(x,max,x1,a1,b1,x2,a2,b2){
+var c=1000000;
+if(x>x1) return max-Math.floor(c*max/(a1*x*x+b1*x+c));
+if(x>x2) return (a2*x+b2*1000)/1000;
+return x;
+}
+
+//設定輸入最大最小
+function range(x,min,max){
+if(x>max) return max;
+if(x<min) return min;
+return x;
+}
+
+function gettough(){
+tough.x=document.getElementById("tough.x").value;
+console.log(tough.real());
+}
+
+
+
+
+
+
+
+
+
+
 
 

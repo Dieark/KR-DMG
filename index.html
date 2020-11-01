@@ -25,9 +25,7 @@
 </nav>
 
 <article>
-<div>
-<button type="button" onclick="hideundefined()">隱藏未完成功能</button>
-</div>
+
 <!--==================表單開頭=================-->
 <div>
 <form name="heroform" id="heroform">
@@ -213,12 +211,7 @@
 <!--======================攻擊後綴尾巴==============-->
 <!--======================攻擊數值欄位==============-->
 <div class="f">
-<div id="changeatkvalue1" style="display:none">
-<button type="button" onclick="changeatkvalue2()">填寫攻擊數值</button>
-</div>
-<div id="changeatkvalue2" style="display:block;">
-<button type="button" onclick="changeatkvalue2()">填寫攻擊數值細項</button>
-</div>
+
 <div class="a">
 <!--輸入攻擊數值-->
 <div id="atkvaluediv" style="display:block">
@@ -233,12 +226,7 @@
 <!--======================攻擊數值尾巴==============-->
 <!--======================倍率欄位==============-->
 <div class="f">
-<div id="changemulti1" style="display:none">
-<button type="button" onclick="changemulti1()">填寫技能倍率</button>
-</div>
-<div id="changemulti2" style="display:block;">
-<button type="button" onclick="changemulti2()">填寫技能倍率細項</button>
-</div>
+
 <div class="a">
 <!--輸入技能倍率-->
 <div id="multidiv" style="display:block">
@@ -274,7 +262,8 @@
 <!--======================防禦屬性欄位==============-->
 <div class="f">
 <div id="changedefdiv">
-<input type="button" name="defbutton" id="defbutton" value="填寫防禦相關細項" onclick="changeposatk()"/>
+<!-- 要修改 -->
+<input type="button" name="defbutton" id="defbutton" value="填寫防禦相關細項" onclick="changeposatk()" style="display:none;"/>
 </div>
 <div class="a" oninput="getdefmul()">
 <!--無視防禦-->
@@ -336,40 +325,26 @@
 防禦減傷倍率：0
 </div>
 <br><br>
-<div id="alldefdiv" style="display:none;">
-<br>
-</div>
 </div>
 </div>
 <!--======================防禦屬性尾巴==============-->
 <!--======================屬性增傷欄位==============-->
 <div class="f">
-<div id="changedmginc1" style="display:none">
-<button type="button" onclick="changedmginc1()">填寫屬性增傷</button>
-</div>
-<div id="changedmginc2" style="display:block;">
-<button type="button" onclick="changedmginc2()">填寫屬性增傷細項</button>
-</div>
-<div class="a">
+<div class="a" oninput="gettough()">
 <!--輸入屬性增傷-->
 <div id="dmgincdiv" style="display:block">
 <label for="dmginc">屬性增傷：</label>
-<input type="number" name="dmginc" id="dmginc" style="width:89px;"  placeholder="75" />%
+<input type="number" name="dmginc" id="dmginc" style="width:89px;" placeholder="75" value="0"/>%
 </div>
-<div id="inputalldmgincdiv" style="display:none;">
-<br>
+<div id="toughdiv" style="display:block">
+<label for="tough.x">敵人抵抗：</label>
+<input type="number" name="tough.x" id="tough.x" style="width:89px;"  placeholder="75" value="0"/>%
 </div>
 </div>
 </div>
 <!--======================屬性增傷尾巴==============-->
 <!--======================爆擊爆傷欄位==============-->
 <div class="f">
-<div id="changecdmg1" style="display:none">
-<button type="button" onclick="changecdmg1()">填寫總爆傷</button>
-</div>
-<div id="changecdmg2" style="display:block;">
-<button type="button" onclick="changecdmg2()">填寫總爆傷細項</button>
-</div>
 <div class="a">
 <!--輸入總爆傷-->
 <div id="cdmgdiv" style="display:block">
@@ -384,12 +359,7 @@
 <!--======================爆擊爆傷尾巴==============-->
 <!--======================技能增傷欄位==============-->
 <div class="f">
-<div id="changeskillinc1" style="display:none">
-<button type="button" onclick="changeskillinc1()">填寫技能增傷</button>
-</div>
-<div id="changeskillinc2" style="display:block;">
-<button type="button" onclick="changeskillinc2()">填寫技能增傷細項</button>
-</div>
+
 <div class="a">
 <!--輸入技能增傷-->
 <div id="skillincdiv" style="display:block">
@@ -404,6 +374,7 @@
 <!--======================技能增傷尾巴==============-->
 <!--======================狩獵欄位==============-->
 <div class="f">
+
 <div class="a">
 <!--輸入狩獵-->
 <div id="huntdiv" style="display:block">
