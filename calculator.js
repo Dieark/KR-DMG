@@ -76,7 +76,6 @@ real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b
 }
 
 var pen={
-x:0,
 max:900,
 x1:1000,
 a1:2,
@@ -84,6 +83,8 @@ b1:1000,
 x2:450,
 a2:409,
 b2:266,
+//get
+x:0,
 real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b1,this.x2,this.a2,this.b2))/10;},
 }
 
@@ -115,7 +116,15 @@ graph4:{
 
 var tough=pen;
 
+var dmg={
+inc:function(){return dmginc-tough.real();},
+monster:0,
+boss:0,
+manti:[1.12,1.15],
 
+
+
+}
 
 
 
@@ -135,19 +144,17 @@ var tough=pen;
 //取得攻擊數值結果
 var atkvalue=0;
 //取得技能倍率結果
-var multi=1.000;
+var multi=0;
 //取得技能基值結果
 var base=0;
-//取得防禦減傷結果
-var defdec=1.000;
 //取得屬性增傷結果
 var dmginc=1.00;
 //取得總爆傷結果
-var cdmg=2.00;
+var cdmg=0;
 //取得技能增傷結果
-var skillinc=1.50;
+var skillinc=0;
 //取得狩獵結果
-var hunt=1.1;
+var hunt=1;
 
 
 
@@ -172,51 +179,11 @@ for (var i=0;i<dmgstatlen;i++){
 //確定
 function showinput(){
 const selectdata=document.forms[0];
-document.getElementById("de.mo").innerHTML="";
+document.getElementById("demo").innerHTML="";
 for (var i=0;i<selectdata.length;i++){
 if (selectdata.elements[i].value!=="")
-document.getElementById("de.mo").innerHTML+=selectdata.elements[i].id+"："+selectdata.elements[i].value+"<br>";
+document.getElementById("demo").innerHTML+=selectdata.elements[i].id+"："+selectdata.elements[i].value+"<br>";
 }//end for
-document.getElementById("de.mo").innerHTML=def.mul();
-
-console.log(def.graph1.mul());
-
-var ctx = document.getElementById("chart").getContext("2d");
-var chart = new Chart(ctx, {
-    type: "horizontalBar",
-    data: {
-        labels: ["防禦", "防禦+扣防%", "防禦+扣防值", "防禦+防穿", "全部套用"],
-        datasets: [{
-            label: "防禦減傷後剩下傷害(1-防禦減傷倍率)",
-            data: [1-def.graph1.mul(),1-def.graph2.mul(),1-def.graph3.mul(),1-def.graph4.mul(),1-def.mul()],
-            backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(153, 102, 255, 0.2)"
-            ],
-            borderColor: [
-                "rgba(255,99,132,1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-                "rgba(153, 102, 255, 1)"
-            ],
-            borderWidth: 1
-        }]
-    },
-	options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        min:0,
-                        //max:1,						
-                    }
-                  }]
-               }
-            }
-});
 }//end function
 
 //改變面板輸入模式
@@ -445,13 +412,26 @@ getpanelatk();
 }//end function
 
 //取得攻擊前綴結果
-function getpreatk1(){
+function getpreatk(){
 preatk.mul=(Number(document.forms[0].preatk.value)+100)/100;
 getpanelatk();
 }
 
-function getpreatk2(){
-getpanelatk();
+//取得攻擊後綴結果
+function getposatk(){
+posatk.mul=(Number(document.forms[0].posatk.value)+100)/100;
+}
+
+//取得攻擊值結果
+function getatkvalue(){
+atkvalue=document.forms[0].atkvalue.value;
+console.log(atkvalue);
+}
+
+//取得技能倍率/基值結果
+function getskill(){
+multi=document.forms[0].multi.value;
+base=document.forms[0].base.value;
 }
 
 //顯示(取得)魂武攻擊
@@ -508,16 +488,54 @@ defred.x=(reduce-raise)*10;
 //取得實際扣防值
 def.dec=decrease-increase;
 
-console.log(document.getElementById("no.defdec").value);
-
 //顯示結果
 document.getElementById("defredsoft").innerHTML="："+-defred.real().toFixed(1)+"％";
 document.getElementById("pensoft").innerHTML="："+pen.real().toFixed(1)+"％";
 document.getElementById("def.mul").innerHTML="防禦減傷倍率："+def.mul();
 document.getElementById("realdef").innerHTML="有效防禦："+def.real();
 
+getdefchart();
 
 
+}
+
+function getdefchart(){
+var ctx = document.getElementById("chart").getContext("2d");
+var chart = new Chart(ctx, {
+    type: "horizontalBar",
+    data: {
+        labels: ["防禦", "防禦+扣防%", "防禦+扣防值", "防禦+防穿", "全部套用"],
+        datasets: [{
+            label: "防禦減傷後剩下傷害(1-防禦減傷倍率)",
+            data: [1-def.graph1.mul(),1-def.graph2.mul(),1-def.graph3.mul(),1-def.graph4.mul(),1-def.mul()],
+            backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)"
+            ],
+            borderColor: [
+                "rgba(255,99,132,1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)"
+            ],
+            borderWidth: 1
+        }]
+    },
+	options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        min:0,
+                        //max:1,						
+                    }
+                  }]
+               }
+            }
+});
 }
 
 //無視防禦
@@ -569,18 +587,46 @@ if(x<min) return min;
 return x;
 }
 
-function gettough(){
+//顯示(取得)屬性增傷結果
+function getdmginc(){
 tough.x=document.getElementById("tough.x").value;
-console.log(tough.real());
+dmginc=document.getElementById("dmginc").value;
+document.getElementById("toughsoft").innerHTML="："+tough.real().toFixed(1)+"％";
+document.getElementById("dmg.inc").innerHTML="實際增傷倍率："+dmg.inc().toFixed(1)+"％";
 }
 
+//取得總爆傷結果
+function getcdmg(){
+cdmg=document.forms[0].cdmg.value;
+}
 
+//取得總爆傷結果
+function getskillinc(){
+skillinc=document.forms[0].skillinc.value;
+}
 
+//取得狩獵怪物
+function gethunt(){
+if (document.getElementById("hunt").checked)
+	hunt=1.1;
+else
+	hunt=1;
+}
 
+function getfdmg(){
+var fdmg1=1+0.01*document.getElementById("fdmg1").value;
+var fdmg2=1+0.01*document.getElementById("fdmg2").value;
+var fdmg3=1+0.01*document.getElementById("fdmg3").value;
+var fdmg4=1+0.01*document.getElementById("fdmg4").value;
+var fdmg5=1+0.01*document.getElementById("fdmg5").value;
 
+}
 
-
-
+function showrealdmg(){
+	var realdmg=Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(panel.atk*posatk.mul+Number(atkvalue))*multi+Number(base))*(1-def.mul()))*(1+dmg.inc()))*(2+cdmg))*(1+skillinc))*hunt));
+	console.log(realdmg);
+	document.getElementById("realdmg").innerHTML="實際傷害 = "+realdmg;
+}
 
 
 

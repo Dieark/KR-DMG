@@ -19,7 +19,7 @@ body {
 .nav {
   float: left;
   width: 18%;
-  height:1200px;
+  /* height:1200px; */
   background: #ccc;
   padding: 20px;
 }
@@ -34,7 +34,7 @@ body {
   float: left;
   padding: 10px;
   width: 32%;
-  height:1200px;
+  /* height:1200px; */
   background-color: #f1f1f1;
 }
 
@@ -42,7 +42,7 @@ body {
   float: left;
   padding: 10px;
   width: 50%;
-  height:1200px;
+  /* height:1200px; */
   background-color: #ffffff;
 }
 
@@ -51,8 +51,7 @@ body {
 	padding:100px;
 }
 
-/* Clear floats after the columns */
-section:after {
+.footer::before {
   content: "";
   display: table;
   clear: both;
@@ -86,7 +85,7 @@ div.f{
     margin:10px 5px 5px 0px;
 }
 
-div.swdetail,.paneldetail{
+div.swdetail,.whitebox{
     background-color:#ffffff;
     border:1px solid #ffffff;
     border-radius:7px;

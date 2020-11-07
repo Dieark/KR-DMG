@@ -167,25 +167,25 @@
 </div>
 <!--======================魂武尾巴=================-->
 <!--======================攻擊前綴欄位==============-->
-<div>
+<div oninput="getpreatk()">
+<!--
 <div id="changepreatkdiv">
 <input type="button" name="preatkbutton" id="preatkbutton" value="填寫攻擊前綴細項" onclick="changepreatk()"/>
 </div>
+-->
 <div class="a">
 <!--輸入攻擊前綴-->
 <div id="preatkdiv" style="display:block">
 <label for="preatk">攻擊前綴：</label>
-<input type="number" name="preatk" id="preatk" style="width:89px;"  placeholder="192" oninput="getpreatk1()"/>%
+<input type="number" name="preatk" id="preatk" style="width:89px;"  placeholder="192"/>%
 </div>
-<div id="allpreatkdiv" style="display:none;">
-<br>
-</div>
+
 </div>
 </div>
 <!--======================攻擊前綴尾巴==============-->
 <!--顯示面板細項結果-->
 <br>
-<div id="paneldetail" class="paneldetail">
+<div id="paneldetail" class="whitebox">
 面板攻擊：156257
 </div>
 <br><br>
@@ -193,30 +193,28 @@
 </div>
 <!--==============所有面板攻擊項目尾巴=================-->
 <!--======================攻擊後綴欄位==============-->
-<div class="f">
+<div class="f" oninput="getposatk()">
+<!--
 <div id="changeposatkdiv">
 <input type="button" name="posatkbutton" id="posatkbutton" value="填寫攻擊後綴細項" onclick="changeposatk()"/>
 </div>
+-->
 <div class="a">
 <!--輸入攻擊後綴-->
 <div id="posatkdiv" style="display:block">
 <label for="posatk">攻擊後綴：</label>
-<input type="number" name="posatk" id="posatk" style="width:89px;"  placeholder="192" />%
-</div>
-<div id="allposatkdiv" style="display:none;">
-<br>
+<input type="number" name="posatk" id="posatk" style="width:89px;"  placeholder="192"/>%
 </div>
 </div>
 </div>
 <!--======================攻擊後綴尾巴==============-->
 <!--======================攻擊數值欄位==============-->
-<div class="f">
-
+<div class="f" oninput="getatkvalue()">
 <div class="a">
 <!--輸入攻擊數值-->
 <div id="atkvaluediv" style="display:block">
 <label for="atkvalue">攻擊數值：</label>
-<input type="number" name="atkvalue" id="atkvalue" style="width:89px;"  placeholder="200000" />
+<input type="number" name="atkvalue" id="atkvalue" style="width:89px;"  placeholder="200000"/>
 </div>
 <div id="inputallatkvaluediv" style="display:none;">
 <br>
@@ -225,32 +223,19 @@
 </div>
 <!--======================攻擊數值尾巴==============-->
 <!--======================倍率欄位==============-->
-<div class="f">
-
+<div class="f" oninput="getskill()">
 <div class="a">
 <!--輸入技能倍率-->
 <div id="multidiv" style="display:block">
 <label for="multi">技能倍率：</label>
-<input type="number" name="multi" id="multi" style="width:89px;"  placeholder="4.397" />
+<input type="number" name="multi" id="multi" style="width:89px;"  placeholder="4.397" value="0"/>
 </div>
-<div id="inputallmultidiv" style="display:none;">
-<br>
-</div>
-</div>
-</div>
-<!--======================倍率尾巴==============-->
-<!--======================基值欄位==============-->
-<div class="f">
-
-<div class="a">
 <!--輸入技能基值-->
 <div id="basediv" style="display:block">
 <label for="base">技能基值：</label>
-<input type="number" name="base" id="base" style="width:89px;"  placeholder="122362" />
+<input type="number" name="base" id="base" style="width:89px;"  placeholder="122362" value="0"/>
 </div>
-<div id="inputallbasediv" style="display:none;">
-<br>
-</div>
+
 </div>
 </div>
 <!--======================基值尾巴==============-->
@@ -263,13 +248,13 @@
 <div class="a" oninput="getdefmul()">
 <!--無視防禦-->
 <div id="unabledef" style="display:block">
-<input type="checkbox" name="no.def" id="no.def" value="0" onclick="nodef()"/>
-<label for="nodef">無視防禦</label>
+<input type="checkbox" name="no.def" id="no.def" onclick="nodef()"/>
+<label>無視防禦</label>
 </div>
 <!--敵人無視扣防-->
 <div id="unabledefdec" style="display:block">
-<input type="checkbox" name="no.defdec" id="no.defdec" value="0" onclick="nodefdec()"/>
-<label for="nodefdec">敵人無視扣防</label>
+<input type="checkbox" name="no.defdec" id="no.defdec" onclick="nodefdec()"/>
+<label>敵人無視扣防</label>
 </div>
 <!--輸入敵人防禦-->
 <div id="enemydef" style="display:block">
@@ -316,7 +301,7 @@
 
 <!--顯示防禦減傷結果-->
 <br>
-<div id="def.mul" class="paneldetail">
+<div id="def.mul" class="whitebox">
 防禦減傷倍率：0
 </div>
 <br><br>
@@ -325,57 +310,58 @@
 <!--======================防禦屬性尾巴==============-->
 <!--======================屬性增傷欄位==============-->
 <div class="f">
-<div class="a" oninput="gettough()">
+<div class="a" oninput="getdmginc()">
 <!--輸入屬性增傷-->
 <div id="dmgincdiv" style="display:block">
 <label for="dmginc">屬性增傷：</label>
 <input type="number" name="dmginc" id="dmginc" style="width:89px;" placeholder="75" value="0"/>%
 </div>
-<div id="toughdiv" style="display:block">
+<div id="toughdiv" style="display:inline">
 <label for="tough.x">敵人抵抗：</label>
-<input type="number" name="tough.x" id="tough.x" style="width:89px;"  placeholder="75" value="0"/>%
+<input type="number" name="tough.x" id="tough.x" style="width:89px;"  placeholder="200,400" value="0"/>
 </div>
+<!-- 抵抗遞減結果 -->
+<div id="toughsoft">
+：0.0％
+</div>
+<!--顯示增傷結果-->
+<br><br>
+<div id="dmg.inc" class="whitebox">
+實際增傷倍率：0.0％
+</div>
+<br><br>
 </div>
 </div>
 <!--======================屬性增傷尾巴==============-->
 <!--======================爆擊爆傷欄位==============-->
-<div class="f">
+<div class="f" oninput="getcdmg()">
 <div class="a">
 <!--輸入總爆傷-->
 <div id="cdmgdiv" style="display:block">
 <label for="cdmg">總爆傷：</label>
-<input type="number" name="cdmg" id="cdmg" style="width:89px;"  placeholder="500" />%
+<input type="number" name="cdmg" id="cdmg" style="width:89px;"  placeholder="500" value="0"/>%
 </div>
-<div id="inputallcdmgdiv" style="display:none;">
-<br>
-</div>
+
 </div>
 </div>
 <!--======================爆擊爆傷尾巴==============-->
 <!--======================技能增傷欄位==============-->
-<div class="f">
-
-<div class="a">
-<!--輸入技能增傷-->
-<div id="skillincdiv" style="display:block">
-<label for="skillinc">技能增傷：</label>
-<input type="number" name="skillinc" id="skillinc" style="width:89px;"  placeholder="50" />%
-</div>
-<div id="inputallskillincdiv" style="display:none;">
-<br>
-</div>
-</div>
+<div class="f" oninput="getskillinc()">
+	<div class="a">
+		<!--輸入技能增傷-->
+		<div id="skillincdiv" style="display:block">
+			<label for="skillinc">技能增傷：</label>
+			<input type="number" name="skillinc" id="skillinc" style="width:89px;"  placeholder="50" value="0"/>%
+		</div>
+	</div>
 </div>
 <!--======================技能增傷尾巴==============-->
 <!--======================狩獵欄位==============-->
 <div class="f">
-
-<div class="a">
-<!--輸入狩獵-->
-<div id="huntdiv" style="display:block">
-<label for="hunt">狩獵：</label>
-<input type="number" name="hunt" id="hunt" style="width:89px;"  placeholder="10" />%
-</div>
+<!-- 選取狩獵 -->
+<div style="display:block">
+<input type="checkbox" name="hunt" id="hunt" onclick="gethunt()"/>
+<label>狩獵</label>
 </div>
 </div>
 <!--======================狩獵尾巴==============-->
@@ -412,19 +398,47 @@
 </div>
 </div>
 <!--==============套裝尾巴===================-->
-
+<!--======================終傷欄位==============-->
+<div class="f">
+	<div class="a" oninput="getfdmg()">
+		<!--輸入終傷-->
+		<div style="display:block">
+			<label for="fdmg1">終傷1：</label>
+			<input type="number" name="fdmg1" id="fdmg1" style="width:89px;" placeholder="30" value="0"/>%
+		</div>
+		<div style="display:block">
+			<label for="fdmg2">終傷2：</label>
+			<input type="number" name="fdmg2" id="fdmg2" style="width:89px;" placeholder="30" value="0"/>%
+		</div>
+		<div style="display:block">
+			<label for="fdmg3">終傷3：</label>
+			<input type="number" name="fdmg3" id="fdmg3" style="width:89px;" placeholder="30" value="0"/>%
+		</div>
+		<div style="display:block">
+			<label for="fdmg4">終傷4：</label>
+			<input type="number" name="fdmg4" id="fdmg4" style="width:89px;" placeholder="30" value="0"/>%
+		</div>
+		<div style="display:block">
+			<label for="fdmg5">終傷5：</label>
+			<input type="number" name="fdmg5" id="fdmg5" style="width:89px;" placeholder="30" value="0"/>%
+		</div>
+		<div>
+			<p class="whitebox">hint：1.7倍 ≡ 70％</p>
+		</div>
+	</div>
+</div>
+<!--======================終傷尾巴==============-->
 <!--提交表單-->
 <div>
-<button type="button" onclick="showinput()">確定</button>
+<button type="button" onclick="showrealdmg()">確定</button>
 </div>
 </div>
 </form>
 </div>
 <!--==================表單尾巴=================-->
 
-<p1 id="de.mo"><br></p1>
-<p1 id="demo1"><br></p1>
-
+<p id="demo1"><br></p>
+<p id="realdmg"></p>
 <!-- end middle column -->
 </div>
 
