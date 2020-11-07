@@ -47,165 +47,165 @@
 </div>
 <!--==============所有面板攻擊項目欄位=================-->
 <div class="f">
-<div id="changepaneldiv">
-<input type="button" name="panelbutton" id="panelbutton" value="填寫面板細項" onclick="changepanel()"/>
-</div>
-<!--輸入面板攻擊-->
-<div id="paneldiv" style="display:block;">
-<label for="panelatk">面板攻擊：</label>
-<input type="number" name="panelatk" id="panelatk" style="width:89px;"  placeholder="1500000" oninput="getpanelatk()"/>
-</div>
-<!--輸入詳細面板攻擊-->
-<div id="allpaneldiv" style="display:none;">
-<!--====================專武欄位====================-->
-<div class="a">
-<!--專武星數表單-->
-<div id="uwstardiv">
-<label for="uwstar">專武星數：</label>
-<select name="uwstar" id="uwstar" onchange="getatk()">
-<option value="0">☆☆☆☆☆</option>
-<option value="1">★☆☆☆☆</option>
-<option value="2">★★☆☆☆</option>
-<option value="3">★★★☆☆</option>
-<option value="4">★★★★☆</option>
-<option value="5" selected>★★★★★</option>
-</select>
-</div>
-<!--輸入專武攻擊-->
-<div id="uwatkdiv" style="display:none">
-<label for="uwatk">專武攻擊：</label>
-<input type="number" name="uwatk" id="uwatk" style="width:89px;" placeholder="147459" oninput="getatk()"/>
-</div>
-<!--切換-->
-<div>
-<button type="button" onclick="changeuw()">切換</button>
-</div>
-</div>
-<!--==================專武尾巴================-->
-<!--==============耳環欄位===================-->
-<div class="a">
-<!--耳環品質表單-->
-<div id="erqualitydiv">
-<label for="erquality">耳環品質：</label>
-<select name="erquality" id="erquality" onchange="getatk()">
-<option value="0">T8</option>
-<option value="1">TM非尋回</option>
-<option value="2">TM尋回</option>
-</select>
-</div>
-<br>
-<!--耳環星數表單-->
-<div id="erstardiv">
-<label for="erstar">耳環星數：</label>
-<select name="erstar" id="erstar" onchange="getatk()">
-<option value="0">☆☆☆☆☆</option>
-<option value="1">★☆☆☆☆</option>
-<option value="2">★★☆☆☆</option>
-<option value="3">★★★☆☆</option>
-<option value="4">★★★★☆</option>
-<option value="5" selected>★★★★★</option>
-</select>
-</div>
-<!--輸入耳環攻擊-->
-<div id="eratkdiv" style="display:none">
-<label for="eratk">耳環攻擊：</label>
-<input type="number" name="eratk" id="eratk" style="width:89px;"  placeholder="23702" oninput="getatk()"/>
-</div>
-<!--切換-->
-<div>
-<button type="button" onclick="changeer()">切換</button>
-</div>
-</div>
-<!--=================耳環尾巴==========================-->
-<!--=================魂武欄位==========================-->
-<div>
-<div id="changeswdiv">
-<input type="button" name="swbutton" id="swbutton" value="填寫魂武細項" onclick="changesw()"/>
-</div>
-<div class="a">
-<!--輸入魂武攻擊-->
-<div id="swdiv" style="display:block">
-<label for="swatk">魂武攻擊：</label>
-<input type="number" name="swatk" id="swatk" style="width:89px;"  placeholder="128628" oninput="getatk()"/>
-</div>
-<div id="allswdiv" style="display:none;">
-<!--魂武階級表單-->
-<div id="swadvdiv">
-<label for="swadv">魂武階級：</label>
-<select name="swadv" id="swadv" onchange="getatk()">
-<option value="0">0</option>
-<option value="1">1</option>
-<option value="2" selected>2</option>
-</select>
-</div>
-<br>
-<!--輸入魂武等級-->
-<div id="swleveldiv" style="display:inline">
-<label for="swlevel">魂武等級：</label>
-<input type="number" name="swlevel" id="swlevel" style="width:24px;"  value="20" oninput="getatk()"/>
-</div>
-<br>
-<!--輸入魂武比例-->
-<div id="swratediv" style="display:inline">
-<label for="swrate">攻擊比例：</label>
-<input type="number" name="swrate" id="swrate" style="width:36px;"  value="70.0" step="0.1" oninput="getatk()"/>%
-</div>
-<br>
-<!--輸入魂武附加攻擊-->
-<div id="swaddidiv" style="display:inline">
-<label for="swaddi">附加攻擊：</label>
-<input type="number" name="swaddi" id="swaddi" style="width:36px;"  value="20.0" step="0.1" oninput="getatk()"/>%
-</div>
-<br>
-<!--顯示魂武細項結果-->
-<br>
-<div id="swdetail" class="swdetail">
-</div>
-<br><br>
-</div>
-</div>
-</div>
-<!--======================魂武尾巴=================-->
-<!--======================攻擊前綴欄位==============-->
-<div oninput="getpreatk()">
-<!--
-<div id="changepreatkdiv">
-<input type="button" name="preatkbutton" id="preatkbutton" value="填寫攻擊前綴細項" onclick="changepreatk()"/>
-</div>
--->
-<div class="a">
-<!--輸入攻擊前綴-->
-<div id="preatkdiv" style="display:block">
-<label for="preatk">攻擊前綴：</label>
-<input type="number" name="preatk" id="preatk" style="width:89px;"  placeholder="192"/>%
-</div>
-
-</div>
-</div>
-<!--======================攻擊前綴尾巴==============-->
-<!--顯示面板細項結果-->
-<br>
-<div id="paneldetail" class="whitebox">
-面板攻擊：156257
-</div>
-<br><br>
-</div>
+	<div id="changepaneldiv">
+		<input type="button" name="panelbutton" id="panelbutton" value="填寫面板細項" onclick="changepanel()"/>
+	</div>
+	<!--輸入面板攻擊-->
+	<div id="paneldiv" style="display:block;">
+		<label for="panelatk">面板攻擊：</label>
+		<input type="number" name="panelatk" id="panelatk" style="width:89px;"  placeholder="1500000" oninput="getpanelatk()"/>
+	</div>
+	<!--輸入詳細面板攻擊-->
+	<div id="allpaneldiv" style="display:none;">
+		<!--====================專武欄位====================-->
+		<div class="a">
+			<!--專武星數表單-->
+			<div id="uwstardiv">
+				<label for="uwstar">專武星數：</label>
+				<select name="uwstar" id="uwstar" onchange="getatk()">
+				<option value="0">☆☆☆☆☆</option>
+				<option value="1">★☆☆☆☆</option>
+				<option value="2">★★☆☆☆</option>
+				<option value="3">★★★☆☆</option>
+				<option value="4">★★★★☆</option>
+				<option value="5" selected>★★★★★</option>
+				</select>
+			</div>
+			<!--輸入專武攻擊-->
+			<div id="uwatkdiv" style="display:none">
+				<label for="uwatk">專武攻擊：</label>
+				<input type="number" name="uwatk" id="uwatk" style="width:89px;" placeholder="147459" oninput="getatk()"/>
+			</div>
+			<!--切換-->
+			<div>
+				<button type="button" onclick="changeuw()">切換</button>
+			</div>
+		</div>
+		<!--==================專武尾巴================-->
+		<!--==============耳環欄位===================-->
+		<div class="a">
+			<!--耳環品質表單-->
+			<div id="erqualitydiv">
+				<label for="erquality">耳環品質：</label>
+				<select name="erquality" id="erquality" onchange="getatk()">
+				<option value="0">T8</option>
+				<option value="1">TM非尋回</option>
+				<option value="2">TM尋回</option>
+				</select>
+			</div>
+			<br>
+			<!--耳環星數表單-->
+			<div id="erstardiv">
+				<label for="erstar">耳環星數：</label>
+				<select name="erstar" id="erstar" onchange="getatk()">
+				<option value="0">☆☆☆☆☆</option>
+				<option value="1">★☆☆☆☆</option>
+				<option value="2">★★☆☆☆</option>
+				<option value="3">★★★☆☆</option>
+				<option value="4">★★★★☆</option>
+				<option value="5" selected>★★★★★</option>
+				</select>
+			</div>
+			<!--輸入耳環攻擊-->
+			<div id="eratkdiv" style="display:none">
+				<label for="eratk">耳環攻擊：</label>
+				<input type="number" name="eratk" id="eratk" style="width:89px;"  placeholder="23702" oninput="getatk()"/>
+			</div>
+			<!--切換-->
+			<div>
+				<button type="button" onclick="changeer()">切換</button>
+			</div>
+		</div>
+		<!--=================耳環尾巴==========================-->
+		<!--=================魂武欄位==========================-->
+		<div>
+			<div id="changeswdiv">
+				<input type="button" name="swbutton" id="swbutton" value="填寫魂武細項" onclick="changesw()"/>
+			</div>
+			<div class="a">
+			<!--輸入魂武攻擊-->
+			<div id="swdiv" style="display:block">
+				<label for="swatk">魂武攻擊：</label>
+				<input type="number" name="swatk" id="swatk" style="width:89px;"  placeholder="128628" oninput="getatk()"/>
+			</div>
+			<div id="allswdiv" style="display:none;">
+				<!--魂武階級表單-->
+				<div id="swadvdiv">
+					<label for="swadv">魂武階級：</label>
+					<select name="swadv" id="swadv" onchange="getatk()">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2" selected>2</option>
+					</select>
+				</div>
+				<br>
+				<!--輸入魂武等級-->
+				<div id="swleveldiv" style="display:inline">
+					<label for="swlevel">魂武等級：</label>
+					<input type="number" name="swlevel" id="swlevel" style="width:24px;"  value="20" oninput="getatk()"/>
+				</div>
+				<br>
+				<!--輸入魂武比例-->
+				<div id="swratediv" style="display:inline">
+					<label for="swrate">攻擊比例：</label>
+					<input type="number" name="swrate" id="swrate" style="width:36px;"  value="70.0" step="0.1" oninput="getatk()"/>%
+				</div>
+				<br>
+				<!--輸入魂武附加攻擊-->
+				<div id="swaddidiv" style="display:inline">
+					<label for="swaddi">附加攻擊：</label>
+					<input type="number" name="swaddi" id="swaddi" style="width:36px;"  value="20.0" step="0.1" oninput="getatk()"/>%
+				</div>
+				<br>
+				<!--顯示魂武細項結果-->
+				<br>
+				<div id="swdetail" class="swdetail">
+				
+				</div>
+				<br><br>
+			</div>
+			</div>
+		</div>
+		<!--======================魂武尾巴=================-->
+		<!--======================攻擊前綴欄位==============-->
+		<div oninput="getpreatk()">
+			<!--
+			<div id="changepreatkdiv">
+			<input type="button" name="preatkbutton" id="preatkbutton" value="填寫攻擊前綴細項" onclick="changepreatk()"/>
+			</div>
+			-->
+			<div class="a">
+				<!--輸入攻擊前綴-->
+				<div id="preatkdiv" style="display:block">
+				<label for="preatk">攻擊前綴：</label>
+				<input type="number" name="preatk" id="preatk" style="width:89px;"  placeholder="192"/>%
+				</div>
+			</div>
+		</div>
+		<!--======================攻擊前綴尾巴==============-->
+		<!--顯示面板細項結果-->
+		<br>
+		<div id="paneldetail" class="whitebox">
+		面板攻擊：156257
+		</div>
+		<br><br>
+	</div>
 </div>
 <!--==============所有面板攻擊項目尾巴=================-->
 <!--======================攻擊後綴欄位==============-->
 <div class="f" oninput="getposatk()">
-<!--
-<div id="changeposatkdiv">
-<input type="button" name="posatkbutton" id="posatkbutton" value="填寫攻擊後綴細項" onclick="changeposatk()"/>
-</div>
--->
-<div class="a">
-<!--輸入攻擊後綴-->
-<div id="posatkdiv" style="display:block">
-<label for="posatk">攻擊後綴：</label>
-<input type="number" name="posatk" id="posatk" style="width:89px;"  placeholder="192"/>%
-</div>
-</div>
+	<!--
+	<div id="changeposatkdiv">
+	<input type="button" name="posatkbutton" id="posatkbutton" value="填寫攻擊後綴細項" onclick="changeposatk()"/>
+	</div>
+	-->
+	<div class="a">
+		<!--輸入攻擊後綴-->
+		<div id="posatkdiv" style="display:block">
+			<label for="posatk">攻擊後綴：</label>
+			<input type="number" name="posatk" id="posatk" style="width:89px;"  placeholder="192"/>%
+		</div>
+	</div>
 </div>
 <!--======================攻擊後綴尾巴==============-->
 <!--======================攻擊數值欄位==============-->
@@ -367,35 +367,38 @@
 <!--======================狩獵尾巴==============-->
 <!--==================套裝欄位================-->
 <div class="f">
-<!--套裝表單-->
-<div id="gearsetdiv">
-<label for="gearset">套裝：</label>
-<select name="gearset" id="gearset" onchange="showfixed(),getatk()">
-<!--魔獸套-->
-<optgroup label="魔獸套">
-<option value="101">魔獸2件套</option>
-<option value="102">魔獸4件套</option>
-</optgroup>
-<!--魔導套-->
-<optgroup label="魔導套">
-<option value="1001">魔導高戈套</option>
-<option value="1002">魔導齊格套</option>
-<option value="1003">魔導阿斯套</option>
-</optgroup>
-<!--其它-->
-<optgroup label="其它">
-<option value="0" selected>其它T8套裝</option>
-</optgroup>
-</select>
-</div>
-<!--尋回/未尋回-->
-<div id="fixeddiv" style="display:none;">
-<label for="fixed">尋回/未尋回：</label>
-<select name="fixed" id="fixed" onchange="getatk()">
-<option value="1">尋回</option>
-<option value="0">未尋回</option>
-</select>
-</div>
+	<!--套裝表單-->
+	<div id="gearsetdiv">
+		<label for="gearset">套裝：</label>
+		<select name="gearset" id="gearset" onchange="showfixed(),getatk()">
+		<!--魔獸套-->
+		<optgroup label="魔獸套">
+		<option value="101">魔獸2件套</option>
+		<option value="102">魔獸4件套</option>
+		</optgroup>
+		<!--魔導套-->
+		<optgroup label="魔導套">
+		<option value="1001">魔導高戈套</option>
+		<option value="1002">魔導齊格套</option>
+		<option value="1003">魔導阿斯套</option>
+		</optgroup>
+		<!--其它-->
+		<optgroup label="其它">
+		<option value="0" selected>其它T8套裝</option>
+		</optgroup>
+		</select>
+	</div>
+	<!--尋回/未尋回-->
+	<div id="fixeddiv" style="display:none;">
+		<label for="fixed">尋回/未尋回：</label>
+		<select name="fixed" id="fixed" onchange="getatk()">
+		<option value="1">尋回</option>
+		<option value="0">未尋回</option>
+		</select>
+	</div>
+	<div>
+		<p class="whitebox">還未套用，還沒很好的想法</p>
+	</div>
 </div>
 <!--==============套裝尾巴===================-->
 <!--======================終傷欄位==============-->

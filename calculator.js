@@ -117,7 +117,7 @@ graph4:{
 var tough=pen;
 
 var dmg={
-inc:function(){return dmginc-tough.real();},
+inc:function(){return (dmginc-tough.real())/100;},
 monster:0,
 boss:0,
 manti:[1.12,1.15],
@@ -148,7 +148,7 @@ var multi=0;
 //取得技能基值結果
 var base=0;
 //取得屬性增傷結果
-var dmginc=1.00;
+var dmginc=0;
 //取得總爆傷結果
 var cdmg=0;
 //取得技能增傷結果
@@ -411,29 +411,6 @@ getswatk();
 getpanelatk();
 }//end function
 
-//取得攻擊前綴結果
-function getpreatk(){
-preatk.mul=(Number(document.forms[0].preatk.value)+100)/100;
-getpanelatk();
-}
-
-//取得攻擊後綴結果
-function getposatk(){
-posatk.mul=(Number(document.forms[0].posatk.value)+100)/100;
-}
-
-//取得攻擊值結果
-function getatkvalue(){
-atkvalue=document.forms[0].atkvalue.value;
-console.log(atkvalue);
-}
-
-//取得技能倍率/基值結果
-function getskill(){
-multi=document.forms[0].multi.value;
-base=document.forms[0].base.value;
-}
-
 //顯示(取得)魂武攻擊
 function getswatk(){
 document.getElementById("swdetail").innerHTML="魂武攻擊：<span>"+sw.atk1+"</span>+<span style=\"color:orange;\">"+sw.atk2+"</span>";
@@ -587,22 +564,45 @@ if(x<min) return min;
 return x;
 }
 
+//取得攻擊前綴結果
+function getpreatk(){
+preatk.mul=(Number(document.forms[0].preatk.value)+100)/100;
+getpanelatk();
+}
+
+//取得攻擊後綴結果
+function getposatk(){
+posatk.mul=(Number(document.forms[0].posatk.value)+100)/100;
+}
+
+//取得攻擊值結果
+function getatkvalue(){
+atkvalue=Number(document.forms[0].atkvalue.value);
+
+}
+
+//取得技能倍率/基值結果
+function getskill(){
+multi=Number(document.forms[0].multi.value);
+base=Number(document.forms[0].base.value);
+}
+
 //顯示(取得)屬性增傷結果
 function getdmginc(){
-tough.x=document.getElementById("tough.x").value;
-dmginc=document.getElementById("dmginc").value;
+tough.x=Number(document.getElementById("tough.x").value);
+dmginc=Number(document.getElementById("dmginc").value);
 document.getElementById("toughsoft").innerHTML="："+tough.real().toFixed(1)+"％";
-document.getElementById("dmg.inc").innerHTML="實際增傷倍率："+dmg.inc().toFixed(1)+"％";
+document.getElementById("dmg.inc").innerHTML="實際增傷倍率："+100*dmg.inc().toFixed(1)+"％";
 }
 
 //取得總爆傷結果
 function getcdmg(){
-cdmg=document.forms[0].cdmg.value;
+cdmg=2+0.01*Number(document.forms[0].cdmg.value);
 }
 
 //取得總爆傷結果
 function getskillinc(){
-skillinc=document.forms[0].skillinc.value;
+skillinc=1+0.01*Number(document.forms[0].skillinc.value);
 }
 
 //取得狩獵怪物
@@ -614,17 +614,19 @@ else
 }
 
 function getfdmg(){
-var fdmg1=1+0.01*document.getElementById("fdmg1").value;
-var fdmg2=1+0.01*document.getElementById("fdmg2").value;
-var fdmg3=1+0.01*document.getElementById("fdmg3").value;
-var fdmg4=1+0.01*document.getElementById("fdmg4").value;
-var fdmg5=1+0.01*document.getElementById("fdmg5").value;
+var fdmg1=1+0.01*Number(document.getElementById("fdmg1").value);
+var fdmg2=1+0.01*Number(document.getElementById("fdmg2").value);
+var fdmg3=1+0.01*Number(document.getElementById("fdmg3").value);
+var fdmg4=1+0.01*Number(document.getElementById("fdmg4").value);
+var fdmg5=1+0.01*Number(document.getElementById("fdmg5").value);
 
 }
 
 function showrealdmg(){
-	var realdmg=Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(panel.atk*posatk.mul+Number(atkvalue))*multi+Number(base))*(1-def.mul()))*(1+dmg.inc()))*(2+cdmg))*(1+skillinc))*hunt));
+	var realdmg=Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(panel.atk*posatk.mul+Number(atkvalue))*multi+Number(base))*(1-def.mul()))*(1+dmg.inc()))*cdmg)*skillinc)*hunt));
 	console.log(realdmg);
+	console.log(dmg.inc());
+	
 	document.getElementById("realdmg").innerHTML="實際傷害 = "+realdmg;
 }
 
