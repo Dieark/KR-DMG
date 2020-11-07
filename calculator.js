@@ -155,7 +155,11 @@ var cdmg=0;
 var skillinc=0;
 //取得狩獵結果
 var hunt=1;
-
+var fdmg1=0;
+var fdmg2=0;
+var fdmg3=0;
+var fdmg4=0;
+var fdmg5=0;
 
 
 /*
@@ -614,17 +618,19 @@ else
 }
 
 function getfdmg(){
-var fdmg1=1+0.01*Number(document.getElementById("fdmg1").value);
-var fdmg2=1+0.01*Number(document.getElementById("fdmg2").value);
-var fdmg3=1+0.01*Number(document.getElementById("fdmg3").value);
-var fdmg4=1+0.01*Number(document.getElementById("fdmg4").value);
-var fdmg5=1+0.01*Number(document.getElementById("fdmg5").value);
-
+fdmg1=1+0.01*Number(document.getElementById("fdmg1").value);
+fdmg2=1+0.01*Number(document.getElementById("fdmg2").value);
+fdmg3=1+0.01*Number(document.getElementById("fdmg3").value);
+fdmg4=1+0.01*Number(document.getElementById("fdmg4").value);
+fdmg5=1+0.01*Number(document.getElementById("fdmg5").value);
 }
 
 function showrealdmg(){
 	var realdmg=Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(panel.atk*posatk.mul+Number(atkvalue))*multi+Number(base))*(1-def.mul()))*(1+dmg.inc()))*cdmg)*skillinc)*hunt)*fdmg1*fdmg2*fdmg3*fdmg4*fdmg5);
 	console.log(realdmg);
+	console.log(dmg.inc());
+	console.log(cdmg);
+	console.log(skillinc);
 	console.log(dmg.inc());
 	
 	document.getElementById("realdmg").innerHTML="實際傷害 = "+realdmg;
