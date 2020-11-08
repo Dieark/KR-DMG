@@ -42,13 +42,11 @@ body {
   float: left;
   padding: 10px;
   width: 50%;
-  /* height:1200px; */
   background-color: #ffffff;
 }
 
-.graph p{
-	text-align:center;
-	padding:100px;
+.graph::hover{
+	display:none;
 }
 
 .footer::before {

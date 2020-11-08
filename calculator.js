@@ -91,30 +91,43 @@ real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b
 var def={
 base:980750,//防禦減傷係數
 enemy:0,//敵人防禦
+rai:0,
 red:function(){return defred.real();},//扣防％
+inc:0,
 dec:0,//扣防值
 pen:function(){return pen.real();},//防穿值遞減結果
 real:function(){return (Math.floor(Math.floor(this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100)>0)?Math.floor(Math.floor(this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100):0;},//有效防禦
 mul:function(){return Math.round(this.base*this.real()/(1000000-this.base+this.real())/1000)/1000;},//防禦減傷倍率
 graph1:{
-	real:function(){return (Math.floor(def.enemy*1))>0?(Math.floor(def.enemy*1)):0;},//有效防禦
+	real:function(){return (Math.floor(Math.floor(def.enemy*(100+def.rai)/100+def.inc))>0)?(Math.floor(Math.floor(def.enemy*(100+def.rai)/100+def.inc))):0;},//有效防禦
 	mul:function(){return Math.round(def.base*this.real()/(1000000-def.base+this.real())/1000)/1000;},//防禦減傷倍率
 },
 graph2:{
-	real:function(){return (Math.floor(def.enemy*(100-def.red())/100))>0?(Math.floor(def.enemy*(100-def.red())/100)):0;},//有效防禦
+	real:function(){return (Math.floor(def.enemy*(100-def.red())/100))>0?(Math.floor(def.enemy*(100-def.red())/100)):0;},//防禦+扣防
 	mul:function(){return Math.round(def.base*this.real()/(1000000-def.base+this.real())/1000)/1000;},//防禦減傷倍率
 },
 graph3:{
-	real:function(){return (Math.floor(def.enemy*1-def.dec))>0?(Math.floor(def.enemy*1-def.dec)):0;},//有效防禦
+	real:function(){return (Math.floor(def.enemy*1-def.dec))>0?(Math.floor(def.enemy*1-def.dec)):0;},//防禦+扣防
 	mul:function(){return Math.round(def.base*this.real()/(1000000-def.base+this.real())/1000)/1000;},//防禦減傷倍率
 },
 graph4:{
-	real:function(){return (Math.floor(def.enemy*(100-def.pen())/100))>0?(Math.floor(def.enemy*(100-def.pen())/100)):0;},//有效防禦
+	real:function(){return (Math.floor((Math.floor(def.enemy*(def.rai+100)/100)+def.inc)*(100-def.pen())/100)>0)?(Math.floor((Math.floor(def.enemy*(def.rai+100)/100)+def.inc)*(100-def.pen())/100)):0;},//防禦+防穿
 	mul:function(){return Math.round(def.base*this.real()/(1000000-def.base+this.real())/1000)/1000;},//防禦減傷倍率
 },
 }
 
-var tough=pen;
+var tough={
+max:900,
+x1:1000,
+a1:2,
+b1:1000,
+x2:450,
+a2:409,
+b2:266,
+//get
+x:0,
+real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b1,this.x2,this.a2,this.b2))/10;},
+}
 
 var dmg={
 inc:function(){return (dmginc-tough.real())/100;},
@@ -126,25 +139,10 @@ manti:[1.12,1.15],
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //取得攻擊數值結果
 var atkvalue=0;
 //取得技能倍率結果
-var multi=0;
+var multi=1;
 //取得技能基值結果
 var base=0;
 //取得屬性增傷結果
@@ -155,11 +153,11 @@ var cdmg=0;
 var skillinc=0;
 //取得狩獵結果
 var hunt=1;
-var fdmg1=0;
-var fdmg2=0;
-var fdmg3=0;
-var fdmg4=0;
-var fdmg5=0;
+var fdmg1=1;
+var fdmg2=1;
+var fdmg3=1;
+var fdmg4=1;
+var fdmg5=1;
 
 
 /*
@@ -438,15 +436,15 @@ document.getElementById("def.dec").value=range(document.getElementById("def.dec"
 document.getElementById("pen.x").value=range(document.getElementById("pen.x").value,0,9999);
 
 //取得敵人防禦
-def.enemy=document.getElementById("def.enemy").value;
+def.enemy=Number(document.getElementById("def.enemy").value);
 
 //取得扣防％＆增防％
-var raise=document.getElementById("def.rai").value;
-var reduce=document.getElementById("def.red").value;
+def.rai=Number(document.getElementById("def.rai").value);
+var reduce=Number(document.getElementById("def.red").value);
 
 //取得扣防值＆增防值
-var increase=document.getElementById("def.inc").value;
-var decrease=document.getElementById("def.dec").value;
+def.inc=Number(document.getElementById("def.inc").value);
+var decrease=Number(document.getElementById("def.dec").value);
 
 //取得防穿值
 pen.x=document.getElementById("pen.x").value;
@@ -454,7 +452,7 @@ pen.x=document.getElementById("pen.x").value;
 //無視防禦->敵人防禦＆增防值=0
 if (document.getElementById("no.def").checked){
 	def.enemy=0;	
-	increase=0;
+	def.inc=0;
 }
 
 //無視扣防->扣防值&扣防％=0
@@ -464,10 +462,10 @@ if (document.getElementById("no.defdec").checked){
 }
 
 //取得實際扣防％
-defred.x=(reduce-raise)*10;
+defred.x=(reduce-def.rai)*10;
 
 //取得實際扣防值
-def.dec=decrease-increase;
+def.dec=decrease-def.inc;
 
 //顯示結果
 document.getElementById("defredsoft").innerHTML="："+-defred.real().toFixed(1)+"％";
@@ -475,69 +473,72 @@ document.getElementById("pensoft").innerHTML="："+pen.real().toFixed(1)+"％";
 document.getElementById("def.mul").innerHTML="防禦減傷倍率："+def.mul();
 document.getElementById("realdef").innerHTML="有效防禦："+def.real();
 
-getdefchart();
 
 
 }
 
+//圖表 防禦
 function getdefchart(){
-var ctx = document.getElementById("chart").getContext("2d");
-var chart = new Chart(ctx, {
-    type: "horizontalBar",
-    data: {
-        labels: ["防禦", "防禦+扣防%", "防禦+扣防值", "防禦+防穿", "全部套用"],
-        datasets: [{
-            label: "防禦減傷後剩下傷害(1-防禦減傷倍率)",
-            data: [1-def.graph1.mul(),1-def.graph2.mul(),1-def.graph3.mul(),1-def.graph4.mul(),1-def.mul()],
-            backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(153, 102, 255, 0.2)"
-            ],
-            borderColor: [
-                "rgba(255,99,132,1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-                "rgba(153, 102, 255, 1)"
-            ],
-            borderWidth: 1
-        }]
-    },
-	options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        min:0,
-                        //max:1,						
-                    }
-                  }]
-               }
-            }
-});
+	var graph1=1-def.graph1.mul();
+	var graph2=1-def.graph4.mul();
+	var graph3=1-def.mul();
+	var graph4=1;
+	var ctx = document.getElementById("chart").getContext("2d");
+	var chart = new Chart(ctx, {
+		type: "horizontalBar",
+		data: {
+			labels: [["只防禦","(防禦+增防)"], ["防禦+防穿","(無視扣防)"], ["防禦+扣防+防穿","(全套用)"], "無視防禦"],
+			datasets: [{
+				label: "防禦減傷後剩下傷害(1-防禦減傷倍率)",
+				data: [graph1,graph2,graph3,graph4],
+				backgroundColor: [
+					"rgba(255, 99, 132, 0.2)",
+					"rgba(54, 162, 235, 0.2)",
+					"rgba(255, 206, 86, 0.2)",
+					"rgba(153, 102, 255, 0.2)"
+				],
+				borderColor: [
+					"rgba(255,99,132,1)",
+					"rgba(54, 162, 235, 1)",
+					"rgba(255, 206, 86, 1)",
+					"rgba(153, 102, 255, 1)"
+				],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			onhover:null,
+			scales: {
+				xAxes: [{
+					ticks: {
+						min:0,
+						max:1,						
+					}
+				  }]
+			   }
+			}
+	});
 }
 
 //無視防禦
 function nodef(){
-if (document.getElementById("no.def").checked){
-	document.getElementById("no.defdec").checked=false;
-	nodefdec();
-	document.getElementById("def.enemy").disabled=true;
-	document.getElementById("def.rai").disabled=true;
-	document.getElementById("def.red").disabled=true;
-	document.getElementById("def.inc").disabled=true;
-	document.getElementById("def.dec").disabled=true;
-	document.getElementById("pen.x").disabled=true;
-}else{
-	document.getElementById("def.enemy").disabled=false;
-	document.getElementById("def.rai").disabled=false;
-	document.getElementById("def.red").disabled=false;
-	document.getElementById("def.inc").disabled=false;
-	document.getElementById("def.dec").disabled=false;
-	document.getElementById("pen.x").disabled=false;
-	}
+	if (document.getElementById("no.def").checked){
+		document.getElementById("no.defdec").checked=false;
+		nodefdec();
+		document.getElementById("def.enemy").disabled=true;
+		document.getElementById("def.rai").disabled=true;
+		document.getElementById("def.red").disabled=true;
+		document.getElementById("def.inc").disabled=true;
+		document.getElementById("def.dec").disabled=true;
+		document.getElementById("pen.x").disabled=true;
+	}else{
+		document.getElementById("def.enemy").disabled=false;
+		document.getElementById("def.rai").disabled=false;
+		document.getElementById("def.red").disabled=false;
+		document.getElementById("def.inc").disabled=false;
+		document.getElementById("def.dec").disabled=false;
+		document.getElementById("pen.x").disabled=false;
+		}
 }
 
 //敵人無視扣防
@@ -596,17 +597,17 @@ function getdmginc(){
 tough.x=Number(document.getElementById("tough.x").value);
 dmginc=Number(document.getElementById("dmginc").value);
 document.getElementById("toughsoft").innerHTML="："+tough.real().toFixed(1)+"％";
-document.getElementById("dmg.inc").innerHTML="實際增傷倍率："+100*dmg.inc().toFixed(1)+"％";
+document.getElementById("dmg.inc").innerHTML="實際增傷倍率："+(100*dmg.inc()).toFixed(1)+"％";
 }
 
 //取得總爆傷結果
 function getcdmg(){
-cdmg=2+0.01*Number(document.forms[0].cdmg.value);
+cdmg=0.01*Number(document.forms[0].cdmg.value);
 }
 
 //取得總爆傷結果
 function getskillinc(){
-skillinc=1+0.01*Number(document.forms[0].skillinc.value);
+skillinc=0.01*Number(document.forms[0].skillinc.value);
 }
 
 //取得狩獵怪物
@@ -617,6 +618,7 @@ else
 	hunt=1;
 }
 
+//取得終傷結果
 function getfdmg(){
 fdmg1=1+0.01*Number(document.getElementById("fdmg1").value);
 fdmg2=1+0.01*Number(document.getElementById("fdmg2").value);
@@ -625,14 +627,21 @@ fdmg4=1+0.01*Number(document.getElementById("fdmg4").value);
 fdmg5=1+0.01*Number(document.getElementById("fdmg5").value);
 }
 
+//顯示最終傷害
 function showrealdmg(){
-	var realdmg=Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(panel.atk*posatk.mul+Number(atkvalue))*multi+Number(base))*(1-def.mul()))*(1+dmg.inc()))*cdmg)*skillinc)*hunt)*fdmg1*fdmg2*fdmg3*fdmg4*fdmg5);
+	var realdmg=Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(panel.atk*posatk.mul+Number(atkvalue))*multi+Number(base))*(1-def.mul()))*(1+dmg.inc()))*(2+cdmg))*(1+skillinc))*hunt)*fdmg1*fdmg2*fdmg3*fdmg4*fdmg5);
 	console.log(realdmg);
-	console.log(dmg.inc());
+	console.log(panel.atk);
+	console.log(posatk.mul);
+	console.log(atkvalue);
+	console.log(multi);
+	console.log(base);
+	console.log(1-def.mul());
+	console.log(1+dmg.inc());
 	console.log(cdmg);
 	console.log(skillinc);
-	console.log(dmg.inc());
-	
+	console.log(hunt);
+	console.log(fdmg1);
 	document.getElementById("realdmg").innerHTML="實際傷害 = "+realdmg;
 }
 
