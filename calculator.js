@@ -474,11 +474,11 @@ document.getElementById("def.mul").innerHTML="防禦減傷倍率："+def.mul();
 document.getElementById("realdef").innerHTML="有效防禦："+def.real();
 
 
-
 }
 
 //圖表 防禦
 function getdefchart(){
+	
 	var graph1=1-def.graph1.mul();
 	var graph2=1-def.graph4.mul();
 	var graph3=1-def.mul();
