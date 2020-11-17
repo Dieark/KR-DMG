@@ -89,7 +89,7 @@ real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b
 }
 
 var def={
-base:980750,//防禦減傷係數
+base:980736,//防禦減傷係數
 enemy:0,//敵人防禦
 rai:0,
 red:function(){return defred.real();},//扣防％
