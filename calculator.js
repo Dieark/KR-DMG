@@ -89,7 +89,7 @@ real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b
 }
 
 var def={
-base:980736,//防禦減傷係數
+base:980750,//防禦減傷係數
 enemy:0,//敵人防禦
 rai:0,
 red:function(){return defred.real();},//扣防％
@@ -434,6 +434,8 @@ document.getElementById("def.red").value=range(document.getElementById("def.red"
 document.getElementById("def.inc").value=range(document.getElementById("def.inc").value,0,Infinity);
 document.getElementById("def.dec").value=range(document.getElementById("def.dec").value,0,Infinity);
 document.getElementById("pen.x").value=range(document.getElementById("pen.x").value,0,9999);
+
+def.base=Number(document.getElementById("def.base").value);
 
 //取得敵人防禦
 def.enemy=Number(document.getElementById("def.enemy").value);

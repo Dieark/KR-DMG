@@ -246,6 +246,11 @@
 <input type="button" name="defbutton" id="defbutton" value="填寫防禦相關細項" onclick="changeposatk()" style="display:none;"/>
 </div>
 <div class="a" oninput="getdefmul()">
+<!--輸入防禦參數-->
+<div id="defbase" style="display:block">
+<label for="def.base">防禦參數：</label>
+<input type="number" name="def.base" id="def.base" style="width:89px;"  placeholder="980750" value="980750"/>
+</div>
 <!--無視防禦-->
 <div id="unabledef" style="display:block">
 <input type="checkbox" name="no.def" id="no.def" onclick="nodef()"/>
