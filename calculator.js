@@ -97,7 +97,7 @@ inc:0,
 dec:0,//扣防值
 pen:function(){return pen.real();},//防穿值遞減結果
 real:function(){return (Math.floor(Math.floor(this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100)>0)?Math.floor(Math.floor(this.enemy*(100-this.red())/100-this.dec)*(100-this.pen())/100):0;},//有效防禦
-mul:function(){return Math.floor(this.base*this.real()/(1000000-this.base+this.real())/1000)/1000;},//防禦減傷倍率
+mul:function(){return Math.round(this.base*this.real()/(1000000-this.base+this.real())/1000)/1000;},//防禦減傷倍率
 graph1:{
 	real:function(){return (Math.floor(Math.floor(def.enemy*(100+def.rai)/100+def.inc))>0)?(Math.floor(Math.floor(def.enemy*(100+def.rai)/100+def.inc))):0;},//有效防禦
 	mul:function(){return Math.round(def.base*this.real()/(1000000-def.base+this.real())/1000)/1000;},//防禦減傷倍率
