@@ -9,4 +9,7 @@ $(document).ready(function(){
     $("#result1").text(base);
 	$("#result2").text(scale);
   });
+  $(".clean").click(function(){
+	  $(this).parent().siblings("input").val("");
+  });
 });
