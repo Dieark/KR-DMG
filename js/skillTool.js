@@ -24,10 +24,15 @@ $(document).ready(function(){
 		$(this).parent().siblings("input").val("");
 	});
 	
+	$(document).on("click",".cleanall",function(){
+		$(this).parent().parent().siblings().find("input").val("");
+	});
+	
 	$(document).on("dblclick",".edit",function(){
 		var oldname=$(this).text();
 		$(this).html('<input type="text" class="form-control" value="'+oldname+'">');
 	});
+	
 	$(document).on("focusout",".edit",function(){
 		var edited=$(this).children().val();
 		if (edited!="")
