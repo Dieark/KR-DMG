@@ -31,6 +31,7 @@ $(document).ready(function(){
 	$(document).on("dblclick",".edit",function(){
 		var oldname=$(this).text();
 		$(this).html('<input type="text" class="form-control" value="'+oldname+'">');
+		$(this).children().focus();
 	});
 	
 	$(document).on("focusout",".edit",function(){
