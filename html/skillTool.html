@@ -78,54 +78,60 @@
 								<div class="col-md-auto px-0 box">
 									<div class="col-md-auto data">
 										<h3 class="edit">技能1&#x00A0<i class="fas fa-edit fa-xs"></i></h3>
-										<div class="border border-secondary rounded">
-											<h4 class="text-left">數據一</h4>
-											<div class="input-group mb-3" class="keyin">
-												<div class="input-group-prepend">
-													<span class="input-group-text">面板攻擊</span>
-													<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+										<div class="toggle">
+											<div class="border border-secondary rounded">
+												<h4 class="text-left">數據一</h4>
+												<div class="input-group mb-3" class="keyin">
+													<div class="input-group-prepend">
+														<span class="input-group-text">面板攻擊</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control input1">
 												</div>
-												<input type="text" class="form-control">
+												<div class="input-group mb-3" class="keyin">
+													<div class="input-group-prepend">
+														<span class="input-group-text">技能數值</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control input2">
+												</div>
 											</div>
-											<div class="input-group mb-3" class="keyin">
-												<div class="input-group-prepend">
-													<span class="input-group-text">技能數值</span>
-													<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+											<div class="border border-secondary rounded">
+												<h4 class="text-left">數據二</h4>
+												<div class="input-group mb-3" class="keyin">
+													<div class="input-group-prepend">
+														<span class="input-group-text">面板攻擊</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control input3">
 												</div>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="border border-secondary rounded">
-											<h4 class="text-left">數據二</h4>
-											<div class="input-group mb-3" class="keyin">
-												<div class="input-group-prepend">
-													<span class="input-group-text">面板攻擊</span>
-													<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+												<div class="input-group mb-3" class="keyin">
+													<div class="input-group-prepend">
+														<span class="input-group-text">技能數值</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control input4">
 												</div>
-												<input type="text" class="form-control">
-											</div>
-											<div class="input-group mb-3" class="keyin">
-												<div class="input-group-prepend">
-													<span class="input-group-text">技能數值</span>
-													<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
-												</div>
-												<input type="text" class="form-control">
 											</div>
 										</div>
 										<div class="border border-secondary rounded">
 											<p class="text-left">技能基值:<span class="result1"></span></p>
 											<p class="text-left">技能倍率:<span class="result2"></span></p>
-											<div class="text-left">
+											<div class="text-left toggle">
 												<button type="button" class="btn btn-light btn btn-outline-dark cleanall">all&#x00A0&#x21BA</button>
 											</div>
 										</div>
 									</div>
 								</div>
 								
-								<div class="my-auto mx-lg-0 mx-auto plus">
+								<div class="col-md-auto my-auto mx-lg-0 mx-auto plus">
+									<div>
 									<button type="button" class="btn border-primary bg-transparent" id="plus"><i class="fas fa-plus text-primary"></i></button>
+									</div>
+									<div>
+									<button type="button" class="btn btn-dark" id="toggle">摺疊&#x00A0/&#x00A0展開</button>
+									</div>
 								</div>
-								
 							</div>
 						</div>
 						
@@ -142,8 +148,8 @@
 					<div class="col-md-4 text-left">
 					
 					</div>
-					<div class="col-md-4">
-					<h5>made by Dieark</h5>
+					<div class="col-md-4 mt-5">
+					<h5 class="text-center">made by Dieark</h5>
 					</div>
 					<div class="col-md-4 text-left">
 					
