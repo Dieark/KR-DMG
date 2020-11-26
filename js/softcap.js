@@ -229,8 +229,12 @@ function real(stat){
 	}
 	// return to 1 significant decimal place
 	actual=Math.round(actual)/10;
+	if(isNaN(actual)){
+		return (0).toFixed(1);
+	}else{
 	return actual.toFixed(1);
-	console.log(actual)
+	}
+
 }
 
 function attenuate(x, k, a, b){
