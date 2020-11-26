@@ -16,8 +16,17 @@ $(document).ready(function(){
 		var dmg2=Number($(this).find(".input4").val());
 		var scale=Math.round(1000*(dmg1-dmg2)/(atk1-atk2))/1000;
 		var base=Math.ceil(dmg1-atk1*scale);
-		$(this).find(".result1").text(base);
-		$(this).find(".result2").text(scale);
+		if(isNaN(base)){
+			$(this).find(".result1").text("");
+			$(this).find(".result2").text("");
+		}else if(base<0||scale<0){
+			$(this).find(".result1").text("error");
+			$(this).find(".result2").text("error");
+		}else{
+			$(this).find(".result1").text(base);
+			$(this).find(".result2").text(scale);
+		}
+		
 	}
 	
 	$(document).on("click",".clean",function(){
