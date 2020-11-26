@@ -161,7 +161,9 @@ var mpatk={
 }
 $(document).ready(function(){
 	tableloading();
-	
+	$(document).on("click",".clean",function(){
+		$(this).parent().siblings("input").val("");
+	});
 	$(document).on("keyup",".data",calc);
 	$(document).on("click",".data",calc);
 });
