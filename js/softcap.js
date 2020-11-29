@@ -159,6 +159,22 @@ var mpatk={
         A4: 0,
         B4: 0
 }
+var atkreduce={
+        MaxK: 1000,
+        X1: 500,
+        A1: 2,
+        B1: 1000,
+        X2: 500,
+        A2: 0,
+        B2: 0,
+        MinK: 0,
+        X3: 0,
+        A3: 0,
+        B3: 0,
+        X4: 0,
+        A4: 0,
+        B4: 0
+}
 $(document).ready(function(){
 	tableloading();
 	$(document).on("click",".clean",function(){
@@ -189,6 +205,7 @@ function tableloading(){
 	$("td:eq(25)").text(blockdef.X1);
 	$("td:eq(27)").text(mpatk.X2);
 	$("td:eq(28)").text(mpatk.X1);
+	$("td:eq(31)").text(atkreduce.X1);
 }
 
 function calc(){
@@ -202,7 +219,7 @@ function calc(){
 	$("td:eq(23)").text(real(aspd)).append("%");
 	$("td:eq(26)").text(real(blockdef)).append("%");
 	$("td:eq(29)").text(real(mpatk)).append("%");
-
+	$("td:eq(32)").text(real(atkreduce)).append("%");
 }
 
 function real(stat){
