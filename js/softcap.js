@@ -175,6 +175,78 @@ var atkreduce={
         A4: 0,
         B4: 0
 }
+
+var chartArray=[];
+var critArray=[];
+var accArray=[];
+var ccaccArray=[];
+var dodgeArray=[];
+var critresistArray=[];
+var ccresistArray=[];
+var penArray=[];
+var aspdArray=[];
+var blockdefArray=[];
+var mpatkArray=[];
+var atkreduceArray=[];
+
+//create chart x-axis
+for (var i=0;i<=200;i++){
+		chartArray.push(i*10);
+	}
+
+//create all chart data
+chartArray.forEach(function(item, index, arr){
+	critArray[index]=Number(real(crit,arr[index]));
+	accArray[index]=Number(real(acc,arr[index]));
+	ccaccArray[index]=Number(real(ccacc,arr[index]));
+	dodgeArray[index]=Number(real(dodge,arr[index]));
+	critresistArray[index]=Number(real(critresist,arr[index]));
+	ccresistArray[index]=Number(real(ccresist,arr[index]));
+	penArray[index]=Number(real(pen,arr[index]));
+	aspdArray[index]=Number(real(aspd,arr[index]));
+	blockdefArray[index]=Number(real(blockdef,arr[index]));
+	mpatkArray[index]=Number(real(mpatk,arr[index]));
+	atkreduceArray[index]=Number(real(atkreduce,arr[index]));
+});
+
+//create new chart
+var ctx = document.getElementById('chart').getContext('2d');
+var chart = new Chart(ctx, {
+	type: 'line',
+	data: {
+		labels:chartArray,
+		datasets: [{
+			label: '爆擊率',
+			backgroundColor: 'rgb(255, 99, 132)',
+			borderColor: 'rgb(255, 99, 132)',
+			data: atkreduceArray,
+			pointRadius: 1,
+			fill:false
+		}]
+		
+	},
+	options: {
+		aspectRatio:1,
+		showLines:false,
+		scales: {
+			xAxes: [{
+				ticks: {
+					maxTicksLimit: 10
+				}
+			}],
+			yAxes: [{
+				ticks: {
+					min:0
+				}
+			}]
+		},
+	}
+});
+
+
+
+
+
 $(document).ready(function(){
 	tableloading();
 	$(document).on("click",".clean",function(){
@@ -182,6 +254,67 @@ $(document).ready(function(){
 	});
 	$(document).on("keyup",".data",calc);
 	$(document).on("click",".data",calc);
+	
+	//screen-chart-match
+	var screenWidth=window.matchMedia("(max-width:767px),(min-width:1870px)")
+	screenWidth.addListener(function(){
+		if(screenWidth.matches){ 
+			$(".chart").removeClass("d-none").addClass("d-block");
+		}else{
+			$(".chart").removeClass("d-block").addClass("d-none");
+		}
+		});
+	
+	//
+	$(document).on("click",".btn-chart",function(){
+		$(this).siblings(".btn").removeClass("active");
+		$(this).addClass("active");
+		var x=$(this).attr("name");
+		console.log(x)
+		switch(x){
+			case "critArray":
+				x=critArray;
+				break;
+			case "accArray":
+				x=accArray;
+				break;
+			case "ccaccArray":
+				x=ccaccArray;
+				break;
+			case "critresistArray":
+				x=critresistArray;
+				break;
+			case "ccresistArray":
+				x=ccresistArray;
+				break;
+			case "dodgeArray":
+				x=dodgeArray;
+				break;
+			case "penArray":
+				x=penArray;
+				break;
+			case "aspdArray":
+				x=aspdArray;
+				break;
+			case "blockdefArray":
+				x=blockdefArray;
+				break;
+			case "mpatkArray":
+				x=mpatkArray;
+				break;
+			case "atkreduceArray":
+				x=atkreduceArray;
+				break;
+			default:
+				x=critArray;
+		}
+		var y=$(this).text();
+		console.log(y)
+		chart.data.datasets[0].label=y;
+		chart.data.datasets[0].data=x;
+		chart.update();
+		console.log("success")
+	});
 });
 
 function tableloading(){
@@ -208,7 +341,9 @@ function tableloading(){
 	$("td:eq(31)").text(atkreduce.X1);
 }
 
+var ivalue;
 function calc(){
+	ivalue=Number($(".input input").val());
 	$("td:eq(2)").text(real(crit)).append("%");
 	$("td:eq(5)").text(real(acc)).append("%");
 	$("td:eq(8)").text(real(ccacc)).append("%");
@@ -222,9 +357,11 @@ function calc(){
 	$("td:eq(32)").text(real(atkreduce)).append("%");
 }
 
-function real(stat){
-
-	var ivalue=Number($(".input input").val());
+function real(stat,val){
+	if(val>0){
+		ivalue=val;
+	}
+	// var ivalue=Number($(".input input").val());
 	var actual=0;
 	if (ivalue===0){
 	actual=0;

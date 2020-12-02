@@ -425,6 +425,7 @@ panel.atk=(panel.mode==1)?panel.atk:Number(document.forms[0].panelatk.value);
 document.getElementById("paneldetail").innerHTML="面板攻擊：<span>"+panel.atk+"</span>";
 }
 
+var xxxx=1;
 //顯示(取得)防禦減傷倍率
 function getdefmul(){
 //設定輸入上下限
@@ -474,25 +475,14 @@ document.getElementById("defredsoft").innerHTML="："+-defred.real().toFixed(1)+
 document.getElementById("pensoft").innerHTML="："+pen.real().toFixed(1)+"％";
 document.getElementById("def.mul").innerHTML="防禦減傷倍率："+def.mul();
 document.getElementById("realdef").innerHTML="有效防禦："+def.real();
-
-
+getdefchart();
 }
 
-//圖表 防禦
-function getdefchart(){
-	
-	var graph1=1-def.graph1.mul();
-	var graph2=1-def.graph4.mul();
-	var graph3=1-def.mul();
-	var graph4=1;
-	var ctx = document.getElementById("chart").getContext("2d");
-	var chart = new Chart(ctx, {
-		type: "horizontalBar",
-		data: {
+var datata={
 			labels: [["只防禦","(防禦+增防)"], ["防禦+防穿","(無視扣防)"], ["防禦+扣防+防穿","(全套用)"], "無視防禦"],
 			datasets: [{
 				label: "防禦減傷後剩下傷害(1-防禦減傷倍率)",
-				data: [graph1,graph2,graph3,graph4],
+				data: [1,6,2,9],
 				backgroundColor: [
 					"rgba(255, 99, 132, 0.2)",
 					"rgba(54, 162, 235, 0.2)",
@@ -507,19 +497,37 @@ function getdefchart(){
 				],
 				borderWidth: 1
 			}]
-		},
+		};
+
+//圖表 防禦
+function getdefchart(){
+	if(xxxx){
+	var graph1=1-def.graph1.mul();
+	var graph2=1-def.graph4.mul();
+	var graph3=1-def.mul();
+	var graph4=1;
+	var ctx = document.getElementById("chart").getContext("2d");
+	var chart = new Chart(ctx, {
+		type: "horizontalBar",
+		data: datata,
 		options: {
 			onhover:null,
 			scales: {
 				xAxes: [{
 					ticks: {
 						min:0,
-						max:1,						
+						// max:1,						
 					}
 				  }]
 			   }
 			}
 	});
+	xxxx--;
+	}else{//end if
+		datata.datasets[0].data=[10,60,20,9];
+		chart.update();
+	}
+	
 }
 
 //無視防禦

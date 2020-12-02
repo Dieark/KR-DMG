@@ -79,7 +79,7 @@
 						</div>
 						<div class="col-md-10 text-center">
 							<div class="row">
-								<div class="col-md-auto my-md-auto my-5 pr-md-0 pl-md-5 px-0 d-flex align-items-center box">
+								<div class="col-md-auto my-5 pr-md-0 pl-md-5 px-0 d-flex align-items-center box">
 									<div class="col-md-auto data">
 										<div class="input-group input">
 											<div class="input-group-prepend">
@@ -90,7 +90,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-auto px-auto box">
+								<div class="col-md-auto box">
 									<table class="table table-hover">
 										<thead>
 											<tr>
@@ -170,12 +170,31 @@
 										</tbody>
 									</table>
 								</div>
+								<div class="chart col-md-5 ml-md-5">
+									<canvas id="chart"></canvas>
+									<div class="">
+										<button class="btn btn-outline-secondary active mb-1 btn-chart" name="critArray">爆擊率</button>
+										<button class="btn btn-outline-secondary mb-1 btn-chart" name="accArray">命中率</button>
+										<button class="btn btn-outline-secondary mb-1 btn-chart" name="ccaccArray">狀態異常命中率</button>
+										<button class="btn btn-outline-secondary mb-1 btn-chart" name="critresistArray">爆擊抵抗</button>
+										<button class="btn btn-outline-secondary mb-1 btn-chart" name="ccresistArray">狀態異常抵抗</button>
+										<button class="btn btn-outline-secondary mb-1 btn-chart" name="dodgeArray">閃避/格擋/吸血</button>
+										<button class="btn btn-outline-secondary mb-1 btn-chart" name="penArray">防穿/抵抗</button>
+										<button class="btn btn-outline-secondary mb-1 btn-chart" name="aspdArray">攻速</button>
+										<button class="btn btn-outline-secondary mb-1 btn-chart" name="blockdefArray">格擋防禦</button>
+										<button class="btn btn-outline-secondary mb-1 btn-chart" name="mpatkArray">擊回</button>
+										<button class="btn btn-outline-secondary mb-1 btn-chart" name="atkreduceArray">降攻/扣防</button>
+									</div>
+								</div>
 							</div>
 						</div>
 						
 
 			    </div>
 	        </div>
+			<!-- <div class="container">
+				<canvas id="myChart"></canvas>
+			</div> -->
 	        
         </section> 
 		<footer>
@@ -195,7 +214,7 @@
 	        </div>	        
         
         </footer>
-		
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 		<script src="../js/softcap.js"></script>
 	
 	
