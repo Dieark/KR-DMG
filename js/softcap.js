@@ -256,14 +256,14 @@ $(document).ready(function(){
 	$(document).on("click",".data",calc);
 	
 	//screen-chart-match
-	var screenWidth=window.matchMedia("(max-width:767px),(min-width:1600px)")
+	/* var screenWidth=window.matchMedia("(max-width:767px),(min-width:1600px)")
 	screenWidth.addListener(function(){
 		if(screenWidth.matches){ 
 			$(".chart").removeClass("d-none").addClass("d-block");
 		}else{
 			$(".chart").removeClass("d-block").addClass("d-none");
 		}
-		});
+		}); */
 	
 	//
 	$(document).on("click",".btn-chart",function(){
