@@ -84,13 +84,13 @@
 										<h3 class="edit">坦詞等效&#x00A0<i class="fas fa-edit fa-xs"></i></h3>
 										<div class="toggle">
 											<div class="border border-secondary rounded">
-												<h4 class="text-left">生命<span class="pl-5"><small><b>入場生命=</b></small></span></h4>
+												<h4 class="text-left">生命<span class="pl-5"><small><b name="iHp">入場生命=10000000</b></small></span></h4>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
 														<span class="input-group-text">基礎值</span>
 														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
 													</div>
-													<input type="text" class="form-control input1">
+													<input type="text" class="form-control input1" value="10000000">
 												</div>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
@@ -129,7 +129,7 @@
 												</div>
 											</div>
 											<div class="border border-secondary rounded">
-												<h4 class="text-left">防禦<span class="pl-5"><small><b>入場防禦=</b></small></span></h4>
+												<h4 class="text-left">防禦<span class="pl-5"><small><b name="iDef">入場防禦=0</b></small></span></h4>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
 														<span class="input-group-text">基礎值</span>
@@ -391,7 +391,18 @@
 			    </div>
 	        </div>
 	        
-        </section> 
+		</section> 
+		<section>
+			<div>
+				<div class="card border-secondary mb-3" style="max-width: 18rem;">
+					<div class="card-header">總覽</div>
+					<div class="card-body text-secondary">
+					<h5 class="card-title"><span name="dmgRT">總減傷=0%</span></h5>
+					<p class="card-text">...</p>
+					</div>
+				</div>
+			</div>
+		</section>
 		<footer>
 	        
 	        <div class="container">

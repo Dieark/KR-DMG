@@ -21,3 +21,8 @@ nav li{
 .full{
 	padding-right: 20px;
 }
+.card{
+	position: fixed;
+	bottom: 300px;
+	right: 10px;
+}
