@@ -108,7 +108,7 @@ $(document).ready(function(){
         
         var penR=Number(real(penSet,pen));
         var toughR=Number(real(penSet,tough));
-        var atkDR=Number(real(atkSet,atkD*10));
+        var atkDR=Number(real(atkSet,(atkD-atkI)*10));
         var blockR=Number(real(dodgeSet,block));
         var blockDefR=Number(real(blockDefSet,blockDef));
         var dodgeR=Number(real(dodgeSet,dodge));
@@ -128,7 +128,7 @@ $(document).ready(function(){
 
         var hp=Math.floor(Math.floor(Math.floor(hpBase*((100+hpB)*10/1000))*((100+hpA)*10/1000))*((100+hpF)*10/1000));
         var toughF=Math.round((100+dmgI-toughR)*10)/1000;
-        var atkF=Math.round((100+atkI-atkDR)*10)/1000;
+        var atkF=Math.round((100-atkDR)*10)/1000;
         var blockF=Math.round(((100-blockR)*10)+(blockR*(Math.round((100-50-blockDefR)*10)/1000)*10))/1000;
         var dodgeF=(((100+accR-dodgeR)/100)<1)?(Math.round((100+accR-dodgeR)*10)/1000):1;
         
