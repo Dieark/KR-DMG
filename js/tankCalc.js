@@ -137,6 +137,12 @@ $(document).ready(function(){
 
         var dmgRT=Math.round(((10000000/hp)*(1-defR)*toughF*atkF*blockF*dodgeF*((100-dmgD1)/100)*((100-dmgD2)/100)*((100-dmgD3)/100)*((100-dmgD4)/100)*((100-dmgD5)/100))*1000)/1000;
 
+        $(this).find("[name='hp']").text("等效減傷="+Math.round((1-(hpBase/hp))*1000)/10+"%");
+        $(this).find("[name='def']").text("等效減傷="+Math.round((defR)*1000)/10+"%");
+        $(this).find("[name='tough']").text("等效減傷="+Math.round((1-toughF)*1000)/10+"%");
+        $(this).find("[name='atk']").text("等效減傷="+Math.round((1-atkF)*1000)/10+"%");
+        $(this).find("[name='block']").text("等效減傷="+Math.round((1-blockF)*1000)/10+"%");
+        $(this).find("[name='dodge']").text("等效減傷="+Math.round((1-dodgeF)*1000)/10+"%");
         console.log("總減傷=",dmgRT)
 	}
 	

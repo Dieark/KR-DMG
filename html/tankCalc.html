@@ -84,7 +84,7 @@
 										<h3 class="edit">坦詞等效&#x00A0<i class="fas fa-edit fa-xs"></i></h3>
 										<div class="toggle">
 											<div class="border border-secondary rounded">
-												<h4 class="text-left">生命</h4>
+												<h4 class="text-left">生命<span class="pl-5"><small><b>入場生命=</b></small></span></h4>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
 														<span class="input-group-text">基礎值</span>
@@ -122,9 +122,14 @@
 														<span class="input-group-text">%</span>
 													</div>
 												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-pospend">
+														<span class="input-group-text" name="hp">等效減傷=1</span>
+													</div>
+												</div>
 											</div>
 											<div class="border border-secondary rounded">
-												<h4 class="text-left">防禦</h4>
+												<h4 class="text-left">防禦<span class="pl-5"><small><b>入場防禦=</b></small></span></h4>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
 														<span class="input-group-text">基礎值</span>
@@ -168,10 +173,13 @@
 												</div>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
-														<span class="input-group-text full">實際防穿:</span>
+														<span class="input-group-text full">實際防穿:0</span>
 													</div>
 													<div class="input-group-pospend">
 														<span class="input-group-text">%</span>
+													</div>
+													<div class="input-group-pospend ml-5">
+														<span class="input-group-text" name="def">等效減傷=1</span>
 													</div>
 												</div>
 											</div>
@@ -186,7 +194,7 @@
 												</div>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
-														<span class="input-group-text full">實際抵抗:</span>
+														<span class="input-group-text full">實際抵抗:0</span>
 													</div>
 													<div class="input-group-pospend">
 														<span class="input-group-text">%</span>
@@ -200,6 +208,11 @@
 													<input type="text" class="form-control input4">
 													<div class="input-group-pospend">
 														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-pospend">
+														<span class="input-group-text" name="tough">等效減傷=1</span>
 													</div>
 												</div>
 											</div>
@@ -227,10 +240,13 @@
 												</div>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
-														<span class="input-group-text full">實際降攻:</span>
+														<span class="input-group-text full">實際降攻:0</span>
 													</div>
 													<div class="input-group-pospend">
 														<span class="input-group-text">%</span>
+													</div>
+													<div class="input-group-pospend ml-5">
+														<span class="input-group-text" name="atk">等效減傷=1</span>
 													</div>
 												</div>
 											</div>
@@ -245,7 +261,7 @@
 												</div>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
-														<span class="input-group-text full">實際格擋率:</span>
+														<span class="input-group-text full">實際格擋率:0</span>
 													</div>
 													<div class="input-group-pospend">
 														<span class="input-group-text">%</span>
@@ -260,10 +276,15 @@
 												</div>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
-														<span class="input-group-text full">實際格擋防禦:</span>
+														<span class="input-group-text full">實際格擋防禦:0</span>
 													</div>
 													<div class="input-group-pospend">
 														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-pospend">
+														<span class="input-group-text" name="block">等效減傷=1</span>
 													</div>
 												</div>
 											</div>
@@ -278,7 +299,7 @@
 												</div>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
-														<span class="input-group-text full">實際閃避率:</span>
+														<span class="input-group-text full">實際閃避率:0</span>
 													</div>
 													<div class="input-group-pospend">
 														<span class="input-group-text">%</span>
@@ -293,10 +314,15 @@
 												</div>
 												<div class="input-group mb-3" >
 													<div class="input-group-prepend">
-														<span class="input-group-text full">實際命中率:</span>
+														<span class="input-group-text full">實際命中率:0</span>
 													</div>
 													<div class="input-group-pospend">
 														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-pospend">
+														<span class="input-group-text" name="dodge">等效減傷=1</span>
 													</div>
 												</div>
 											</div>
