@@ -114,9 +114,11 @@ $(document).ready(function(){
         var dodgeR=Number(real(dodgeSet,dodge));
         var accR=Number(real(accSet,acc));
 
+        var atkR=(atkDR==0)?(atkD-atkI):atkDR;
+
         $(this).find(".full:eq(0)").text("實際防穿:"+penR);
         $(this).find(".full:eq(1)").text("實際抵抗:"+toughR);
-        $(this).find(".full:eq(2)").text("實際降攻:"+atkDR);
+        $(this).find(".full:eq(2)").text("實際降攻:"+atkR);
         $(this).find(".full:eq(3)").text("實際格擋率:"+blockR);
         $(this).find(".full:eq(4)").text("實際格擋防禦:"+blockDefR);
         $(this).find(".full:eq(5)").text("實際閃避率:"+dodgeR);
@@ -128,7 +130,7 @@ $(document).ready(function(){
 
         var hp=Math.floor(Math.floor(Math.floor(hpBase*((100+hpB)*10/1000))*((100+hpA)*10/1000))*((100+hpF)*10/1000));
         var toughF=Math.round((100+dmgI-toughR)*10)/1000;
-        var atkF=Math.round((100-atkDR)*10)/1000;
+        var atkF=((Math.round((100-atkDR)*10)/1000)<1)?(Math.round((100-atkDR)*10)/1000):(Math.round((100+atkI-atkD)*10)/1000);
         var blockF=Math.round(((100-blockR)*10)+(blockR*(Math.round((100-50-blockDefR)*10)/1000)*10))/1000;
         var dodgeF=(((100+accR-dodgeR)/100)<1)?(Math.round((100+accR-dodgeR)*10)/1000):1;
         
