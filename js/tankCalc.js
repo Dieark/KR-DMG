@@ -135,7 +135,7 @@ $(document).ready(function(){
         var dodgeF=(((100+accR-dodgeR)/100)<1)?(Math.round((100+accR-dodgeR)*10)/1000):1;
         
 
-        var dmgRT=Math.round(((10000000/hp)*(1-defR)*toughF*atkF*blockF*dodgeF*((100-dmgD1)/100)*((100-dmgD2)/100)*((100-dmgD3)/100)*((100-dmgD4)/100)*((100-dmgD5)/100))*1000)/1000;
+        var dmgRT=Math.round(((1*hpBase/hp)*(1-defR)*toughF*atkF*blockF*dodgeF*((100-dmgD1)/100)*((100-dmgD2)/100)*((100-dmgD3)/100)*((100-dmgD4)/100)*((100-dmgD5)/100))*1000)/1000;
 
         $(this).find("[name='iHp']").text("入場生命="+hp);
         $(this).find("[name='iDef']").text("入場防禦="+realDef);
