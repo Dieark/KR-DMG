@@ -171,7 +171,35 @@ $(document).ready(function(){
 	
 	$(document).on("click","#toggle",function(){
 		$(".toggle").toggle();
-	});
+    });
+    
+    var cX,cY,rX,rY,nX,nY;
+    var move=0;
+    $(document).on("mousedown",".card",function(event){
+        move=1;
+        cX=event.clientX;
+        cY=event.clientY;
+        rX=cX-parseInt(getComputedStyle(this).left);
+        rY=cY-parseInt(getComputedStyle(this).top);
+        console.log(cY,cX,rX,rY)
+    });
+    $(document).on("mousemove",".card",function(event){
+        if (move){
+            cX=event.clientX;
+            cY=event.clientY;
+            nX=cX-rX;
+            nY=cY-rY;
+            
+            $(this).css("left",nX);
+            $(this).css("top",nY);
+            
+            console.log(cY,cX,nX,nY)
+        }
+    });
+    $(document).on("mouseup",".card",function(event){
+        move=0;
+    });
+
 });
 
 function real(stat,val){
