@@ -145,7 +145,15 @@ $(document).ready(function(){
         $(this).find("[name='atk']").text("等效減傷="+Math.round((1-atkF)*1000)/10+"%");
         $(this).find("[name='block']").text("等效減傷="+Math.round((1-blockF)*1000)/10+"%");
         $(this).find("[name='dodge']").text("等效減傷="+Math.round((1-dodgeF)*1000)/10+"%");
+
         $("[name='dmgRT']").text("總減傷="+Math.round((1-dmgRT)*1000)/10+"%");
+        $(".card p:eq(0)").text("生命-等效減傷="+Math.round((1-(hpBase/hp))*1000)/10+"%");
+        $(".card p:eq(1)").text("防禦-等效減傷="+Math.round((defR)*1000)/10+"%");
+        $(".card p:eq(2)").text("抵抗-等效減傷="+Math.round((1-toughF)*1000)/10+"%");
+        $(".card p:eq(3)").text("攻擊-等效減傷="+Math.round((1-atkF)*1000)/10+"%");
+        $(".card p:eq(4)").text("格擋-等效減傷="+Math.round((1-blockF)*1000)/10+"%");
+        $(".card p:eq(5)").text("閃避-等效減傷="+Math.round((1-dodgeF)*1000)/10+"%");
+
         console.log("總減傷=",dmgRT)
 	}
 	
@@ -169,8 +177,10 @@ $(document).ready(function(){
 		$(this).html(edited+'&#x00A0<i class="fas fa-edit fa-xs"></i>');
 	});
 	
-	$(document).on("click","#toggle",function(){
-		$(".toggle").toggle();
+	$(document).on("click",".tg",function(){
+        $(this).siblings(".toggle").toggle();
+        $(this).find("i").toggleClass("fa-plus");
+		$(this).find("i").toggleClass("fa-minus");
     });
     
     var cX,cY,rX,rY,nX,nY;
@@ -196,7 +206,10 @@ $(document).ready(function(){
             console.log(cY,cX,nX,nY)
         }
     });
-    $(document).on("mouseup",".card",function(event){
+    $(document).on("mouseup",".card",function(){
+        move=0;
+    });
+    $(document).on("mouseout",".card",function(){
         move=0;
     });
 
