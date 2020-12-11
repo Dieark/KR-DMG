@@ -212,6 +212,30 @@ $(document).ready(function(){
     $(document).on("mouseout",".card",function(){
         move=0;
     });
+    $(document).on("touchstart",".card",function(event){
+        move=1;
+        cX=event.clientX;
+        cY=event.clientY;
+        rX=cX-parseInt(getComputedStyle(this).left);
+        rY=cY-parseInt(getComputedStyle(this).top);
+        console.log(cY,cX,rX,rY)
+    });
+    $(document).on("touchmove",".card",function(event){
+        if (move){
+            cX=event.clientX;
+            cY=event.clientY;
+            nX=cX-rX;
+            nY=cY-rY;
+            
+            $(this).css("left",nX);
+            $(this).css("top",nY);
+            
+            console.log(cY,cX,nX,nY)
+        }
+    });
+    $(document).on("touchend",".card",function(){
+        move=0;
+    });
 
 });
 
