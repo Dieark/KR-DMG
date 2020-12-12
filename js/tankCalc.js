@@ -214,16 +214,16 @@ $(document).ready(function(){
     });
     $(document).on("touchstart",".card",function(event){
         move=1;
-        cX=event.clientX;
-        cY=event.clientY;
+        cX=event.touches[0].clientX;
+        cY=event.touches[0].clientY;
         rX=cX-parseInt(getComputedStyle(this).left);
         rY=cY-parseInt(getComputedStyle(this).top);
         console.log(cY,cX,rX,rY)
     });
     $(document).on("touchmove",".card",function(event){
         if (move){
-            cX=event.clientX;
-            cY=event.clientY;
+            cX=event.touches[0].clientX;
+            cY=event.touches[0].clientY;
             nX=cX-rX;
             nY=cY-rY;
             
