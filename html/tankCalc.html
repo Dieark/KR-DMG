@@ -430,16 +430,21 @@
 		<section>
 			<div>
 				<div class="card border-secondary mb-3" style="max-width: 18rem;">
-					<div class="card-header">總覽</div>
-					<div class="card-body text-secondary">
-					<h5 class="card-title"><span name="dmgRT">總減傷=0%</span></h5>
-					<br>
-					<p class="card-text">生命-等效減傷=0%</p>
-					<p class="card-text">防禦-等效減傷=0%</p>
-					<p class="card-text">抵抗-等效減傷=0%</p>
-					<p class="card-text">攻擊-等效減傷=0%</p>
-					<p class="card-text">格擋-等效減傷=0%</p>
-					<p class="card-text">閃避-等效減傷=0%</p>
+					<div style="position: relative;">
+						<div class="card-header pr-5">總覽</div>
+						<div class="tg" style="position: absolute;top: 10px;right: 10px;">
+							<button type="button" class="btn border-secondary bg-transparent px-1 py-0" name="toggle"><i class="fas fa-minus"></i></button>
+						</div>
+						<div class="card-body text-secondary toggle">
+						<h5 class="card-title"><span name="dmgRT">總減傷=0%</span></h5>
+						<br>
+						<p class="card-text">生命-等效減傷=0%</p>
+						<p class="card-text">防禦-等效減傷=0%</p>
+						<p class="card-text">抵抗-等效減傷=0%</p>
+						<p class="card-text">攻擊-等效減傷=0%</p>
+						<p class="card-text">格擋-等效減傷=0%</p>
+						<p class="card-text">閃避-等效減傷=0%</p>
+						</div>
 					</div>
 				</div>
 			</div>
