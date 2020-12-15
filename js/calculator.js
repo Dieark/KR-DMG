@@ -130,7 +130,7 @@ real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b
 }
 
 var dmg={
-inc:function(){return (dmginc-tough.real())*10/1000;},
+inc:function(){return Math.round((dmginc-tough.real())*10/1000,3);},
 monster:0,
 boss:0,
 manti:[1.12,1.15],
@@ -612,7 +612,7 @@ document.getElementById("dmg.inc").innerHTML="實際增傷倍率："+(100*dmg.in
 
 //取得總爆傷結果
 function getcdmg(){
-cdmg=0.01*Number(document.forms[0].cdmg.value);
+cdmg=Math.round(0.01*Number(document.forms[0].cdmg.value),3);
 }
 
 //取得總爆傷結果
