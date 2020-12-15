@@ -130,7 +130,7 @@ real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b
 }
 
 var dmg={
-inc:function(){return (dmginc-tough.real())/100;},
+inc:function(){return (dmginc-tough.real())*10/1000;},
 monster:0,
 boss:0,
 manti:[1.12,1.15],
@@ -639,7 +639,7 @@ fdmg5=1+0.01*Number(document.getElementById("fdmg5").value);
 
 //顯示最終傷害
 function showrealdmg(){
-	var realdmg=Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(panel.atk*posatk.mul+Number(atkvalue))*multi+Number(base))*(1-def.mul()))*(1+Math.round(dmg.inc(),3)))*(2+cdmg))*(1+skillinc))*hunt)*fdmg1*fdmg2*fdmg3*fdmg4*fdmg5);
+	var realdmg=Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(panel.atk*posatk.mul+Number(atkvalue))*multi+Number(base))*(1-def.mul()))*(1+dmg.inc()))*(2+cdmg))*(1+skillinc))*hunt)*fdmg1*fdmg2*fdmg3*fdmg4*fdmg5);
 	console.log(realdmg);
 	console.log(panel.atk);
 	console.log(posatk.mul);
