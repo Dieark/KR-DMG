@@ -126,11 +126,11 @@ a2:409,
 b2:266,
 //get
 x:0,
-real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b1,this.x2,this.a2,this.b2))/10;},
+real:function(){return Math.floor(softcap(this.x,this.max,this.x1,this.a1,this.b1,this.x2,this.a2,this.b2)*1000)/10000;},
 }
 
 var dmg={
-inc:function(){return Math.round((dmginc-tough.real())/100*1000,3)/1000;},
+inc:function(){return Math.round((dmginc-tough.real())*10)/1000;},
 monster:0,
 boss:0,
 manti:[1.12,1.15],
@@ -639,7 +639,7 @@ fdmg5=1+0.01*Number(document.getElementById("fdmg5").value);
 
 //顯示最終傷害
 function showrealdmg(){
-	var realdmg=Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(panel.atk*posatk.mul+Number(atkvalue))*multi+Number(base))*(1-def.mul()))*(1+dmg.inc()))*(2+cdmg))*(1+skillinc))*hunt)*fdmg1*fdmg2*fdmg3*fdmg4*fdmg5);
+	var realdmg=Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(Math.floor(panel.atk*posatk.mul+Number(atkvalue))*multi+Number(base))*(1-def.mul()))*(Math.round((1+dmg.inc())*1000)/1000))*(Math.round((2+cdmg)*1000)/1000))*(1+skillinc))*hunt)*fdmg1*fdmg2*fdmg3*fdmg4*fdmg5);
 	console.log(realdmg);
 	console.log(panel.atk);
 	console.log(posatk.mul);
@@ -647,8 +647,9 @@ function showrealdmg(){
 	console.log(multi);
 	console.log(base);
 	console.log(1-def.mul());
-	console.log(1+dmg.inc());
-	console.log(cdmg);
+	console.log("inc=",dmg.inc());
+	console.log(Math.round((1+dmg.inc())*1000)/1000);
+	console.log(Math.round((2+cdmg)*1000)/1000);
 	console.log(skillinc);
 	console.log(hunt);
 	console.log(fdmg1);

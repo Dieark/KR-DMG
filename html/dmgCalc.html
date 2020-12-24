@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Open+Sans&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/68f8681dba.js" crossorigin="anonymous"></script>
+		<script src="https://www.w3schools.com/lib/w3.js"></script><!-- {{ }} -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="../css/dmgCalc.css">
+		<title>通用傷害計算機</title>
+		
+	</head>
+	<body>
+
+		<header>
+			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+				<a class="navbar-brand" href="#"><img src="../img/lewisia_logo.png" width="70"><span class="pl-3">King's Raid 計算機</span></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarCollapse">
+					<!-- <ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Link</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled" href="#">Disabled</a>
+						</li>
+					</ul> -->
+				</div>
+			</nav>
+		</header>
+		
+		<section id="intro">
+			
+			<div class="jumbotron">
+			  <div class="container">
+				  <div class="row">
+					  <div class="col-md-12">
+						  <h1 class="display-4">通用傷害計算機</h1>
+					  </div>
+				  </div>
+			  </div>
+			</div>
+			
+		</section>
+		
+		<section id="main">
+	        <div class="container">
+		        <div class="row">
+					<div class="col-md-2 text-center ">
+						<ul class="nav flex-column">
+							<li class="nav-item">
+								<a class="nav-link active" href="https://dieark.github.io/KR-DMG/html/dmgCalc.html">通用傷害計算機</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://dieark.github.io/KR-DMG/html/skillTool.html">技能倍率小工具</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://dieark.github.io/KR-DMG/html/softcap.html">詞綴遞減計算機</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://dieark.github.io/KR-DMG/html/tankCalc.html">坦克詞綴計算機</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-10 text-center">
+						<div class="row">
+							<div class="col-md-auto px-0 box">
+								<div class="col-md-auto data">
+									<h3 class="edit">通用傷害&#x00A0<i class="fas fa-edit fa-xs"></i></h3>
+									<div class="something">
+										<div class="border border-secondary rounded" style="position: relative;">
+											<h4 class="text-left">攻擊</h4>
+											<div class="tg" style="position: absolute;top: 10px;right: 10px;">
+												<button type="button" class="btn border-secondary bg-transparent px-1 py-0" name="toggle"><i class="fas fa-minus"></i></button>
+											</div>
+											<div class="toggle">
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">基礎值</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="atkBase">
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">前綴</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="atkPre">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">後綴</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="atkPos">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">攻擊值</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="atkVal">
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">寵物%</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="atkPetPre">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">寵物值</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="atkPetVal">
+												</div>
+											</div>
+										</div>
+										<div class="border border-secondary rounded" style="position: relative;">
+											<h4 class="text-left">技能</h4>
+											<div class="tg" style="position: absolute;top: 10px;right: 10px;">
+												<button type="button" class="btn border-secondary bg-transparent px-1 py-0" name="toggle"><i class="fas fa-minus"></i></button>
+											</div>
+											<div class="toggle">	
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">倍率</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="skillScaling">
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">基值</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="skillBase">
+												</div>
+												<div class="input-group mb-3 pr-5" style="position: relative;">
+													<div class="input-group-prepend">
+														<span class="input-group-text">增傷</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id=skillInc>
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="tg" style="position: absolute; top: 159px; right: 18px;">
+													<button type="button" class="btn border-secondary bg-transparent px-1 py-0" name="toggle"><i class="fas fa-plus"></i></button>
+												</div>
+												<div class="toggle">	
+													<h4 class="text-left pl-3"><small>增傷</small></h4>
+													<div class="input-group mb-3 pl-5" style="position: relative;">
+														<h5 style="position: absolute; top: 8px; left: 27px;">1.</h5>
+														<div class="input-group-prepend">
+															<span class="input-group-text">技能書</span>
+															<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+														</div>
+														<input type="text" class="form-control" id="skillBook">
+														<div class="input-group-pospend">
+															<span class="input-group-text">%</span>
+														</div>
+													</div>
+													<div class="input-group mb-3 pl-5" style="position: relative;">
+														<h5 style="position: absolute; top: 8px; left: 27px;">2.</h5>
+														<div class="input-group-prepend">
+															<span class="input-group-text">專寶</span>
+															<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+														</div>
+														<input type="text" class="form-control" id="skillUT">
+														<div class="input-group-pospend">
+															<span class="input-group-text">%</span>
+														</div>
+													</div>
+													<div class="input-group mb-3 pl-5" style="position: relative;">
+														<h5 style="position: absolute; top: 8px; left: 27px;">3.</h5>
+														<div class="input-group-prepend">
+															<span class="input-group-text">天賦</span>
+															<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+														</div>
+														<input type="text" class="form-control" id="skillTrans">
+														<div class="input-group-pospend">
+															<span class="input-group-text">%</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="border border-secondary rounded" style="position: relative;">
+											<h4 class="text-left mr-5">防禦減傷</h4>
+											<div class="tg" style="position: absolute;top: 10px;right: 10px;">
+												<button type="button" class="btn border-secondary bg-transparent px-1 py-0" name="toggle"><i class="fas fa-minus"></i></button>
+											</div>
+											<div class="toggle">
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">基礎值(敵)</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="defBase">
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">前綴(敵)</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="defPre">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">後綴(敵)</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="defPos">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">扣防</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="defDec">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">數值(敵)</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="defVal">
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">防穿值</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="defPen">
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text full" id="defPenReal">實際防穿=0%</span>
+													</div>
+													<div class="input-group-pospend ml-5">
+														<span class="input-group-text" id="defDmgRedReal">等效減傷=0%</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="border border-secondary rounded" style="position: relative;">
+											<h4 class="text-left">屬性增傷</h4>
+											<div class="tg" style="position: absolute;top: 10px;right: 10px;">
+												<button type="button" class="btn border-secondary bg-transparent px-1 py-0" name="toggle"><i class="fas fa-minus"></i></button>
+											</div>
+											<div class="toggle">
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">增傷</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="incInc">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">抵抗(敵)</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="incTough">
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text full" id="incToughReal">實際抵抗=0%</span>
+													</div>
+													<div class="input-group-pospend ml-5">
+														<span class="input-group-text" id="incIncReal">等效增傷=0%</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="border border-secondary rounded" style="position: relative;">
+											<h4 class="text-left">爆傷</h4>
+											<div class="tg" style="position: absolute;top: 10px;right: 10px;">
+												<button type="button" class="btn border-secondary bg-transparent px-1 py-0" name="toggle"><i class="fas fa-minus"></i></button>
+											</div>
+											<div class="toggle">
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">爆傷1</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="cdmg1">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">爆傷2</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="cdmg2">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">爆傷3</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="cdmg3">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">爆傷4</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="cdmg4">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">爆傷5</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="cdmg5">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="border border-secondary rounded" style="position: relative;">
+											<h4 class="text-left">魔導</h4>
+											<div class="tg" style="position: absolute; top: 10px; right: 10px;">
+												<button type="button" class="btn border-secondary bg-transparent px-1 py-0" name="toggle"><i class="fas fa-minus"></i></button>
+											</div>
+											<div class="toggle">
+												<!-- <div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<label class="input-group-text" for="inputGroupSelect01">職業</label>
+													</div>
+													<select class="custom-select" id="TMclass">
+														<option selected>選擇職業</option>
+														<option value="1">騎士</option>
+														<option value="2">戰士</option>
+														<option value="3">刺客</option>
+														<option value="4">弓箭手</option>
+														<option value="5">機械工</option>
+														<option value="6">魔法師</option>
+														<option value="7">牧師</option>
+													</select>
+												</div> -->
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<label class="input-group-text" for="TMset">套裝</label>
+													</div>
+													<select class="custom-select" id="TMset">
+														<option value="0" selected>無</option>
+														<option value="1">10%對敵增傷</option>
+														<option value="2">25%對敵增傷</option>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<label class="input-group-text" for="TMskill1">額外技能1</label>
+														<!-- <button class="btn btn-outline-secondary" type="button">按鈕</button> -->
+													</div>
+													<select class="custom-select" id="TMskill1">
+														<option value="0" selected>無</option>
+														<option value="1">95%血25%對敵增傷</option>
+														<option value="2">疊滿36%對敵增傷</option>
+														<option value="3">普攻25%增傷</option>
+														<option value="4">dot20%增傷</option>
+														<option value="5">無視防禦25%增傷</option>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<label class="input-group-text" for="TMskill2">額外技能2</label>
+														<!-- <button class="btn btn-outline-secondary" type="button">按鈕</button> -->
+													</div>
+													<select class="custom-select" id="TMskill2">
+														<option value="0" selected>無</option>
+														<option value="1">95%血25%對敵增傷</option>
+														<option value="2">疊滿36%對敵增傷</option>
+														<option value="3">普攻25%增傷</option>
+														<option value="4">dot20%增傷</option>
+														<option value="5">無視防禦25%增傷</option>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<label class="input-group-text" for="TMskill3">額外技能3</label>
+														<!-- <button class="btn btn-outline-secondary" type="button">按鈕</button> -->
+													</div>
+													<select class="custom-select" id="TMskill3">
+														<option value="0" selected>無</option>
+														<option value="1">95%血25%對敵增傷</option>
+														<option value="2">疊滿36%對敵增傷</option>
+														<option value="3">普攻25%增傷</option>
+														<option value="4">dot20%增傷</option>
+														<option value="5">無視防禦25%增傷</option>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<label class="input-group-text" for="TMskill4">額外技能4</label>
+														<!-- <button class="btn btn-outline-secondary" type="button">按鈕</button> -->
+													</div>
+													<select class="custom-select" id="TMskill4">
+														<option value="0" selected>無</option>
+														<option value="1">95%血25%對敵增傷</option>
+														<option value="2">疊滿36%對敵增傷</option>
+														<option value="3">普攻25%增傷</option>
+														<option value="4">dot20%增傷</option>
+														<option value="5">無視防禦25%增傷</option>
+													</select>
+												</div>
+												<div class="input-group mb-3" >
+													<div class="input-group-prepend">
+														<span class="input-group-text">隊友給予對敵增傷</span>
+														<button class="btn btn-outline-secondary clean" type="button">&#x21BA</button>
+													</div>
+													<input type="text" class="form-control" id="TMteammates">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="border border-secondary rounded" style="position: relative;">
+											<h4 class="text-left">終傷</h4>
+											<div class="tg" style="position: absolute;top: 10px;right: 10px;">
+												<button type="button" class="btn border-secondary bg-transparent px-1 py-0" name="toggle"><i class="fas fa-minus"></i></button>
+											</div>
+											<div class="toggle">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<label class="input-group-text" for="MTset">魔獸套裝</label>
+														<!-- <button class="btn btn-outline-secondary" type="button">按鈕</button> -->
+													</div>
+													<select class="custom-select" id="MTset">
+														<option value="0" selected>無</option>
+														<option value="1">2件套</option>
+														<option value="2">4件套</option>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<div class="input-group-text">
+															<input type="checkbox" id="checkHunt" value="0">
+														</div>
+													</div>
+													<span class="input-group-text bg-white form-control">狩獵</span>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<div class="input-group-text">
+															<input type="checkbox" id="checkBdmg1">
+														</div>
+														<span class="input-group-text">對BOSS傷1</span>
+													</div>
+													<input type="text" class="form-control" id="bdmg1">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<div class="input-group-text">
+															<input type="checkbox" id="checkBdmg2">
+														</div>
+														<span class="input-group-text">對BOSS傷2</span>
+													</div>
+													<input type="text" class="form-control" id="bdmg2">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<div class="input-group-text">
+															<input type="checkbox" id="checkBdmg3">
+														</div>
+														<span class="input-group-text">對BOSS傷3</span>
+													</div>
+													<input type="text" class="form-control" id="bdmg3">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<div class="input-group-text">
+															<input type="checkbox" id="checkBdmg4">
+														</div>
+														<span class="input-group-text">對BOSS傷4</span>
+													</div>
+													<input type="text" class="form-control" id="bdmg4">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<div class="input-group-text">
+															<input type="checkbox" id="checkBdmg5">
+														</div>
+														<span class="input-group-text">對BOSS傷5</span>
+													</div>
+													<input type="text" class="form-control" id="bdmg5">
+													<div class="input-group-pospend">
+														<span class="input-group-text">%</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="border border-secondary rounded" style="position: relative;">
+											<h4 class="text-left">實際傷害</h4>
+											<div class="tg" style="position: absolute;top: 10px;right: 10px;">
+												<button type="button" class="btn border-secondary bg-transparent px-1 py-0" name="toggle"><i class="fas fa-minus"></i></button>
+											</div>
+											<div class="toggle">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text">實際傷害</span>
+													</div>
+													<span class="input-group-text bg-white form-control" id="result">0</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			    </div>
+	        </div>
+		</section>
+		
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+		<br>
+		
+		<footer>
+	        <div class="container">
+		        <div class="row">
+					<div class="col-md-4 text-left">
+					
+					</div>
+					<div class="col-md-4">
+					<h5>made by Dieark</h5>
+					</div>
+					<div class="col-md-4 text-left">
+					
+					</div>
+		        </div>
+	        </div>	  
+        </footer>
+		
+		<script src="../js/dmgCalc.js"></script>
+	
+	
+	
+	
+	
+	</body>
+</html>
