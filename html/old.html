@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="King's Raid Damage calculator">
+    <meta name="keywords" content="King's Raid, damage calculator, 王之逆襲, 傷害計算, 王逆, 王逆計算機">
+    <meta name="author" content="Dieark">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles1.css">
+    <title>王逆傷害計算機</title>
+</head>
+    
+<body>
+
+<div class="header">
+王之逆襲傷害計算機 
+</div>
+<div class="row">
+<div class="nav">
+<ul>
+    <li><a href="html/skillTool.html">技能倍率小工具</a></li>
+</ul>
+</div>
+
+<div class="content">
+
+<!--==================表單開頭=================-->
+<div>
+<form name="heroform" id="heroform">
+<div>
+<!--職業表單-->
+<div class="f">
+<div id="herotypediv">
+<label for="herotype">選擇職業：</label>
+<select name="herotype" id="herotype" onchange="getatk()">
+<option value="knight">騎士</option>
+<option value="warrior">戰士</option>
+<option value="assassin">刺客</option>
+<option value="archer">弓箭手</option>
+<option value="mechanic">機械工</option>
+<option value="wizard">魔法師</option>
+<option value="priest">牧師</option>
+</select>
+</div>
+</div>
+<!--==============所有面板攻擊項目欄位=================-->
+<div class="f">
+	<div id="changepaneldiv">
+		<input type="button" name="panelbutton" id="panelbutton" value="填寫面板細項" onclick="changepanel()"/>
+	</div>
+	<!--輸入面板攻擊-->
+	<div id="paneldiv" style="display:block;">
+		<label for="panelatk">面板攻擊：</label>
+		<input type="number" name="panelatk" id="panelatk" style="width:89px;"  placeholder="1500000" oninput="getpanelatk()"/>
+	</div>
+	<!--輸入詳細面板攻擊-->
+	<div id="allpaneldiv" style="display:none;">
+		<!--====================專武欄位====================-->
+		<div class="a">
+			<!--專武星數表單-->
+			<div id="uwstardiv">
+				<label for="uwstar">專武星數：</label>
+				<select name="uwstar" id="uwstar" onchange="getatk()">
+				<option value="0">☆☆☆☆☆</option>
+				<option value="1">★☆☆☆☆</option>
+				<option value="2">★★☆☆☆</option>
+				<option value="3">★★★☆☆</option>
+				<option value="4">★★★★☆</option>
+				<option value="5" selected>★★★★★</option>
+				</select>
+			</div>
+			<!--輸入專武攻擊-->
+			<div id="uwatkdiv" style="display:none">
+				<label for="uwatk">專武攻擊：</label>
+				<input type="number" name="uwatk" id="uwatk" style="width:89px;" placeholder="147459" oninput="getatk()"/>
+			</div>
+			<!--切換-->
+			<div>
+				<button type="button" onclick="changeuw()">切換</button>
+			</div>
+		</div>
+		<!--==================專武尾巴================-->
+		<!--==============耳環欄位===================-->
+		<div class="a">
+			<!--耳環品質表單-->
+			<div id="erqualitydiv">
+				<label for="erquality">耳環品質：</label>
+				<select name="erquality" id="erquality" onchange="getatk()">
+				<option value="0">T8</option>
+				<option value="1">TM非尋回</option>
+				<option value="2">TM尋回</option>
+				</select>
+			</div>
+			<br>
+			<!--耳環星數表單-->
+			<div id="erstardiv">
+				<label for="erstar">耳環星數：</label>
+				<select name="erstar" id="erstar" onchange="getatk()">
+				<option value="0">☆☆☆☆☆</option>
+				<option value="1">★☆☆☆☆</option>
+				<option value="2">★★☆☆☆</option>
+				<option value="3">★★★☆☆</option>
+				<option value="4">★★★★☆</option>
+				<option value="5" selected>★★★★★</option>
+				</select>
+			</div>
+			<!--輸入耳環攻擊-->
+			<div id="eratkdiv" style="display:none">
+				<label for="eratk">耳環攻擊：</label>
+				<input type="number" name="eratk" id="eratk" style="width:89px;"  placeholder="23702" oninput="getatk()"/>
+			</div>
+			<!--切換-->
+			<div>
+				<button type="button" onclick="changeer()">切換</button>
+			</div>
+		</div>
+		<!--=================耳環尾巴==========================-->
+		<!--=================魂武欄位==========================-->
+		<div>
+			<div id="changeswdiv">
+				<input type="button" name="swbutton" id="swbutton" value="填寫魂武細項" onclick="changesw()"/>
+			</div>
+			<div class="a">
+			<!--輸入魂武攻擊-->
+			<div id="swdiv" style="display:block">
+				<label for="swatk">魂武攻擊：</label>
+				<input type="number" name="swatk" id="swatk" style="width:89px;"  placeholder="128628" oninput="getatk()"/>
+			</div>
+			<div id="allswdiv" style="display:none;">
+				<!--魂武階級表單-->
+				<div id="swadvdiv">
+					<label for="swadv">魂武階級：</label>
+					<select name="swadv" id="swadv" onchange="getatk()">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2" selected>2</option>
+					</select>
+				</div>
+				<br>
+				<!--輸入魂武等級-->
+				<div id="swleveldiv" style="display:inline">
+					<label for="swlevel">魂武等級：</label>
+					<input type="number" name="swlevel" id="swlevel" style="width:24px;"  value="20" oninput="getatk()"/>
+				</div>
+				<br>
+				<!--輸入魂武比例-->
+				<div id="swratediv" style="display:inline">
+					<label for="swrate">攻擊比例：</label>
+					<input type="number" name="swrate" id="swrate" style="width:36px;"  value="70.0" step="0.1" oninput="getatk()"/>%
+				</div>
+				<br>
+				<!--輸入魂武附加攻擊-->
+				<div id="swaddidiv" style="display:inline">
+					<label for="swaddi">附加攻擊：</label>
+					<input type="number" name="swaddi" id="swaddi" style="width:36px;"  value="20.0" step="0.1" oninput="getatk()"/>%
+				</div>
+				<br>
+				<!--顯示魂武細項結果-->
+				<br>
+				<div id="swdetail" class="swdetail">
+				
+				</div>
+				<br><br>
+			</div>
+			</div>
+		</div>
+		<!--======================魂武尾巴=================-->
+		<!--======================攻擊前綴欄位==============-->
+		<div oninput="getpreatk()">
+			<!--
+			<div id="changepreatkdiv">
+			<input type="button" name="preatkbutton" id="preatkbutton" value="填寫攻擊前綴細項" onclick="changepreatk()"/>
+			</div>
+			-->
+			<div class="a">
+				<!--輸入攻擊前綴-->
+				<div id="preatkdiv" style="display:block">
+				<label for="preatk">攻擊前綴：</label>
+				<input type="number" name="preatk" id="preatk" style="width:89px;"  placeholder="192"/>%
+				</div>
+			</div>
+		</div>
+		<!--======================攻擊前綴尾巴==============-->
+		<!--顯示面板細項結果-->
+		<br>
+		<div id="paneldetail" class="whitebox">
+		面板攻擊：156257
+		</div>
+		<br><br>
+	</div>
+</div>
+<!--==============所有面板攻擊項目尾巴=================-->
+<!--======================攻擊後綴欄位==============-->
+<div class="f" oninput="getposatk()">
+	<!--
+	<div id="changeposatkdiv">
+	<input type="button" name="posatkbutton" id="posatkbutton" value="填寫攻擊後綴細項" onclick="changeposatk()"/>
+	</div>
+	-->
+	<div class="a">
+		<!--輸入攻擊後綴-->
+		<div id="posatkdiv" style="display:block">
+			<label for="posatk">攻擊後綴：</label>
+			<input type="number" name="posatk" id="posatk" style="width:89px;"  placeholder="192"/>%
+		</div>
+	</div>
+</div>
+<!--======================攻擊後綴尾巴==============-->
+<!--======================攻擊數值欄位==============-->
+<div class="f" oninput="getatkvalue()">
+<div class="a">
+<!--輸入攻擊數值-->
+<div id="atkvaluediv" style="display:block">
+<label for="atkvalue">攻擊數值：</label>
+<input type="number" name="atkvalue" id="atkvalue" style="width:89px;"  placeholder="200000"/>
+</div>
+<div id="inputallatkvaluediv" style="display:none;">
+<br>
+</div>
+</div>
+</div>
+<!--======================攻擊數值尾巴==============-->
+<!--======================倍率欄位==============-->
+<div class="f" oninput="getskill()">
+<div class="a">
+<!--輸入技能倍率-->
+<div id="multidiv" style="display:block">
+<label for="multi">技能倍率：</label>
+<input type="number" name="multi" id="multi" style="width:89px;"  placeholder="4.397" value="1"/>
+</div>
+<!--輸入技能基值-->
+<div id="basediv" style="display:block">
+<label for="base">技能基值：</label>
+<input type="number" name="base" id="base" style="width:89px;"  placeholder="122362" value="0"/>
+</div>
+
+</div>
+</div>
+<!--======================基值尾巴==============-->
+<!--======================防禦屬性欄位==============-->
+<div class="f">
+<div id="changedefdiv">
+<!-- 要修改 -->
+<input type="button" name="defbutton" id="defbutton" value="填寫防禦相關細項" onclick="changeposatk()" style="display:none;"/>
+</div>
+<div class="a" oninput="getdefmul()">
+<!--輸入防禦參數-->
+<div id="defbase" style="display:block">
+<label for="def.base">防禦參數：</label>
+<input type="number" name="def.base" id="def.base" style="width:89px;"  placeholder="980750" value="980750"/>
+</div>
+<!--無視防禦-->
+<div id="unabledef" style="display:block">
+<input type="checkbox" name="no.def" id="no.def" onclick="nodef()"/>
+<label>無視防禦</label>
+</div>
+<!--敵人無視扣防-->
+<div id="unabledefdec" style="display:block">
+<input type="checkbox" name="no.defdec" id="no.defdec" onclick="nodefdec()"/>
+<label>敵人無視扣防</label>
+</div>
+<!--輸入敵人防禦-->
+<div id="enemydef" style="display:block">
+<label for="def.enemy">敵人防禦：</label>
+<input type="number" name="def.enemy" id="def.enemy" style="width:89px;"  placeholder="150000" value="0"/>
+</div>
+<!-- 輸入增防％ -->
+<div id="defrai" style="display:block">
+<label for="def.rai">敵人增防％：</label>
+<input type="number" name="def.rai" id="def.rai" style="width:89px;"  placeholder="50" value="0"/>％
+</div>
+<!-- 輸入扣防％ -->
+<div id="defred" style="display:inline">
+<label for="def.red">扣防％：</label>
+<input type="number" name="def.red" id="def.red" style="width:89px;"  placeholder="50" value="0"/>％
+</div>
+<!-- 扣防％遞減結果 -->
+<div id="defredsoft">
+：0.0％
+</div>
+<!-- 輸入增防值 -->
+<div id="definc" style="display:block">
+<label for="def.inc">增防數值：</label>
+<input type="number" name="def.inc" id="def.inc" style="width:89px;"  placeholder="40000" value="0"/>
+</div>
+<!-- 輸入扣防值 -->
+<div id="defdec" style="display:block">
+<label for="def.dec">扣防數值：</label>
+<input type="number" name="def.dec" id="def.dec" style="width:89px;"  placeholder="40000" value="0"/>
+</div>
+<!-- 輸入防穿值 -->
+<div id="pen" style="display:inline" oninput="getdefmul()">
+<label for="pen.x">防穿值：</label>
+<input type="number" name="pen.x" id="pen.x" style="width:89px;"  placeholder="1200" value="0" />
+</div>
+<!-- 防穿遞減結果 -->
+<div id="pensoft">
+：0.0％
+</div>
+<!-- 有效防禦 -->
+<div id="realdef" style="display:block">
+有效防禦：0
+</div>
+
+<!--顯示防禦減傷結果-->
+<br>
+<div id="def.mul" class="whitebox">
+防禦減傷倍率：0
+</div>
+<br><br>
+</div>
+</div>
+<!--======================防禦屬性尾巴==============-->
+<!--======================屬性增傷欄位==============-->
+<div class="f">
+<div class="a" oninput="getdmginc()">
+<!--輸入屬性增傷-->
+<div id="dmgincdiv" style="display:block">
+<label for="dmginc">屬性增傷：</label>
+<input type="number" name="dmginc" id="dmginc" style="width:89px;" placeholder="75" value="0"/>%
+</div>
+<div id="toughdiv" style="display:inline">
+<label for="tough.x">敵人抵抗：</label>
+<input type="number" name="tough.x" id="tough.x" style="width:89px;"  placeholder="200,400" value="0"/>
+</div>
+<!-- 抵抗遞減結果 -->
+<div id="toughsoft">
+：0.0％
+</div>
+<!--顯示增傷結果-->
+<br><br>
+<div id="dmg.inc" class="whitebox">
+實際增傷倍率：0.0％
+</div>
+<br><br>
+</div>
+</div>
+<!--======================屬性增傷尾巴==============-->
+<!--======================爆擊爆傷欄位==============-->
+<div class="f" oninput="getcdmg()">
+<div class="a">
+<!--輸入總爆傷-->
+<div id="cdmgdiv" style="display:block">
+<label for="cdmg">總爆傷：</label>
+<input type="number" name="cdmg" id="cdmg" style="width:89px;"  placeholder="500" value="0"/>%
+</div>
+
+</div>
+</div>
+<!--======================爆擊爆傷尾巴==============-->
+<!--======================技能增傷欄位==============-->
+<div class="f" oninput="getskillinc()">
+	<div class="a">
+		<!--輸入技能增傷-->
+		<div id="skillincdiv" style="display:block">
+			<label for="skillinc">技能增傷：</label>
+			<input type="number" name="skillinc" id="skillinc" style="width:89px;"  placeholder="50" value="0"/>%
+		</div>
+	</div>
+</div>
+<!--======================技能增傷尾巴==============-->
+<!--======================狩獵欄位==============-->
+<div class="f">
+<!-- 選取狩獵 -->
+<div style="display:block">
+<input type="checkbox" name="hunt" id="hunt" onclick="gethunt()"/>
+<label>狩獵</label>
+</div>
+</div>
+<!--======================狩獵尾巴==============-->
+<!--==================套裝欄位================-->
+<div class="f">
+	<!--套裝表單-->
+	<div id="gearsetdiv">
+		<label for="gearset">套裝：</label>
+		<select name="gearset" id="gearset" onchange="showfixed(),getatk()">
+		<!--魔獸套-->
+		<optgroup label="魔獸套">
+		<option value="101">魔獸2件套</option>
+		<option value="102">魔獸4件套</option>
+		</optgroup>
+		<!--魔導套-->
+		<optgroup label="魔導套">
+		<option value="1001">魔導高戈套</option>
+		<option value="1002">魔導齊格套</option>
+		<option value="1003">魔導阿斯套</option>
+		</optgroup>
+		<!--其它-->
+		<optgroup label="其它">
+		<option value="0" selected>其它T8套裝</option>
+		</optgroup>
+		</select>
+	</div>
+	<!--尋回/未尋回-->
+	<div id="fixeddiv" style="display:none;">
+		<label for="fixed">尋回/未尋回：</label>
+		<select name="fixed" id="fixed" onchange="getatk()">
+		<option value="1">尋回</option>
+		<option value="0">未尋回</option>
+		</select>
+	</div>
+	<div>
+		<p class="whitebox">還未套用，還沒很好的想法</p>
+	</div>
+</div>
+<!--==============套裝尾巴===================-->
+<!--======================終傷欄位==============-->
+<div class="f">
+	<div class="a" oninput="getfdmg()">
+		<!--輸入終傷-->
+		<div style="display:block">
+			<label for="fdmg1">終傷1：</label>
+			<input type="number" name="fdmg1" id="fdmg1" style="width:89px;" placeholder="30" value="0"/>%
+		</div>
+		<div style="display:block">
+			<label for="fdmg2">終傷2：</label>
+			<input type="number" name="fdmg2" id="fdmg2" style="width:89px;" placeholder="30" value="0"/>%
+		</div>
+		<div style="display:block">
+			<label for="fdmg3">終傷3：</label>
+			<input type="number" name="fdmg3" id="fdmg3" style="width:89px;" placeholder="30" value="0"/>%
+		</div>
+		<div style="display:block">
+			<label for="fdmg4">終傷4：</label>
+			<input type="number" name="fdmg4" id="fdmg4" style="width:89px;" placeholder="30" value="0"/>%
+		</div>
+		<div style="display:block">
+			<label for="fdmg5">終傷5：</label>
+			<input type="number" name="fdmg5" id="fdmg5" style="width:89px;" placeholder="30" value="0"/>%
+		</div>
+		<div>
+			<p class="whitebox">hint：1.7倍 ≡ 70％</p>
+		</div>
+	</div>
+</div>
+<!--======================終傷尾巴==============-->
+<!--提交表單-->
+<div>
+<button type="button" onclick="showrealdmg()">確定</button>
+</div>
+</div>
+</form>
+</div>
+<!--==================表單尾巴=================-->
+
+<p id="demo1"><br></p>
+<p id="realdmg" class="whitebox">實際傷害 = 0</p>
+<!-- end middle column -->
+</div>
+
+<div class="graph" id="graph1">
+<br><br><br><br>
+<canvas id="chart" width="800" height="600"></canvas>
+</div>
+</div>
+
+<div class="footer">
+<p1>made by Dieark</p1>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+<script src="../js/calculator.js"></script>
+</body>
+    
+</html>
