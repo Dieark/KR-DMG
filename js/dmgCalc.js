@@ -146,7 +146,9 @@ $(document).ready(function(){
     }
     // =====有效防禦=====
     function realDef(){
-        return Math.floor(Math.floor(Math.floor(defBase*(Math.round((1+0.01*defPre)*1000)/1000))*(Math.round((1+0.01*def())*1000)/1000)+defVal)*(Math.round((1-0.01*pen())*1000)/1000));
+        var a=Math.floor(Math.floor(Math.floor(defBase*(Math.round((1+0.01*defPre)*1000)/1000))*(Math.round((1+0.01*def())*1000)/1000)+defVal)*(Math.round((1-0.01*pen())*1000)/1000));
+        if(a<0) return 0;
+        return a;
     }
     // =====防禦減傷=====
     function defDmg(){
