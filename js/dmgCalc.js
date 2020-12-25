@@ -103,6 +103,10 @@ $(document).ready(function(){
         if((event.target.id=="skillBook")||(event.target.id=="skillUT")||(event.target.id=="skillTrans")){
             $("#skillInc").val(Number($("#skillBook").val())+Number($("#skillUT").val())+Number($("#skillTrans").val()));
         }
+        $("#defPenReal").text("實際防穿="+pen()+"%");
+        $("#defDmgRedReal").text("等效減傷="+defDmg()+"%");
+        $("#incToughReal").text("實際抵抗="+Number(real(penSet,incTough))+"%");
+        $("#incIncReal").text("等效增傷="+inc()+"%");
         $("#result").text(realDmg());
         console.log("id=",event.target.id.toString(),"value=",$(event.target).val())
         console.log("realDmg=",realDmg())
