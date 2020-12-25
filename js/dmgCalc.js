@@ -100,6 +100,9 @@ $(document).ready(function(){
             eval(ids[i].toString() + "=Number(" + "$('#" + ids[i] + "').val()" + ");");
             // eval("console.log('" + ids[i].toString() + "='+$('#" + ids[i] + "').val())");
         }
+        if((event.target.id=="skillBook")||(event.target.id=="skillUT")||(event.target.id=="skillTrans")){
+            $("#skillInc").val(Number($("#skillBook").val())+Number($("#skillUT").val())+Number($("#skillTrans").val()));
+        }
         $("#result").text(realDmg());
         console.log("id=",event.target.id.toString(),"value=",$(event.target).val())
         console.log("realDmg=",realDmg())
@@ -156,7 +159,9 @@ $(document).ready(function(){
     }
     // ======總爆傷======
     function cdmg(){
-        return Math.round((cdmg1+cdmg2+cdmg3+cdmg4+cdmg5)*10)/10;
+        if($("#checkCdmg").prop('checked'))
+            return Math.round((cdmg1+cdmg2+cdmg3+cdmg4+cdmg5)*10)/10;
+        return -100;
     }
     // =======魔導=======
     // ======tm對敵======
