@@ -259,8 +259,9 @@ $(document).ready(function(){
         var atk2=Math.floor(atk1)*(Math.round((1+0.01*atkPre)*1000)/1000);
         var atk3=Math.floor(atk2)*(Math.round((1+0.01*atkPetPre)*1000)/1000);
         var atk4=Math.floor(atk3)+atkPetVal;
-        var atk5=Math.floor(atk4)*(Math.round((1+0.01*atkPos)*1000)/1000);
-        var atk6=Math.floor(atk5)+atkVal;
+        var atk5=Math.floor(atk4)*(Math.round((1+0.01*atkPetPos)*1000)/1000);
+        var atk6=Math.floor(atk5)*(Math.round((1+0.01*atkPos)*1000)/1000);
+        var atk7=Math.floor(atk6)+atkVal;
         var skill1=Math.floor(atk6)*skillScaling;
         var skill2=Math.floor(skill1)+skillBase;
         var def1=Math.floor(skill2)*(Math.round((1-defDmg())*1000)/1000);
