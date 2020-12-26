@@ -175,6 +175,10 @@ $(document).ready(function(){
         var a=0;
         if(TMset==1) a+=10;
         if(TMset==2) a+=25;
+        if(C10set==1) a+=2;
+        if(C10set==2) a+=5;
+        if(C10set==3) a+=8;
+        if(C10set==4) a+=20;
         if(TMskill1==1) a+=25;
         if(TMskill2==1) a+=25;
         if(TMskill3==1) a+=25;
@@ -183,6 +187,10 @@ $(document).ready(function(){
         if(TMskill2==2) a+=36;
         if(TMskill3==2) a+=36;
         if(TMskill4==2) a+=36;
+        if(TMskill1==6) a+=15;
+        if(TMskill2==6) a+=15;
+        if(TMskill3==6) a+=15;
+        if(TMskill4==6) a+=15;
         if(TMteammates>0) a+=TMteammates;
         return a;
     }
@@ -228,6 +236,16 @@ $(document).ready(function(){
         if(MTset==2) return 15;
         return 0;
     }
+    // ======壓制套1======
+    function pvpSet1(){
+        if(PVPset!=0) return 7;
+        return 0;
+    }
+    // ======壓制套2======
+    function pvpSet2(){
+        if(PVPset==2) return 13;
+        return 0;
+    }
     // ======Boss傷1======
     function fdmg1(){
         if($("#checkBdmg1").prop('checked')) return bdmg1;
@@ -271,7 +289,9 @@ $(document).ready(function(){
         var hunt1=Math.floor(skill3)*(Math.round((1+0.01*hunt())*1000)/1000);
         var mt1=Math.floor(hunt1)*(Math.round((1+0.01*mtSet1())*1000)/1000);
         var mt2=Math.floor(mt1)*(Math.round((1+0.01*mtSet2())*1000)/1000);
-        var tm1=Math.floor(mt2)*(Math.round((1+0.01*tmAll())*1000)/1000);
+        var pvp1=Math.floor(mt2)*(Math.round((1+0.01*pvpSet1())*1000)/1000);
+        var pvp2=Math.floor(pvp1)*(Math.round((1+0.01*pvpSet2())*1000)/1000);
+        var tm1=Math.floor(pvp2)*(Math.round((1+0.01*tmAll())*1000)/1000);
         var tm2=Math.floor(tm1)*(Math.round((1+0.01*tmNdmg())*1000)/1000);
         var tm3=Math.floor(tm2)*(Math.round((1+0.01*tmDot())*1000)/1000);
         var tm4=Math.floor(tm3)*(Math.round((1+0.01*tmDef())*1000)/1000);

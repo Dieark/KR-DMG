@@ -428,6 +428,7 @@
 														<option value="3">普攻25%增傷</option>
 														<option value="4">dot20%增傷</option>
 														<option value="5">無視防禦25%增傷</option>
+														<option value="6">滿魔15%對敵增傷</option>
 													</select>
 												</div>
 												<div class="input-group mb-3">
@@ -442,6 +443,7 @@
 														<option value="3">普攻25%增傷</option>
 														<option value="4">dot20%增傷</option>
 														<option value="5">無視防禦25%增傷</option>
+														<option value="6">滿魔15%對敵增傷</option>
 													</select>
 												</div>
 												<div class="input-group mb-3">
@@ -456,6 +458,7 @@
 														<option value="3">普攻25%增傷</option>
 														<option value="4">dot20%增傷</option>
 														<option value="5">無視防禦25%增傷</option>
+														<option value="6">滿魔15%對敵增傷</option>
 													</select>
 												</div>
 												<div class="input-group mb-3">
@@ -470,6 +473,7 @@
 														<option value="3">普攻25%增傷</option>
 														<option value="4">dot20%增傷</option>
 														<option value="5">無視防禦25%增傷</option>
+														<option value="6">滿魔15%對敵增傷</option>
 													</select>
 												</div>
 												<div class="input-group mb-3" >
@@ -503,6 +507,30 @@
 												</div>
 												<div class="input-group mb-3">
 													<div class="input-group-prepend">
+														<label class="input-group-text" for="C10set">增幅套裝</label>
+														<!-- <button class="btn btn-outline-secondary" type="button">按鈕</button> -->
+													</div>
+													<select class="custom-select" id="C10set">
+														<option value="0" selected>無</option>
+														<option value="1">2件套</option>
+														<option value="2">4件套</option>
+														<option value="3">2件套 in 魔導王國</option>
+														<option value="4">4件套 in 魔導王國</option>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<label class="input-group-text" for="PVPset">壓制套裝</label>
+														<!-- <button class="btn btn-outline-secondary" type="button">按鈕</button> -->
+													</div>
+													<select class="custom-select" id="PVPset">
+														<option value="0" selected>無</option>
+														<option value="1">2件套</option>
+														<option value="2">4件套</option>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
 														<div class="input-group-text">
 															<input type="checkbox" id="checkHunt" value="0">
 														</div>
@@ -514,7 +542,7 @@
 														<div class="input-group-text">
 															<input type="checkbox" id="checkBdmg1">
 														</div>
-														<span class="input-group-text">對BOSS傷1</span>
+														<span class="input-group-text">其他終傷1</span>
 													</div>
 													<input type="text" class="form-control" id="bdmg1">
 													<div class="input-group-pospend">
@@ -526,7 +554,7 @@
 														<div class="input-group-text">
 															<input type="checkbox" id="checkBdmg2">
 														</div>
-														<span class="input-group-text">對BOSS傷2</span>
+														<span class="input-group-text">其他終傷2</span>
 													</div>
 													<input type="text" class="form-control" id="bdmg2">
 													<div class="input-group-pospend">
@@ -538,7 +566,7 @@
 														<div class="input-group-text">
 															<input type="checkbox" id="checkBdmg3">
 														</div>
-														<span class="input-group-text">對BOSS傷3</span>
+														<span class="input-group-text">其他終傷3</span>
 													</div>
 													<input type="text" class="form-control" id="bdmg3">
 													<div class="input-group-pospend">
@@ -550,7 +578,7 @@
 														<div class="input-group-text">
 															<input type="checkbox" id="checkBdmg4">
 														</div>
-														<span class="input-group-text">對BOSS傷4</span>
+														<span class="input-group-text">其他終傷4</span>
 													</div>
 													<input type="text" class="form-control" id="bdmg4">
 													<div class="input-group-pospend">
@@ -562,7 +590,7 @@
 														<div class="input-group-text">
 															<input type="checkbox" id="checkBdmg5">
 														</div>
-														<span class="input-group-text">對BOSS傷5</span>
+														<span class="input-group-text">其他終傷5</span>
 													</div>
 													<input type="text" class="form-control" id="bdmg5">
 													<div class="input-group-pospend">
@@ -595,7 +623,8 @@
 										<p class="text-left">1.注意框框內不要填入非數字，例如"%"</p>
 										<p class="text-left">2.出現NaN代表有地方填入非數字，檢查一下～</p>
 										<p class="text-left">3.防禦被扣到0以下即相當於防禦=0</p>
-										<p class="text-left">4.待補充...</p>
+										<p class="text-left">4."其他終傷"包括"對BOSS傷"、"對非英雄傷"...等</p>
+										<p class="text-left">5.待補充...</p>
 										<img src="../img/kara-weddind.png" width="300">					
 									</div>
 								</div>
