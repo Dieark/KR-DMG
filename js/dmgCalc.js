@@ -273,34 +273,34 @@ $(document).ready(function(){
     }
     // =====實際傷害=====
     function realDmg(){
-        var atk1=atkBase;
-        var atk2=Math.floor(atk1)*(Math.round((1+0.01*atkPre)*1000)/1000);
-        var atk3=Math.floor(atk2)*(Math.round((1+0.01*atkPetPre)*1000)/1000);
-        var atk4=Math.floor(atk3)+atkPetVal;
-        var atk5=Math.floor(atk4)*(Math.round((1+0.01*atkPetPos)*1000)/1000);
-        var atk6=Math.floor(atk5)*(Math.round((1+0.01*atkPos)*1000)/1000);
-        var atk7=Math.floor(atk6)+atkVal;
-        var skill1=Math.floor(atk7)*skillScaling;
-        var skill2=Math.floor(skill1)+skillBase;
-        var def1=Math.floor(skill2)*(Math.round((1-defDmg())*1000)/1000);
-        var inc1=Math.floor(def1)*(Math.round((1+0.01*inc())*1000)/1000);
-        var cdmg1=Math.floor(inc1)*(Math.round((2+0.01*cdmg())*1000)/1000);
-        var skill3=Math.floor(cdmg1)*(Math.round((1+0.01*skillInc)*1000)/1000);
-        var hunt1=Math.floor(skill3)*(Math.round((1+0.01*hunt())*1000)/1000);
-        var mt1=Math.floor(hunt1)*(Math.round((1+0.01*mtSet1())*1000)/1000);
-        var mt2=Math.floor(mt1)*(Math.round((1+0.01*mtSet2())*1000)/1000);
-        var pvp1=Math.floor(mt2)*(Math.round((1+0.01*pvpSet1())*1000)/1000);
-        var pvp2=Math.floor(pvp1)*(Math.round((1+0.01*pvpSet2())*1000)/1000);
-        var tm1=Math.floor(pvp2)*(Math.round((1+0.01*tmAll())*1000)/1000);
-        var tm2=Math.floor(tm1)*(Math.round((1+0.01*tmNdmg())*1000)/1000);
-        var tm3=Math.floor(tm2)*(Math.round((1+0.01*tmDot())*1000)/1000);
-        var tm4=Math.floor(tm3)*(Math.round((1+0.01*tmDef())*1000)/1000);
-        var bdmg1=Math.floor(tm4)*(Math.round((1+0.01*fdmg1())*1000)/1000)
-        var bdmg2=Math.floor(bdmg1)*(Math.round((1+0.01*fdmg2())*1000)/1000)
-        var bdmg3=Math.floor(bdmg2)*(Math.round((1+0.01*fdmg3())*1000)/1000)
-        var bdmg4=Math.floor(bdmg3)*(Math.round((1+0.01*fdmg4())*1000)/1000)
-        var bdmg5=Math.floor(bdmg4)*(Math.round((1+0.01*fdmg5())*1000)/1000)
-        return Math.floor(bdmg5);
+        var p01=atkBase;
+        var p02=Math.floor(p01)*(Math.round((1+0.01*atkPre)*1000)/1000);
+        var p03=Math.floor(p02)*(Math.round((1+0.01*atkPetPre)*1000)/1000);
+        var p04=Math.floor(p03)+atkPetVal;
+        var p05=Math.floor(p04)*(Math.round((1+0.01*atkPetPos)*1000)/1000);
+        var p06=Math.floor(p05)*(Math.round((1+0.01*atkPos)*1000)/1000);
+        var p07=Math.floor(p06)+atkVal;
+        var p08=Math.floor(p07)*skillScaling;
+        var p09=Math.floor(p08)+skillBase;
+        var p10=Math.floor(p09)*(Math.round((1-defDmg())*1000)/1000);
+        var p11=Math.floor(p10)*(Math.round((1+0.01*inc())*1000)/1000);
+        var p12=Math.floor(p11)*(Math.round((2+0.01*cdmg())*1000)/1000);
+        var p13=Math.floor(p12)*(Math.round((1+0.01*skillInc)*1000)/1000);
+        var p14=Math.floor(p13)*(Math.round((1+0.01*hunt())*1000)/1000);
+        var p15=Math.floor(p14)*(Math.round((1+0.01*mtSet1())*1000)/1000);
+        var p16=Math.floor(p15)*(Math.round((1+0.01*mtSet2())*1000)/1000);
+        var p17=Math.floor(p16)*(Math.round((1+0.01*pvpSet1())*1000)/1000);
+        var p18=Math.floor(p17)*(Math.round((1+0.01*pvpSet2())*1000)/1000);
+        var p19=Math.floor(p18)*(Math.round((1+0.01*tmAll())*1000)/1000);
+        var p20=Math.floor(p19)*(Math.round((1+0.01*tmNdmg())*1000)/1000);
+        var p21=Math.floor(p20)*(Math.round((1+0.01*tmDot())*1000)/1000);
+        var p22=Math.floor(p21)*(Math.round((1+0.01*tmDef())*1000)/1000);
+        var p23=Math.floor(p22)*(Math.round((1+0.01*fdmg1())*1000)/1000)
+        var p24=Math.floor(p23)*(Math.round((1+0.01*fdmg2())*1000)/1000)
+        var p25=Math.floor(p24)*(Math.round((1+0.01*fdmg3())*1000)/1000)
+        var p26=Math.floor(p25)*(Math.round((1+0.01*fdmg4())*1000)/1000)
+        var p27=Math.floor(p26)*(Math.round((1+0.01*fdmg5())*1000)/1000)
+        return Math.floor(p27);
     }
 });
 
