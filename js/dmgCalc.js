@@ -104,7 +104,7 @@ $(document).ready(function(){
             $("#skillInc").val(Number($("#skillBook").val())+Number($("#skillUT").val())+Number($("#skillTrans").val()));
         }
         $("#defPenReal").text("實際防穿="+pen()+"%");
-        $("#defDmgRedReal").text("等效減傷="+defDmg()+"%");
+        $("#defDmgRedReal").text("等效減傷="+defDmg());
         $("#incToughReal").text("實際抵抗="+Number(real(penSet,incTough))+"%");
         $("#incIncReal").text("等效增傷="+inc()+"%");
         $("#result").text(realDmg());
