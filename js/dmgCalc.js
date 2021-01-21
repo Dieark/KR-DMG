@@ -89,9 +89,11 @@ $(document).ready(function(){
     console.log("ids=",ids,"len=",idsLen)
     for(var i=0;i<idsLen;i++){
         eval("var " + ids[i].toString() + "=" + Number(0) + ";");
-        eval("$('#" + ids[i] + "').val(Cookies.get('" + ids[i].toString() + "'));");
+        if(Cookies.get('notFirstVisited')){
+            eval("$('#" + ids[i] + "').val(Cookies.get('" + ids[i].toString() + "'));");
+        }
     }
-    
+    Cookies.set('notFirstVisited','True',{ secure: true });
 	$(document).on("keyup",".data",calc);
     $(document).on("click",".data",calc);
 
