@@ -89,6 +89,7 @@ $(document).ready(function(){
     console.log("ids=",ids,"len=",idsLen)
     for(var i=0;i<idsLen;i++){
         eval("var " + ids[i].toString() + "=" + Number(0) + ";");
+        eval("$('#" + ids[i] + "').val(Cookies.get('" + ids[i].toString() + "'));");
     }
     
 	$(document).on("keyup",".data",calc);
@@ -98,6 +99,7 @@ $(document).ready(function(){
 	function calc(event){
         for(var i=0;i<idsLen;i++){
             eval(ids[i].toString() + "=Number(" + "$('#" + ids[i] + "').val()" + ");");
+            eval("Cookies.set('" + ids[i].toString() + "'," + "Number($('#" + ids[i] + "').val())" + ",{ secure: true });");
             // eval("console.log('" + ids[i].toString() + "='+$('#" + ids[i] + "').val())");
         }
         if((event.target.id=="skillBook")||(event.target.id=="skillUT")||(event.target.id=="skillTrans")){
