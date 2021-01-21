@@ -248,6 +248,9 @@ var chart = new Chart(ctx, {
 
 
 $(document).ready(function(){
+	console.log(Cookies.get('ivalue'))
+	$(".input input").val(Cookies.get('ivalue'));
+
 	tableloading();
 	$(document).on("click",".clean",function(){
 		$(this).parent().siblings("input").val("");
@@ -344,6 +347,7 @@ function tableloading(){
 var ivalue;
 function calc(){
 	ivalue=Number($(".input input").val());
+	Cookies.set('ivalue', ivalue,{ secure: true });
 	$("td:eq(2)").text(real(crit)).append("%");
 	$("td:eq(5)").text(real(acc)).append("%");
 	$("td:eq(8)").text(real(ccacc)).append("%");
