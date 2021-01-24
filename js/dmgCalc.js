@@ -152,6 +152,7 @@ $(document).ready(function(){
             for(var i=0;i<idsLen;i++){
                 eval("$('#" + ids[i] + "').val(Cookies.get('" + ids[i].toString() + "_" + order + "'));");
             }
+            alert("載入完畢");
         }else{
             alert("已取消\n(填入錯誤或被取消)");
         }
