@@ -149,7 +149,7 @@ $(document).ready(function(){
                 eval("$('#" + ids[i] + "').val(Cookies.get('" + ids[i].toString() + "_" + order + "'));");
             }
         }else{
-            alert('x');
+            alert("已取消");
         }
         window.setTimeout(calc,1000);
     })
