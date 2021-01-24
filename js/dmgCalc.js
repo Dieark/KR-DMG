@@ -114,6 +114,10 @@ $(document).ready(function(){
     }
     $("#setCookie").on("click",function(){
         var name=prompt("請定義名稱");
+        if(!name){
+            alert("已取消\n(未填入或被取消)");
+            return;
+        }
         var r=confirm("確定儲存?");
         if(!r){
             return;
@@ -149,7 +153,7 @@ $(document).ready(function(){
                 eval("$('#" + ids[i] + "').val(Cookies.get('" + ids[i].toString() + "_" + order + "'));");
             }
         }else{
-            alert("已取消");
+            alert("已取消\n(填入錯誤或被取消)");
         }
         window.setTimeout(calc,1000);
     })
