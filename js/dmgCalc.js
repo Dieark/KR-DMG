@@ -80,6 +80,8 @@ var atkSet={
 }
 
 $(document).ready(function(){
+
+    // 將所有id存到陣列
     var ids=[];
     $("*").each(function(){
         if(this.id != "")
@@ -87,32 +89,135 @@ $(document).ready(function(){
     });
     var idsLen=ids.length;
     console.log("ids=",ids,"len=",idsLen)
+
+    // 將所有id形成變數，如果不是第一次來訪，從cookie取得資料並填入
     for(var i=0;i<idsLen;i++){
         eval("var " + ids[i].toString() + "=" + Number(0) + ";");
+        // 如果不是第一次來訪，取得cookie資料
         if(Cookies.get('notFirstVisited')){
             eval("$('#" + ids[i] + "').val(Cookies.get('" + ids[i].toString() + "'));");
         }
     }
+
+    // 第一次來訪:否
     Cookies.set('notFirstVisited','True',{ secure: true });
+    // 儲存資料數量
+    Cookies.set('order_0','true',{secure:true});
+    // 計算
+    window.setTimeout(calc,1000);
 	$(document).on("keyup",".data",calc);
     $(document).on("click",".data",calc);
+
+    // 儲存資料
+    if(!Cookies.get('maxOrder')){
+        Cookies.set('maxOrder',0,{secure:true});
+    }
+    $("#setCookie").on("click",function(){
+        var name=prompt("請定義名稱");
+        var r=confirm("確定儲存?");
+        if(!r){
+            return;
+        }else{
+            alert("已儲存");
+        }
+        var k=0;
+        while(1){
+            if(!Cookies.get('order_'+k)){
+                break;
+            }
+            k=k+1;
+        }
+        Cookies.set('maxOrder',Math.max(Cookies.get('maxOrder'),k),{secure:true});
+        Cookies.set('order_'+k,'true',{secure:true});
+        Cookies.set('name_'+k,name,{secure:true});
+        for(var i=0;i<idsLen;i++){
+            eval("Cookies.set('" + ids[i].toString() + "_" + k + "'," + "Number($('#" + ids[i] + "').val())" + ",{ secure: true });");
+        }
+    });
+    // 讀取資料
+    $("#getCookie").on("click",function(){
+        var txt="讀取資料，請填編號數字";
+        var max=Cookies.get('maxOrder');
+        for(var i=1;i<=max;i++){
+            txt+="\n";
+            txt+=i+". ";
+            txt+=Cookies.get('name_'+i);
+        }
+        var order=prompt(txt,1);
+        if(Cookies.get('order_'+order)){
+            for(var i=0;i<idsLen;i++){
+                eval("$('#" + ids[i] + "').val(Cookies.get('" + ids[i].toString() + "_" + order + "'));");
+            }
+        }else{
+            alert('x');
+        }
+        window.setTimeout(calc,1000);
+    })
+    // function setCookie(){
+    //     var name=prompt("請定義名稱");
+    //     var r=confirm("確定儲存?");
+    //     if(!r){
+    //         return;
+    //     }
+    //     var k=0;
+    //     while(1){
+    //         if(!Cookies.get('order_'+k)){
+    //             break;
+    //         }
+    //         k=k+1;
+    //     }
+    //     maxOrder=Math.max(maxOrder,k);
+    //     Cookies.set('order_'+k,'true',{secure:true});
+    //     Cookies.set('name_'+k,name,{secure:true});
+    //     for(var i=0;i<idsLen;i++){
+    //         eval("Cookies.set('" + ids[i].toString() + "_" + k + "'," + "Number($('#" + ids[i] + "').val())" + ",{ secure: true });");
+    //     }
+    // }
+
+    // 取得舊資料
+    // function getCookie(order){
+    //     var txt="讀取資料，請填編號數字";
+    //     for(var i=1;i<=maxOrder;i++){
+    //         txt+="\n";
+    //         txt+=i+". ";
+    //         txt+=Cookies.get('name_'+i);
+    //     }
+    //     var order=prompt(txt,1);
+    //     for(var i=0;i<idsLen;i++){
+    //         if(Cookies.get('order_'+order)){
+    //             eval("$('#" + ids[i] + "').val(Cookies.get('" + ids[i].toString() + "_" + order + "'));");
+    //         }else{
+    //             alert('x');
+    //         }
+            
+    //     }
+    // }
+
 
     // =======計算=======
 	function calc(event){
         for(var i=0;i<idsLen;i++){
+            // 將現有數據存到對應變數
             eval(ids[i].toString() + "=Number(" + "$('#" + ids[i] + "').val()" + ");");
+            // 將現有數據存到cookie
             eval("Cookies.set('" + ids[i].toString() + "'," + "Number($('#" + ids[i] + "').val())" + ",{ secure: true });");
             // eval("console.log('" + ids[i].toString() + "='+$('#" + ids[i] + "').val())");
         }
-        if((event.target.id=="skillBook")||(event.target.id=="skillUT")||(event.target.id=="skillTrans")){
-            $("#skillInc").val(Number($("#skillBook").val())+Number($("#skillUT").val())+Number($("#skillTrans").val()));
+        // 技能增傷，想拔掉
+        if(event){
+            if((event.target.id=="skillBook")||(event.target.id=="skillUT")||(event.target.id=="skillTrans")){
+                $("#skillInc").val(Number($("#skillBook").val())+Number($("#skillUT").val())+Number($("#skillTrans").val()));
+            }
         }
+        // 顯示一些小資訊
         $("#defPenReal").text("實際防穿="+pen()+"%");
         $("#defDmgRedReal").text("等效減傷="+defDmg());
         $("#incToughReal").text("實際抵抗="+Number(real(penSet,incTough))+"%");
         $("#incIncReal").text("等效增傷="+inc()+"%");
         $("#result").text(realDmg());
-        console.log("id=",event.target.id.toString(),"value=",$(event.target).val())
+        if(event){
+            console.log("id=",event.target.id.toString(),"value=",$(event.target).val())
+        }
         console.log("realDmg=",realDmg())
 	}
     // =======清空=======
@@ -307,8 +412,6 @@ $(document).ready(function(){
         return Math.floor(p27);
     }
 });
-
-
 
 // =======遞減=======
 function real(stat,val){
