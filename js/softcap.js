@@ -219,7 +219,7 @@ var chart = new Chart(ctx, {
 			label: '爆擊率',
 			backgroundColor: 'rgb(255, 99, 132)',
 			borderColor: 'rgb(255, 99, 132)',
-			data: atkreduceArray,
+			data: critArray,
 			pointRadius: 1,
 			fill:false
 		}]
