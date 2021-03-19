@@ -1,7 +1,16 @@
 $(document).ready(function(){
+    $(".close").on("click",function(){
+        $(this).parent().hide();
+    })
     console.log("start")
-    $("#S1-light").on("dblclick",function(){
-        $("#S1-light").attr("src","..\\img\\T5暗.jpg")
+    $(".pic-15").on("click",function(){
+        $("#trans-confirm").show();
+        console.log($("#trans-confirm").find(".d1").html())
+        $("#trans-confirm").find(".d1").text("30")
+        console.log($("#trans-confirm").find(".d1").html())
+    })
+    $("#S1-light").on("click",function(){
+        $("#S1-light").attr("src","..\\img\\T5暗.jpg");
     })
     $("#S1-light").on("dblclick",function(){
         var x=$("#S1-light").attr("src");

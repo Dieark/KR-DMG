@@ -12,6 +12,22 @@ img {
     top: 0%;
     left: 0%;
 }
+.pic-5 {
+    width: 5%; 
+    padding-bottom: 5%; 
+    position: absolute;
+    transform: translate(0%,-50%);
+}
+.pic-15 {
+    width: 15%; 
+    padding-bottom: 15%; 
+    position: absolute;
+    transform: translate(0%,-50%);
+}
+.img-thumbnail {
+    border: 0px;
+    background-color: transparent;
+}
 .bg-1 {
     width: 98%; 
     padding-bottom: 6%; 
