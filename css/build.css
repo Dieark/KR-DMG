@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box
+}
+body {
+    background-color: black;
+    font-family: sans-serif;
+}
+img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+.bg-1 {
+    width: 98%; 
+    padding-bottom: 6%; 
+    position: absolute;
+    left: 1%;
+    background-color: white;
+}
+.bg-2 {
+    width: 98%;
+    position: absolute;
+    left: 1%;
+    background-color: rgb(243, 236, 218);
+}
+.text-1 {
+    width: 35%; 
+    position: absolute; 
+    top: 50%; 
+    left: 1%; 
+    transform: translate(0%,-50%); 
+    color: rgb(110, 100, 100); 
+    background-color: rgb(249, 242, 232); 
+    font-size: 0.9vw;
+}
+.text-2 {
+    width: 60%; 
+    position: absolute; 
+    top: 50%; 
+    left: 37%; 
+    transform: translate(0%,-50%); 
+    color: rgb(110, 100, 100); 
+    font-size: 0.9vw;
+}
+.text-3 {
+    width: 25%; 
+    position: absolute; 
+    top: 1%; 
+    left: 1%; 
+    font-size: 1vw; 
+    color: rgb(161, 148, 132);
+}
+.text-4 {
+    width: 1%;
+    position: absolute;
+    top: 50%;
+    right: 22%;
+    transform: translate(0%,-50%);
+    color: gray;
+    font-size: 0.9vw;
+}
+.text-5 {
+    width: 20%;
+    text-align: right;
+    position: absolute;
+    top: 50%;
+    right: 1%;
+    transform: translate(0%,-50%);
+    color: gray;
+    font-size: 0.9vw;
+}
+.white-space {
+    width: 1%; 
+    position: absolute; 
+    top: 50%; 
+    left: 34%; 
+    transform: translate(0%,-50%); 
+    background-color: white;
+}
+/* .transcend {
+    width: 40%;
+}
+.transcend-row {
+    background-color: white;
+    margin-top: 4px;
+} */
+/* .box {
+    width: 40%;
+    height: 0;
+    padding-bottom: 50%;
+} */
+/* .pic3 {
+    margin-top: 4px;
+    margin-bottom: 4px;
+} */
+.panel-scroll {
+    width: 100%; 
+    height: 90%; 
+    position: absolute; 
+    top: 10%; 
+    left: 0%; 
+    overflow-y: scroll;
+}
+.panel-scroll::-webkit-scrollbar {
+    display: none;
+}
