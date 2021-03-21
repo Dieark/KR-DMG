@@ -5,9 +5,9 @@ $(document).ready(function(){
     console.log("start")
     $(".pic-15").on("click",function(){
         $("#trans-confirm").show();
-        console.log($("#trans-confirm").find(".d1").html())
-        $("#trans-confirm").find(".d1").text("30")
-        console.log($("#trans-confirm").find(".d1").html())
+        console.log($("#trans-confirm").find(".p1").html())
+        $("#trans-confirm").find(".p1").text("30")
+        console.log($("#trans-confirm").find(".p1").html())
     })
     $("#S1-light").on("click",function(){
         $("#S1-light").attr("src","..\\img\\T5暗.jpg");
